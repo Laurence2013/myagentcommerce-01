@@ -8,8 +8,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:myagentcommerce-01": "node dist/myagentcommerce-01/server/server.mjs",
-    "emulators": "firebase emulators:start",
-    "emulators:export": "firebase emulators:start --import=./emulator-data --export-on-exit"
+    "emulators": "firebase emulators:start --import=./emulator-data --export-on-exit",
+    "emulators:fresh": "firebase emulators:start",
+    "emulators:snapshot": "firebase emulators:export ./emulator-data"
   },
   "private": true,
   "packageManager": "npm@12.0.1",
