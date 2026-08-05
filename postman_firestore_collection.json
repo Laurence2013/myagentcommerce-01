@@ -1,0 +1,128 @@
+{
+  "info": {
+    "name": "Firebase Firestore Emulator - Agentic Commerce Tools",
+    "description": "Postman Collection for testing Firestore REST API endpoints against local Firebase Emulator (Port 8080)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": "http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents",
+      "type": "string"
+    },
+    {
+      "key": "COLLECTION",
+      "value": "agentic_tools",
+      "type": "string"
+    },
+    {
+      "key": "TOOL_ID",
+      "value": "tool-001",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. PATCH - Upsert/Update Tool (tool-001)",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fields\": {\n    \"name\": {\n      \"stringValue\": \"Agentic Checkout Bot\"\n    },\n    \"category\": {\n      \"stringValue\": \"e-commerce-automation\"\n    },\n    \"price\": {\n      \"doubleValue\": 49.99\n    },\n    \"active\": {\n      \"booleanValue\": true\n    }\n  }\n}"
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/{{COLLECTION}}/{{TOOL_ID}}",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "{{COLLECTION}}",
+            "{{TOOL_ID}}"
+          ]
+        },
+        "description": "HTTP PATCH to create or update document tool-001 in agentic_tools collection"
+      }
+    },
+    {
+      "name": "2. GET - Fetch Single Tool (tool-001)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{BASE_URL}}/{{COLLECTION}}/{{TOOL_ID}}",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "{{COLLECTION}}",
+            "{{TOOL_ID}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "3. GET - List All Tools in Collection",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{BASE_URL}}/{{COLLECTION}}",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "{{COLLECTION}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "4. POST - Create Auto-ID Tool Document",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fields\": {\n    \"name\": {\n      \"stringValue\": \"Autonomous Inventory Optimizer\"\n    },\n    \"category\": {\n      \"stringValue\": \"inventory-management\"\n    },\n    \"active\": {\n      \"booleanValue\": true\n    }\n  }\n}"
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/{{COLLECTION}}",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "{{COLLECTION}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "5. DELETE - Remove Tool (tool-001)",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{BASE_URL}}/{{COLLECTION}}/{{TOOL_ID}}",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "{{COLLECTION}}",
+            "{{TOOL_ID}}"
+          ]
+        }
+      }
+    }
+  ]
+}
