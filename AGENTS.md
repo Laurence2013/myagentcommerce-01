@@ -37,7 +37,8 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 
 ## State Management
 
-- Use signals for local component state
+- Use signals for UI and local component state
+- Convert RxJS streams from services to signals in UI components (e.g., using `toSignal()`)
 - Use `computed()` for derived state
 - Keep state transformations pure and predictable
 - Do NOT use `mutate` on signals, use `update` or `set` instead
@@ -46,12 +47,13 @@ You are an expert in TypeScript, Angular, and scalable web application developme
 
 - Keep templates simple and avoid complex logic
 - Use native control flow (`@if`, `@for`, `@switch`) instead of `*ngIf`, `*ngFor`, `*ngSwitch`
-- Use the async pipe to handle observables
+- Use the async pipe or signals to handle observables in templates
 - Do not assume globals like (`new Date()`) are available.
 
 ## Services
 
 - Design services around a single responsibility
+- All service and data layer ("backend" of the frontend) logic must be implemented using RxJS streams (`Observable`, `Subject`, operators)
 - Use the `providedIn: 'root'` option for singleton services
 - Prefer the `@Service` decorator over `@Injectable({providedIn: 'root'})` for new singleton services (Angular v22+)
 - Use the `inject()` function instead of constructor injection
