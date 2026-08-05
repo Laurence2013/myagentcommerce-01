@@ -8,14 +8,6 @@ export const routes: Routes = [
     title: 'Agentic Commerce - Home'
   },
   {
-    path: 'admin/agents/new',
-    loadComponent: () =>
-      import('./components/admin-agent-form/admin-agent-form.component').then(
-        (m) => m.AdminAgentFormComponent
-      ),
-    title: 'Admin - Register AI Agent'
-  },
-  {
     path: '**',
     redirectTo: ''
   }
