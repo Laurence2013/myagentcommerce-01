@@ -235,7 +235,7 @@
 .status-text-block
   display: flex
   flex-direction: column
-  gap: 0.15rem
+  gap: 0.35rem
 
 .status-title
   font-size: 0.9rem
@@ -250,3 +250,34 @@
 .status-desc
   font-size: 0.8rem
   color: #94a3b8
+
+  &.text-valid-desc
+    color: #94a3b8
+
+.status-issues-list
+  display: flex
+  flex-direction: column
+  gap: 0.35rem
+  margin-top: 0.25rem
+
+.status-issue-row
+  display: flex
+  align-items: center
+  gap: 0.6rem
+  font-size: 0.825rem
+
+.issue-step-badge
+  display: inline-flex
+  align-items: center
+  padding: 0.15rem 0.55rem
+  background: rgba(244, 63, 94, 0.15)
+  border: 1px solid rgba(244, 63, 94, 0.3)
+  border-radius: 6px
+  color: #fb7185
+  font-size: 0.75rem
+  font-weight: 700
+  flex-shrink: 0
+
+.issue-fields
+  color: #cbd5e1
+  font-weight: 500

@@ -98,14 +98,17 @@
         <div class="status-text-block">
           @if (isFormValid()) {
             <span class="status-title text-valid">Form Status: Ready for Submission</span>
-            <span class="status-desc">All required fields satisfy validation constraints.</span>
+            <span class="status-desc text-valid-desc">All required fields satisfy validation constraints.</span>
           } @else {
             <span class="status-title text-invalid">Incomplete Requirements ({{ missingFieldsSummary().length }} step issues)</span>
-            <span class="status-desc">
+            <div class="status-issues-list">
               @for (issue of missingFieldsSummary(); track issue.step) {
-                <span><strong>{{ issue.step }}:</strong> {{ issue.fields.join(', ') }} &nbsp;</span>
+                <div class="status-issue-row">
+                  <span class="issue-step-badge">{{ issue.step }}</span>
+                  <span class="issue-fields">{{ issue.fields.join(', ') }}</span>
+                </div>
               }
-            </span>
+            </div>
           }
         </div>
       </div>
