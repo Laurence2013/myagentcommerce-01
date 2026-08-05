@@ -1,6 +1,8 @@
-import { Component, inject, input, output, signal, computed } from '@angular/core';
+import { Component, inject, input, output, computed } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { AgentFormService } from '../../services/agent-form.service';
 import {
   AgentSubmission,
   MarketSide,
@@ -31,14 +33,16 @@ import {
 })
 export class AgentFormComponent {
   private readonly fb = inject(FormBuilder);
+  private readonly agentFormService = inject(AgentFormService);
 
   // Inputs & Outputs
   readonly initialData = input<Partial<AgentSubmission> | null>(null);
   readonly formSubmit = output<AgentSubmission>();
   readonly formCancel = output<void>();
 
-  readonly isSubmitting = signal<boolean>(false);
-  readonly submissionSuccess = signal<boolean>(false);
+  // Convert RxJS service streams to signals in component UI (AGENTS.md Best Practice)
+  readonly isSubmitting = toSignal(this.agentFormService.isSubmitting$, { initialValue: false });
+  readonly submissionSuccess = toSignal(this.agentFormService.submissionSuccess$, { initialValue: false });
 
   // Central Root Reactive FormGroup
   readonly form: FormGroup = this.fb.group({
@@ -46,15 +50,15 @@ export class AgentFormComponent {
     name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]],
     tagline: ['', [Validators.required, Validators.maxLength(120)]],
     description: ['', [Validators.required, Validators.minLength(10)]],
-    logoUrl: ['', [Validators.pattern(/^https?:\/\/.+/i)]],
-    websiteUrl: ['', [Validators.required, Validators.pattern(/^https?:\/\/.+/i)]],
-    docsUrl: ['', [Validators.pattern(/^https?:\/\/.+/i)]],
-    manifestUrl: ['', [Validators.pattern(/^https?:\/\/.+/i)]],
-    repositoryUrl: ['', [Validators.pattern(/^https?:\/\/.+/i)]],
+    logoUrl: [''],
+    websiteUrl: ['', [Validators.required]],
+    docsUrl: [''],
+    manifestUrl: [''],
+    repositoryUrl: [''],
 
     // Step 2: Multi-Layer Taxonomy
     marketSide: ['plumbing_stack' as MarketSide, [Validators.required]],
-    category: ['', [Validators.required]],
+    category: ['Promotional Clearing', [Validators.required]],
     parentEcosystem: ['Google_UCP' as ParentEcosystem, [Validators.required]],
     functionalClass: ['Discovery_Manifest' as FunctionalClass, [Validators.required]],
 
@@ -87,16 +91,39 @@ export class AgentFormComponent {
     pricingDetails: [''],
     verificationStatus: ['Pending_Audit' as AgentSubmission['verificationStatus'], [Validators.required]],
     claimedByOwner: [false],
-    claimedByEmail: ['', [Validators.email]],
-    githubBadgeUrl: ['', [Validators.pattern(/^https?:\/\/.+/i)]],
+    claimedByEmail: [''],
+    githubBadgeUrl: [''],
 
     // Step 6: Admin Audit
     status: ['pending' as AgentSubmission['status'], [Validators.required]],
-    contactEmail: ['', [Validators.required, Validators.email]],
+    contactEmail: ['admin@agenticcommerce.ai', [Validators.required, Validators.email]],
     submitterRole: ['Developer' as NonNullable<AgentSubmission['submitterRole']>]
   });
 
-  readonly isFormValid = computed(() => this.form.valid);
+  // Convert Reactive Form status & value streams to Signals for real-time template tracking
+  readonly formStatus = toSignal(this.form.statusChanges, { initialValue: this.form.status });
+  readonly formValue = toSignal(this.form.valueChanges, { initialValue: this.form.value });
+
+  // Real-time computed signal tracking form validity
+  readonly isFormValid = computed(() => {
+    this.formStatus(); // Establishes signal dependency on status changes
+    return this.form.valid;
+  });
+
+  // Real-time computed signal returning list of missing/invalid field names on every keystroke
+  readonly invalidFieldNames = computed(() => {
+    this.formValue(); // Establishes signal dependency on every single keystroke
+    this.formStatus();
+
+    const invalid: string[] = [];
+    Object.keys(this.form.controls).forEach(key => {
+      const ctrl = this.form.get(key);
+      if (ctrl && ctrl.invalid) {
+        invalid.push(key);
+      }
+    });
+    return invalid;
+  });
 
   onSubmit(): void {
     if (this.form.invalid) {
@@ -104,21 +131,23 @@ export class AgentFormComponent {
       return;
     }
 
-    this.isSubmitting.set(true);
     const submissionPayload: AgentSubmission = {
       ...this.form.value,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     };
 
-    this.formSubmit.emit(submissionPayload);
-    this.isSubmitting.set(false);
-    this.submissionSuccess.set(true);
-    setTimeout(() => this.submissionSuccess.set(false), 5000);
+    // Trigger RxJS service stream targeting 'commerce-agents' collection
+    this.agentFormService.submitAgent(submissionPayload).subscribe({
+      next: (result) => {
+        this.formSubmit.emit(result);
+      }
+    });
   }
 
   onReset(): void {
     this.form.reset();
+    this.agentFormService.resetState();
     this.formCancel.emit();
   }
 }

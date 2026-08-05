@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AgentFormComponent } from '../../agent-form.component';
 import {
@@ -21,6 +21,10 @@ export class CommercialsStepComponent {
 
   get formGroup(): FormGroup {
     return this.parent.form;
+  }
+
+  getControl(name: string): FormControl {
+    return this.parent.form.get(name) as FormControl;
   }
 
   readonly developerTypeOptions: DeveloperType[] = [

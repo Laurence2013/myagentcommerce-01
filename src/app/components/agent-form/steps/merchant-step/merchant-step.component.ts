@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ReactiveFormsModule, FormGroup } from '@angular/forms';
+import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AgentFormComponent } from '../../agent-form.component';
 import {
@@ -23,6 +23,10 @@ export class MerchantStepComponent {
     return this.parent.form;
   }
 
+  getControl(path: string): FormControl {
+    return this.parent.form.get(path) as FormControl;
+  }
+
   readonly scaleOptions: TargetMerchantScale[] = [
     'SMB',
     'Mid_Market',
@@ -44,7 +48,7 @@ export class MerchantStepComponent {
   ];
 
   toggleScale(item: TargetMerchantScale): void {
-    const group = this.formGroup.get('targetMerchantProfile.targetScale');
+    const group = this.parent.form.get('targetMerchantProfile.targetScale');
     if (!group) return;
     const current: TargetMerchantScale[] = group.value || [];
     if (current.includes(item)) {
@@ -55,7 +59,7 @@ export class MerchantStepComponent {
   }
 
   isScaleSelected(item: TargetMerchantScale): boolean {
-    const current: TargetMerchantScale[] = this.formGroup.get('targetMerchantProfile.targetScale')?.value || [];
+    const current: TargetMerchantScale[] = this.parent.form.get('targetMerchantProfile.targetScale')?.value || [];
     return current.includes(item);
   }
 }

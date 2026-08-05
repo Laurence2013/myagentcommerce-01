@@ -1,4 +1,4 @@
-<fieldset [formGroup]="formGroup" class="form-fieldset">
+<fieldset class="form-fieldset">
   <legend class="fieldset-legend">1. Core Identity & Basic Info</legend>
   <p class="fieldset-desc">Primary metadata, branding, and manifest URLs for your agent.</p>
 
@@ -9,11 +9,11 @@
       <input
         id="agent-name"
         type="text"
-        formControlName="name"
+        [formControl]="getControl('name')"
         placeholder="e.g. UCPhub.ai or Talon.One"
         class="form-input"
-        [class.input-error]="formGroup.get('name')?.invalid && formGroup.get('name')?.touched" />
-      @if (formGroup.get('name')?.invalid && formGroup.get('name')?.touched) {
+        [class.input-error]="getControl('name').invalid && getControl('name').touched" />
+      @if (getControl('name').invalid && getControl('name').touched) {
         <span class="error-msg">Agent name is required (2-100 chars).</span>
       }
     </div>
@@ -24,11 +24,11 @@
       <input
         id="agent-tagline"
         type="text"
-        formControlName="tagline"
+        [formControl]="getControl('tagline')"
         placeholder="Short description (max 120 chars)"
         class="form-input"
-        [class.input-error]="formGroup.get('tagline')?.invalid && formGroup.get('tagline')?.touched" />
-      @if (formGroup.get('tagline')?.invalid && formGroup.get('tagline')?.touched) {
+        [class.input-error]="getControl('tagline').invalid && getControl('tagline').touched" />
+      @if (getControl('tagline').invalid && getControl('tagline').touched) {
         <span class="error-msg">Tagline is required (max 120 chars).</span>
       }
     </div>
@@ -39,12 +39,12 @@
     <label for="agent-desc" class="field-label">Detailed Description <span class="required-star">*</span></label>
     <textarea
       id="agent-desc"
-      formControlName="description"
+      [formControl]="getControl('description')"
       rows="4"
       placeholder="Describe functionality, protocol support, and capabilities..."
       class="form-textarea"
-      [class.input-error]="formGroup.get('description')?.invalid && formGroup.get('description')?.touched"></textarea>
-    @if (formGroup.get('description')?.invalid && formGroup.get('description')?.touched) {
+      [class.input-error]="getControl('description').invalid && getControl('description').touched"></textarea>
+    @if (getControl('description').invalid && getControl('description').touched) {
       <span class="error-msg">Description is required (min 10 chars).</span>
     }
   </div>
@@ -56,12 +56,12 @@
       <input
         id="agent-website"
         type="url"
-        formControlName="websiteUrl"
+        [formControl]="getControl('websiteUrl')"
         placeholder="https://ucphub.ai"
         class="form-input"
-        [class.input-error]="formGroup.get('websiteUrl')?.invalid && formGroup.get('websiteUrl')?.touched" />
-      @if (formGroup.get('websiteUrl')?.invalid && formGroup.get('websiteUrl')?.touched) {
-        <span class="error-msg">Valid HTTPS website URL is required.</span>
+        [class.input-error]="getControl('websiteUrl').invalid && getControl('websiteUrl').touched" />
+      @if (getControl('websiteUrl').invalid && getControl('websiteUrl').touched) {
+        <span class="error-msg">Valid website URL is required.</span>
       }
     </div>
 
@@ -71,7 +71,7 @@
       <input
         id="agent-logo"
         type="url"
-        formControlName="logoUrl"
+        [formControl]="getControl('logoUrl')"
         placeholder="https://ucphub.ai/logo.png"
         class="form-input" />
     </div>
@@ -82,7 +82,7 @@
       <input
         id="agent-manifest"
         type="url"
-        formControlName="manifestUrl"
+        [formControl]="getControl('manifestUrl')"
         placeholder="https://ucphub.ai/.well-known/ucp.json"
         class="form-input" />
     </div>
@@ -93,7 +93,7 @@
       <input
         id="agent-docs"
         type="url"
-        formControlName="docsUrl"
+        [formControl]="getControl('docsUrl')"
         placeholder="https://docs.ucphub.ai"
         class="form-input" />
     </div>
@@ -104,7 +104,7 @@
       <input
         id="agent-repo"
         type="url"
-        formControlName="repositoryUrl"
+        [formControl]="getControl('repositoryUrl')"
         placeholder="https://github.com/org/ucphub"
         class="form-input" />
     </div>

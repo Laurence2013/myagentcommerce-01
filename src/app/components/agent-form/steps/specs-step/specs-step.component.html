@@ -1,11 +1,11 @@
-<fieldset [formGroup]="formGroup" class="form-fieldset">
+<fieldset class="form-fieldset">
   <legend class="fieldset-legend">3. Environment & Technical Specifications</legend>
   <p class="fieldset-desc">Target platforms, transport bindings, authentication, and capabilities.</p>
 
-  <div formGroupName="targetEnvironment" class="form-grid-3">
+  <div class="form-grid-3">
     <div class="form-field">
       <label for="target-platform" class="field-label">Target Platform <span class="required-star">*</span></label>
-      <select id="target-platform" formControlName="platform" class="form-select">
+      <select id="target-platform" [formControl]="getControl('targetEnvironment.platform')" class="form-select">
         @for (p of platformOptions; track p) {
           <option [value]="p">{{ p }}</option>
         }
@@ -14,7 +14,7 @@
 
     <div class="form-field">
       <label for="transport-binding" class="field-label">Transport Binding <span class="required-star">*</span></label>
-      <select id="transport-binding" formControlName="transportBinding" class="form-select">
+      <select id="transport-binding" [formControl]="getControl('targetEnvironment.transportBinding')" class="form-select">
         @for (tb of transportBindingOptions; track tb) {
           <option [value]="tb">{{ tb }}</option>
         }
@@ -23,7 +23,7 @@
 
     <div class="form-field">
       <label for="target-language" class="field-label">Primary Language</label>
-      <select id="target-language" formControlName="language" class="form-select">
+      <select id="target-language" [formControl]="getControl('targetEnvironment.language')" class="form-select">
         @for (lang of languageOptions; track lang) {
           <option [value]="lang">{{ lang }}</option>
         }
@@ -31,21 +31,21 @@
     </div>
   </div>
 
-  <div formGroupName="specifications" class="section-block">
+  <div class="section-block">
     <div class="form-grid-2">
       <div class="form-field">
         <label for="protocol-version" class="field-label">Protocol Version</label>
         <input
           id="protocol-version"
           type="text"
-          formControlName="protocolVersion"
+          [formControl]="getControl('specifications.protocolVersion')"
           placeholder="2026-08-01"
           class="form-input" />
       </div>
 
       <div class="form-field">
         <label for="auth-type" class="field-label">Authentication Type <span class="required-star">*</span></label>
-        <select id="auth-type" formControlName="authenticationType" class="form-select">
+        <select id="auth-type" [formControl]="getControl('specifications.authenticationType')" class="form-select">
           @for (auth of authenticationOptions; track auth) {
             <option [value]="auth">{{ auth }}</option>
           }

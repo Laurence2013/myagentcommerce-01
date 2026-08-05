@@ -78,7 +78,16 @@
     <div class="sticky-action-bar">
       <div class="action-info">
         <span class="status-indicator" [class.indicator-valid]="isFormValid()" [class.indicator-invalid]="!isFormValid()"></span>
-        <span>Form Status: <strong>{{ isFormValid() ? 'Ready for Submission' : 'Incomplete Fields' }}</strong></span>
+        <span>
+          Form Status:
+          <strong>
+            @if (isFormValid()) {
+              Ready for Submission
+            } @else {
+              Missing required fields: {{ invalidFieldNames().join(', ') }}
+            }
+          </strong>
+        </span>
       </div>
 
       <div class="action-buttons">

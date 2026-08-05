@@ -1,4 +1,4 @@
-<fieldset [formGroup]="formGroup" class="form-fieldset">
+<fieldset class="form-fieldset">
   <legend class="fieldset-legend">2. Multi-Layer Taxonomy & Classification</legend>
   <p class="fieldset-desc">Classify where this tool sits in the Agentic Commerce value chain.</p>
 
@@ -9,15 +9,15 @@
       @for (opt of marketSideOptions; track opt.value) {
         <label
           class="radio-card"
-          [class.selected]="formGroup.get('marketSide')?.value === opt.value">
+          [class.selected]="getControl('marketSide').value === opt.value">
           <input
             type="radio"
-            formControlName="marketSide"
+            [formControl]="getControl('marketSide')"
             [value]="opt.value"
             class="sr-only" />
           <div class="radio-card-header">
             <span class="radio-title">{{ opt.label }}</span>
-            @if (formGroup.get('marketSide')?.value === opt.value) {
+            @if (getControl('marketSide').value === opt.value) {
               <span class="check-icon">✓</span>
             }
           </div>
@@ -34,11 +34,11 @@
       <input
         id="agent-category"
         type="text"
-        formControlName="category"
+        [formControl]="getControl('category')"
         placeholder="e.g. Promotional Clearing"
         class="form-input"
-        [class.input-error]="formGroup.get('category')?.invalid && formGroup.get('category')?.touched" />
-      @if (formGroup.get('category')?.invalid && formGroup.get('category')?.touched) {
+        [class.input-error]="getControl('category').invalid && getControl('category').touched" />
+      @if (getControl('category').invalid && getControl('category').touched) {
         <span class="error-msg">Category is required.</span>
       }
     </div>
@@ -46,7 +46,7 @@
     <!-- Parent Ecosystem -->
     <div class="form-field">
       <label for="parent-ecosystem" class="field-label">Parent Ecosystem Protocol <span class="required-star">*</span></label>
-      <select id="parent-ecosystem" formControlName="parentEcosystem" class="form-select">
+      <select id="parent-ecosystem" [formControl]="getControl('parentEcosystem')" class="form-select">
         @for (eco of parentEcosystemOptions; track eco) {
           <option [value]="eco">{{ eco }}</option>
         }
@@ -56,7 +56,7 @@
     <!-- Functional Class -->
     <div class="form-field">
       <label for="functional-class" class="field-label">Functional Class Role <span class="required-star">*</span></label>
-      <select id="functional-class" formControlName="functionalClass" class="form-select">
+      <select id="functional-class" [formControl]="getControl('functionalClass')" class="form-select">
         @for (fc of functionalClassOptions; track fc) {
           <option [value]="fc">{{ fc }}</option>
         }

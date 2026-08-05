@@ -1,5 +1,5 @@
 import { Component, signal, inject } from '@angular/core';
-import { FormGroup, FormArray, FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormArray, FormBuilder, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { AgentFormComponent } from '../../agent-form.component';
 import {
@@ -24,6 +24,10 @@ export class SpecsStepComponent {
 
   get formGroup(): FormGroup {
     return this.parent.form;
+  }
+
+  getControl(path: string): FormControl {
+    return this.parent.form.get(path) as FormControl;
   }
 
   readonly newCapability = signal<string>('');
@@ -77,7 +81,7 @@ export class SpecsStepComponent {
   ];
 
   get capabilitiesArray(): FormArray {
-    return this.formGroup.get('specifications.supportedCapabilities') as FormArray;
+    return this.parent.form.get('specifications.supportedCapabilities') as FormArray;
   }
 
   addCapability(): void {
@@ -95,7 +99,7 @@ export class SpecsStepComponent {
   }
 
   toggleCrossProtocol(item: TechnicalSpecifications['crossProtocolCompat'][number]): void {
-    const group = this.formGroup.get('specifications.crossProtocolCompat');
+    const group = this.parent.form.get('specifications.crossProtocolCompat');
     if (!group) return;
     const current: TechnicalSpecifications['crossProtocolCompat'] = group.value || [];
     if (current.includes(item)) {
@@ -106,7 +110,7 @@ export class SpecsStepComponent {
   }
 
   isCrossProtocolSelected(item: TechnicalSpecifications['crossProtocolCompat'][number]): boolean {
-    const current: TechnicalSpecifications['crossProtocolCompat'] = this.formGroup.get('specifications.crossProtocolCompat')?.value || [];
+    const current: TechnicalSpecifications['crossProtocolCompat'] = this.parent.form.get('specifications.crossProtocolCompat')?.value || [];
     return current.includes(item);
   }
 }

@@ -54,3 +54,8 @@ ui-debug.log
 .env.local
 .env.*.local
 !.env.example
+
+# Playwright Test Execution Output & Reports
+/test-results/
+/playwright-report/
+/blob-report/
