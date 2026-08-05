@@ -1,0 +1,86 @@
+.step-host
+  display: block
+  width: 100%
+
+.form-fieldset
+  border: none
+  padding: 0
+  margin: 0
+
+.fieldset-legend
+  font-family: 'Outfit', sans-serif
+  font-size: 1.35rem
+  font-weight: 700
+  color: #f8fafc
+  margin-bottom: 0.35rem
+
+.fieldset-desc
+  font-size: 0.9rem
+  color: #64748b
+  margin-bottom: 1.75rem
+
+.form-grid-2
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
+  gap: 1.25rem
+
+.form-field
+  display: flex
+  flex-direction: column
+  gap: 0.4rem
+  margin-bottom: 1.25rem
+
+.form-field-full
+  grid-column: 1 / -1
+
+.field-label
+  font-size: 0.875rem
+  font-weight: 600
+  color: #cbd5e1
+
+.required-star
+  color: #f43f5e
+
+.form-input, .form-textarea
+  width: 100%
+  padding: 0.75rem 1rem
+  background: #1e293b
+  border: 1px solid #334155
+  border-radius: 10px
+  color: #f8fafc
+  font-size: 0.95rem
+  box-sizing: border-box
+  transition: border-color 0.2s, box-shadow 0.2s
+
+  &:focus
+    outline: none
+    border-color: #6366f1
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25)
+
+  &.input-error
+    border-color: #f43f5e
+
+.error-msg
+  font-size: 0.775rem
+  color: #fb7185
+
+.step-footer
+  display: flex
+  justify-content: flex-end
+  gap: 1rem
+  margin-top: 2.25rem
+  padding-top: 1.5rem
+  border-top: 1px solid rgba(255, 255, 255, 0.08)
+
+.btn-secondary
+  padding: 0.8rem 1.6rem
+  background: #334155
+  color: #ffffff
+  border: none
+  border-radius: 12px
+  font-weight: 600
+  font-size: 0.9rem
+  cursor: pointer
+
+  &:hover
+    background: #475569

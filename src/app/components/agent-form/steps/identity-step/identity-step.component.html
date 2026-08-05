@@ -1,0 +1,116 @@
+<fieldset [formGroup]="formGroup" class="form-fieldset">
+  <legend class="fieldset-legend">1. Core Identity & Basic Info</legend>
+  <p class="fieldset-desc">Primary metadata, branding, and manifest URLs for your agent.</p>
+
+  <div class="form-grid-2">
+    <!-- Name -->
+    <div class="form-field">
+      <label for="agent-name" class="field-label">Agent Name <span class="required-star">*</span></label>
+      <input
+        id="agent-name"
+        type="text"
+        formControlName="name"
+        placeholder="e.g. UCPhub.ai or Talon.One"
+        class="form-input"
+        [class.input-error]="formGroup.get('name')?.invalid && formGroup.get('name')?.touched" />
+      @if (formGroup.get('name')?.invalid && formGroup.get('name')?.touched) {
+        <span class="error-msg">Agent name is required (2-100 chars).</span>
+      }
+    </div>
+
+    <!-- Tagline -->
+    <div class="form-field">
+      <label for="agent-tagline" class="field-label">Tagline <span class="required-star">*</span></label>
+      <input
+        id="agent-tagline"
+        type="text"
+        formControlName="tagline"
+        placeholder="Short description (max 120 chars)"
+        class="form-input"
+        [class.input-error]="formGroup.get('tagline')?.invalid && formGroup.get('tagline')?.touched" />
+      @if (formGroup.get('tagline')?.invalid && formGroup.get('tagline')?.touched) {
+        <span class="error-msg">Tagline is required (max 120 chars).</span>
+      }
+    </div>
+  </div>
+
+  <!-- Description -->
+  <div class="form-field">
+    <label for="agent-desc" class="field-label">Detailed Description <span class="required-star">*</span></label>
+    <textarea
+      id="agent-desc"
+      formControlName="description"
+      rows="4"
+      placeholder="Describe functionality, protocol support, and capabilities..."
+      class="form-textarea"
+      [class.input-error]="formGroup.get('description')?.invalid && formGroup.get('description')?.touched"></textarea>
+    @if (formGroup.get('description')?.invalid && formGroup.get('description')?.touched) {
+      <span class="error-msg">Description is required (min 10 chars).</span>
+    }
+  </div>
+
+  <div class="form-grid-2">
+    <!-- Website URL -->
+    <div class="form-field">
+      <label for="agent-website" class="field-label">Website URL <span class="required-star">*</span></label>
+      <input
+        id="agent-website"
+        type="url"
+        formControlName="websiteUrl"
+        placeholder="https://ucphub.ai"
+        class="form-input"
+        [class.input-error]="formGroup.get('websiteUrl')?.invalid && formGroup.get('websiteUrl')?.touched" />
+      @if (formGroup.get('websiteUrl')?.invalid && formGroup.get('websiteUrl')?.touched) {
+        <span class="error-msg">Valid HTTPS website URL is required.</span>
+      }
+    </div>
+
+    <!-- Logo URL -->
+    <div class="form-field">
+      <label for="agent-logo" class="field-label">Logo / Icon URL</label>
+      <input
+        id="agent-logo"
+        type="url"
+        formControlName="logoUrl"
+        placeholder="https://ucphub.ai/logo.png"
+        class="form-input" />
+    </div>
+
+    <!-- Manifest URL -->
+    <div class="form-field">
+      <label for="agent-manifest" class="field-label">Manifest URL (/.well-known/ucp.json)</label>
+      <input
+        id="agent-manifest"
+        type="url"
+        formControlName="manifestUrl"
+        placeholder="https://ucphub.ai/.well-known/ucp.json"
+        class="form-input" />
+    </div>
+
+    <!-- Docs URL -->
+    <div class="form-field">
+      <label for="agent-docs" class="field-label">Documentation URL</label>
+      <input
+        id="agent-docs"
+        type="url"
+        formControlName="docsUrl"
+        placeholder="https://docs.ucphub.ai"
+        class="form-input" />
+    </div>
+
+    <!-- Repository URL -->
+    <div class="form-field form-field-full">
+      <label for="agent-repo" class="field-label">Repository URL (GitHub/GitLab)</label>
+      <input
+        id="agent-repo"
+        type="url"
+        formControlName="repositoryUrl"
+        placeholder="https://github.com/org/ucphub"
+        class="form-input" />
+    </div>
+  </div>
+
+  <div class="step-footer">
+    <a routerLink="../taxonomy" class="btn-secondary">Next: Taxonomy →</a>
+  </div>
+</fieldset>

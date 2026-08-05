@@ -1,0 +1,102 @@
+<fieldset [formGroup]="formGroup" class="form-fieldset">
+  <legend class="fieldset-legend">3. Environment & Technical Specifications</legend>
+  <p class="fieldset-desc">Target platforms, transport bindings, authentication, and capabilities.</p>
+
+  <div formGroupName="targetEnvironment" class="form-grid-3">
+    <div class="form-field">
+      <label for="target-platform" class="field-label">Target Platform <span class="required-star">*</span></label>
+      <select id="target-platform" formControlName="platform" class="form-select">
+        @for (p of platformOptions; track p) {
+          <option [value]="p">{{ p }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="form-field">
+      <label for="transport-binding" class="field-label">Transport Binding <span class="required-star">*</span></label>
+      <select id="transport-binding" formControlName="transportBinding" class="form-select">
+        @for (tb of transportBindingOptions; track tb) {
+          <option [value]="tb">{{ tb }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="form-field">
+      <label for="target-language" class="field-label">Primary Language</label>
+      <select id="target-language" formControlName="language" class="form-select">
+        @for (lang of languageOptions; track lang) {
+          <option [value]="lang">{{ lang }}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <div formGroupName="specifications" class="section-block">
+    <div class="form-grid-2">
+      <div class="form-field">
+        <label for="protocol-version" class="field-label">Protocol Version</label>
+        <input
+          id="protocol-version"
+          type="text"
+          formControlName="protocolVersion"
+          placeholder="2026-08-01"
+          class="form-input" />
+      </div>
+
+      <div class="form-field">
+        <label for="auth-type" class="field-label">Authentication Type <span class="required-star">*</span></label>
+        <select id="auth-type" formControlName="authenticationType" class="form-select">
+          @for (auth of authenticationOptions; track auth) {
+            <option [value]="auth">{{ auth }}</option>
+          }
+        </select>
+      </div>
+    </div>
+
+    <!-- Cross-Protocol Compat Chips -->
+    <div class="form-field">
+      <label class="field-label">Cross-Protocol Compatibility</label>
+      <div class="chip-container">
+        @for (cp of crossProtocolOptions; track cp) {
+          <button
+            type="button"
+            class="chip-button"
+            [class.chip-selected]="isCrossProtocolSelected(cp)"
+            (click)="toggleCrossProtocol(cp)">
+            {{ isCrossProtocolSelected(cp) ? '✓ ' : '+ ' }}{{ cp }}
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- Dynamic Capabilities List -->
+    <div class="form-field">
+      <label class="field-label">Supported Capabilities</label>
+      <div class="capability-input-row">
+        <input
+          id="capability-input"
+          type="text"
+          [value]="newCapability()"
+          (input)="newCapability.set($any($event.target).value)"
+          (keydown.enter)="$event.preventDefault(); addCapability()"
+          placeholder="e.g. dev.uip.shopping.promotions"
+          class="form-input" />
+        <button type="button" class="btn-add-chip" (click)="addCapability()">+ Add</button>
+      </div>
+
+      <div class="chip-list">
+        @for (cap of capabilitiesArray.controls; track $index) {
+          <span class="capability-tag">
+            {{ cap.value }}
+            <button type="button" class="tag-remove" (click)="removeCapability($index)" aria-label="Remove capability">×</button>
+          </span>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="step-footer">
+    <a routerLink="../taxonomy" class="btn-ghost">← Back</a>
+    <a routerLink="../merchant" class="btn-secondary">Next: Merchant Profile →</a>
+  </div>
+</fieldset>

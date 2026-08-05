@@ -1,0 +1,45 @@
+<fieldset [formGroup]="formGroup" class="form-fieldset">
+  <legend class="fieldset-legend">6. Submission Metadata & Admin Audit Trail</legend>
+  <p class="fieldset-desc">Manual approval state, submitter email, and submitter role.</p>
+
+  <div class="form-grid-3">
+    <div class="form-field">
+      <label for="admin-status" class="field-label">Approval Status <span class="required-star">*</span></label>
+      <select id="admin-status" formControlName="status" class="form-select status-select">
+        @for (s of statusOptions; track s) {
+          <option [value]="s">{{ s | uppercase }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="form-field">
+      <label for="contact-email" class="field-label">Contact Email <span class="required-star">*</span></label>
+      <input
+        id="contact-email"
+        type="email"
+        formControlName="contactEmail"
+        placeholder="submitter@company.com"
+        class="form-input"
+        [class.input-error]="formGroup.get('contactEmail')?.invalid && formGroup.get('contactEmail')?.touched" />
+      @if (formGroup.get('contactEmail')?.invalid && formGroup.get('contactEmail')?.touched) {
+        <span class="error-msg">Valid contact email is required.</span>
+      }
+    </div>
+
+    <div class="form-field">
+      <label for="submitter-role" class="field-label">Submitter Role</label>
+      <select id="submitter-role" formControlName="submitterRole" class="form-select">
+        @for (sr of submitterRoleOptions; track sr) {
+          <option [value]="sr">{{ sr }}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <div class="step-footer">
+    <a routerLink="../commercials" class="btn-ghost">← Back</a>
+    <button type="button" class="btn-primary" [disabled]="!isFormValid || isSubmitting" (click)="onSubmit()">
+      {{ isSubmitting ? 'Saving Agent...' : 'Publish / Register Agent' }}
+    </button>
+  </div>
+</fieldset>

@@ -1,0 +1,71 @@
+<fieldset [formGroup]="formGroup" class="form-fieldset">
+  <legend class="fieldset-legend">2. Multi-Layer Taxonomy & Classification</legend>
+  <p class="fieldset-desc">Classify where this tool sits in the Agentic Commerce value chain.</p>
+
+  <!-- Market Side Cards -->
+  <div class="form-field">
+    <label class="field-label">Market Side Layer <span class="required-star">*</span></label>
+    <div class="radio-card-grid">
+      @for (opt of marketSideOptions; track opt.value) {
+        <label
+          class="radio-card"
+          [class.selected]="formGroup.get('marketSide')?.value === opt.value">
+          <input
+            type="radio"
+            formControlName="marketSide"
+            [value]="opt.value"
+            class="sr-only" />
+          <div class="radio-card-header">
+            <span class="radio-title">{{ opt.label }}</span>
+            @if (formGroup.get('marketSide')?.value === opt.value) {
+              <span class="check-icon">✓</span>
+            }
+          </div>
+          <span class="radio-desc">{{ opt.desc }}</span>
+        </label>
+      }
+    </div>
+  </div>
+
+  <div class="form-grid-3">
+    <!-- Category -->
+    <div class="form-field">
+      <label for="agent-category" class="field-label">Sub-Category <span class="required-star">*</span></label>
+      <input
+        id="agent-category"
+        type="text"
+        formControlName="category"
+        placeholder="e.g. Promotional Clearing"
+        class="form-input"
+        [class.input-error]="formGroup.get('category')?.invalid && formGroup.get('category')?.touched" />
+      @if (formGroup.get('category')?.invalid && formGroup.get('category')?.touched) {
+        <span class="error-msg">Category is required.</span>
+      }
+    </div>
+
+    <!-- Parent Ecosystem -->
+    <div class="form-field">
+      <label for="parent-ecosystem" class="field-label">Parent Ecosystem Protocol <span class="required-star">*</span></label>
+      <select id="parent-ecosystem" formControlName="parentEcosystem" class="form-select">
+        @for (eco of parentEcosystemOptions; track eco) {
+          <option [value]="eco">{{ eco }}</option>
+        }
+      </select>
+    </div>
+
+    <!-- Functional Class -->
+    <div class="form-field">
+      <label for="functional-class" class="field-label">Functional Class Role <span class="required-star">*</span></label>
+      <select id="functional-class" formControlName="functionalClass" class="form-select">
+        @for (fc of functionalClassOptions; track fc) {
+          <option [value]="fc">{{ fc }}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <div class="step-footer">
+    <a routerLink="../identity" class="btn-ghost">← Back</a>
+    <a routerLink="../specs" class="btn-secondary">Next: Tech Specs →</a>
+  </div>
+</fieldset>

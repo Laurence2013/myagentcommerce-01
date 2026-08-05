@@ -1,0 +1,81 @@
+<fieldset [formGroup]="formGroup" class="form-fieldset">
+  <legend class="fieldset-legend">5. Commercials & Verification</legend>
+  <p class="fieldset-desc">Pricing model, developer organization, profile claiming, and badge verification.</p>
+
+  <div class="form-grid-3">
+    <div class="form-field">
+      <label for="dev-type" class="field-label">Developer Organization <span class="required-star">*</span></label>
+      <select id="dev-type" formControlName="developerType" class="form-select">
+        @for (dt of developerTypeOptions; track dt) {
+          <option [value]="dt">{{ dt }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="form-field">
+      <label for="pricing-model" class="field-label">Pricing Model <span class="required-star">*</span></label>
+      <select id="pricing-model" formControlName="pricingModel" class="form-select">
+        @for (pm of pricingModelOptions; track pm) {
+          <option [value]="pm">{{ pm }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="form-field">
+      <label for="pricing-details" class="field-label">Pricing Details</label>
+      <input
+        id="pricing-details"
+        type="text"
+        formControlName="pricingDetails"
+        placeholder="e.g. $39.99/mo after 10 free orders"
+        class="form-input" />
+    </div>
+  </div>
+
+  <div class="form-grid-2">
+    <div class="form-field">
+      <label for="verification-status" class="field-label">Verification Status <span class="required-star">*</span></label>
+      <select id="verification-status" formControlName="verificationStatus" class="form-select">
+        @for (vs of verificationStatusOptions; track vs) {
+          <option [value]="vs">{{ vs }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="form-field">
+      <label for="github-badge" class="field-label">GitHub Badge URL</label>
+      <input
+        id="github-badge"
+        type="url"
+        formControlName="githubBadgeUrl"
+        placeholder="https://img.shields.io/badge/agentic-compliant-green"
+        class="form-input" />
+    </div>
+  </div>
+
+  <div class="form-grid-2 form-card-box">
+    <div class="form-field checkbox-field">
+      <label for="claimed-toggle" class="checkbox-label">
+        <input id="claimed-toggle" type="checkbox" formControlName="claimedByOwner" class="form-checkbox" />
+        <span>Claimed by Verified Developer / Owner</span>
+      </label>
+    </div>
+
+    @if (formGroup.get('claimedByOwner')?.value) {
+      <div class="form-field">
+        <label for="claimed-email" class="field-label">Owner Account Email</label>
+        <input
+          id="claimed-email"
+          type="email"
+          formControlName="claimedByEmail"
+          placeholder="owner@developer.com"
+          class="form-input" />
+      </div>
+    }
+  </div>
+
+  <div class="step-footer">
+    <a routerLink="../merchant" class="btn-ghost">← Back</a>
+    <a routerLink="../audit" class="btn-secondary">Next: Admin Audit →</a>
+  </div>
+</fieldset>

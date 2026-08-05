@@ -1,0 +1,46 @@
+<fieldset [formGroup]="formGroup" class="form-fieldset">
+  <legend class="fieldset-legend">4. Merchant & Audience Targeting</legend>
+  <p class="fieldset-desc">Audience scale, AOV range, and merchant risk profiles.</p>
+
+  <div formGroupName="targetMerchantProfile">
+    <div class="form-field">
+      <label class="field-label">Target Merchant Scale <span class="required-star">*</span></label>
+      <div class="chip-container">
+        @for (scale of scaleOptions; track scale) {
+          <button
+            type="button"
+            class="chip-button"
+            [class.chip-selected]="isScaleSelected(scale)"
+            (click)="toggleScale(scale)">
+            {{ isScaleSelected(scale) ? '✓ ' : '+ ' }}{{ scale }}
+          </button>
+        }
+      </div>
+    </div>
+
+    <div class="form-grid-2">
+      <div class="form-field">
+        <label for="aov-range" class="field-label">AOV Range</label>
+        <select id="aov-range" formControlName="aovRange" class="form-select">
+          @for (aov of aovOptions; track aov) {
+            <option [value]="aov">{{ aov }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label for="risk-profile" class="field-label">Risk Profile</label>
+        <select id="risk-profile" formControlName="riskProfile" class="form-select">
+          @for (rp of riskProfileOptions; track rp) {
+            <option [value]="rp">{{ rp }}</option>
+          }
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-footer">
+    <a routerLink="../specs" class="btn-ghost">← Back</a>
+    <a routerLink="../commercials" class="btn-secondary">Next: Commercials →</a>
+  </div>
+</fieldset>

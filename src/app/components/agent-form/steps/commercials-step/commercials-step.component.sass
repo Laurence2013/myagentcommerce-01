@@ -1,0 +1,129 @@
+.step-host
+  display: block
+  width: 100%
+
+.form-fieldset
+  border: none
+  padding: 0
+  margin: 0
+
+.fieldset-legend
+  font-family: 'Outfit', sans-serif
+  font-size: 1.35rem
+  font-weight: 700
+  color: #f8fafc
+  margin-bottom: 0.35rem
+
+.fieldset-desc
+  font-size: 0.9rem
+  color: #64748b
+  margin-bottom: 1.75rem
+
+.form-grid-2
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr))
+  gap: 1.25rem
+
+.form-grid-3
+  display: grid
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))
+  gap: 1.25rem
+
+.form-field
+  display: flex
+  flex-direction: column
+  gap: 0.4rem
+  margin-bottom: 1.25rem
+
+.field-label
+  font-size: 0.875rem
+  font-weight: 600
+  color: #cbd5e1
+
+.required-star
+  color: #f43f5e
+
+.form-input, .form-select
+  width: 100%
+  padding: 0.75rem 1rem
+  background: #1e293b
+  border: 1px solid #334155
+  border-radius: 10px
+  color: #f8fafc
+  font-size: 0.95rem
+  box-sizing: border-box
+  transition: border-color 0.2s, box-shadow 0.2s
+
+  &:focus
+    outline: none
+    border-color: #6366f1
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25)
+
+.form-select
+  cursor: pointer
+  appearance: none
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")
+  background-repeat: no-repeat
+  background-position: right 0.75rem center
+  background-size: 1.25rem
+  padding-right: 2.5rem
+
+.form-card-box
+  padding: 1.25rem
+  background: #1e293b
+  border: 1px solid #334155
+  border-radius: 12px
+  margin-top: 1rem
+
+.checkbox-field
+  flex-direction: row
+  align-items: center
+
+.checkbox-label
+  display: flex
+  align-items: center
+  gap: 0.75rem
+  cursor: pointer
+  font-weight: 600
+  color: #f8fafc
+
+.form-checkbox
+  width: 18px
+  height: 18px
+  accent-color: #6366f1
+  cursor: pointer
+
+.step-footer
+  display: flex
+  justify-content: flex-end
+  gap: 1rem
+  margin-top: 2.25rem
+  padding-top: 1.5rem
+  border-top: 1px solid rgba(255, 255, 255, 0.08)
+
+.btn-secondary
+  padding: 0.8rem 1.6rem
+  background: #334155
+  color: #ffffff
+  border: none
+  border-radius: 12px
+  font-weight: 600
+  font-size: 0.9rem
+  cursor: pointer
+
+  &:hover
+    background: #475569
+
+.btn-ghost
+  padding: 0.8rem 1.35rem
+  background: transparent
+  color: #94a3b8
+  border: 1px solid #334155
+  border-radius: 12px
+  font-weight: 600
+  font-size: 0.9rem
+  cursor: pointer
+
+  &:hover
+    color: #f8fafc
+    border-color: #64748b

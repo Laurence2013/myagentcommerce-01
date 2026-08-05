@@ -1,0 +1,95 @@
+<div class="agent-form-container">
+  <!-- Top Navigation Bar & Header -->
+  <header class="form-header">
+    <div class="header-badge">
+      <span class="badge-dot"></span>
+      Agentic Commerce Platform • Registration Portal
+    </div>
+    <h1 class="header-title">AI Commerce Agent Registration</h1>
+    <p class="header-subtitle">
+      Register your AI Agent, protocol bindings, taxonomy classification, and merchant profile requirements for audit and platform listing.
+    </p>
+  </header>
+
+  <!-- Success Alert -->
+  @if (submissionSuccess()) {
+    <div class="alert-success" role="alert">
+      <svg class="alert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+      </svg>
+      <div>
+        <strong>Agent Successfully Submitted!</strong>
+        <p>Your submission payload has been validated and saved to the registry.</p>
+      </div>
+    </div>
+  }
+
+  <!-- Section Tab Navigation Bar (Angular Router Links) -->
+  <nav class="section-tabs-nav" aria-label="Agent Submission Form Sections">
+    <a
+      routerLink="identity"
+      routerLinkActive="active"
+      class="tab-button">
+      <span class="tab-num">1</span> Identity
+    </a>
+    <a
+      routerLink="taxonomy"
+      routerLinkActive="active"
+      class="tab-button">
+      <span class="tab-num">2</span> Taxonomy
+    </a>
+    <a
+      routerLink="specs"
+      routerLinkActive="active"
+      class="tab-button">
+      <span class="tab-num">3</span> Tech Specs
+    </a>
+    <a
+      routerLink="merchant"
+      routerLinkActive="active"
+      class="tab-button">
+      <span class="tab-num">4</span> Merchant Profile
+    </a>
+    <a
+      routerLink="commercials"
+      routerLinkActive="active"
+      class="tab-button">
+      <span class="tab-num">5</span> Commercials
+    </a>
+    <a
+      routerLink="audit"
+      routerLinkActive="active"
+      class="tab-button">
+      <span class="tab-num">6</span> Audit Trail
+    </a>
+    <a
+      routerLink="preview"
+      routerLinkActive="active"
+      class="tab-button tab-button-preview">
+      <span class="tab-icon">🔍</span> JSON Payload
+    </a>
+  </nav>
+
+  <!-- Form Body with Child Router Outlet -->
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-body">
+    <router-outlet />
+
+    <!-- Sticky Bottom Action Bar -->
+    <div class="sticky-action-bar">
+      <div class="action-info">
+        <span class="status-indicator" [class.indicator-valid]="isFormValid()" [class.indicator-invalid]="!isFormValid()"></span>
+        <span>Form Status: <strong>{{ isFormValid() ? 'Ready for Submission' : 'Incomplete Fields' }}</strong></span>
+      </div>
+
+      <div class="action-buttons">
+        <button type="button" class="btn-ghost" (click)="onReset()">Reset Form</button>
+        <button
+          type="submit"
+          class="btn-primary"
+          [disabled]="!isFormValid() || isSubmitting()">
+          {{ isSubmitting() ? 'Saving...' : 'Submit Agent Entry' }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

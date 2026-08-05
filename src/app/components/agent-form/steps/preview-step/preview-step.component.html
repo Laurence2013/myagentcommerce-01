@@ -1,0 +1,9 @@
+<div class="preview-container">
+  <div class="preview-header">
+    <h3>Firestore Payload Blueprint (`AgentSubmission`)</h3>
+    <span class="badge-status" [class.badge-valid]="isValid" [class.badge-invalid]="!isValid">
+      {{ isValid ? 'Form Valid' : 'Form Has Validation Errors' }}
+    </span>
+  </div>
+  <pre class="json-code"><code>{{ jsonCode() }}</code></pre>
+</div>
