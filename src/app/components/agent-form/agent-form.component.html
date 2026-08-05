@@ -9,6 +9,17 @@
     <p class="header-subtitle">
       Register your AI Agent, protocol bindings, taxonomy classification, and merchant profile requirements for audit and platform listing.
     </p>
+
+    <!-- Overall Form Completion Progress Bar -->
+    <div class="progress-bar-container">
+      <div class="progress-info">
+        <span>Form Completion Progress</span>
+        <strong>{{ completedStepsCount() }} of 6 Steps Completed ({{ progressPercentage() }}%)</strong>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" [style.width.%]="progressPercentage()"></div>
+      </div>
+    </div>
   </header>
 
   <!-- Success Alert -->
@@ -24,43 +35,49 @@
     </div>
   }
 
-  <!-- Section Tab Navigation Bar (Angular Router Links) -->
+  <!-- Section Tab Navigation Bar (Angular Router Links with Step Checkmarks) -->
   <nav class="section-tabs-nav" aria-label="Agent Submission Form Sections">
     <a
       routerLink="identity"
       routerLinkActive="active"
-      class="tab-button">
-      <span class="tab-num">1</span> Identity
+      class="tab-button"
+      [class.tab-complete]="isIdentityValid()">
+      <span class="tab-num">{{ isIdentityValid() ? '✓' : '1' }}</span> Identity
     </a>
     <a
       routerLink="taxonomy"
       routerLinkActive="active"
-      class="tab-button">
-      <span class="tab-num">2</span> Taxonomy
+      class="tab-button"
+      [class.tab-complete]="isTaxonomyValid()">
+      <span class="tab-num">{{ isTaxonomyValid() ? '✓' : '2' }}</span> Taxonomy
     </a>
     <a
       routerLink="specs"
       routerLinkActive="active"
-      class="tab-button">
-      <span class="tab-num">3</span> Tech Specs
+      class="tab-button"
+      [class.tab-complete]="isSpecsValid()">
+      <span class="tab-num">{{ isSpecsValid() ? '✓' : '3' }}</span> Tech Specs
     </a>
     <a
       routerLink="merchant"
       routerLinkActive="active"
-      class="tab-button">
-      <span class="tab-num">4</span> Merchant Profile
+      class="tab-button"
+      [class.tab-complete]="isMerchantValid()">
+      <span class="tab-num">{{ isMerchantValid() ? '✓' : '4' }}</span> Merchant Profile
     </a>
     <a
       routerLink="commercials"
       routerLinkActive="active"
-      class="tab-button">
-      <span class="tab-num">5</span> Commercials
+      class="tab-button"
+      [class.tab-complete]="isCommercialsValid()">
+      <span class="tab-num">{{ isCommercialsValid() ? '✓' : '5' }}</span> Commercials
     </a>
     <a
       routerLink="audit"
       routerLinkActive="active"
-      class="tab-button">
-      <span class="tab-num">6</span> Audit Trail
+      class="tab-button"
+      [class.tab-complete]="isAuditValid()">
+      <span class="tab-num">{{ isAuditValid() ? '✓' : '6' }}</span> Audit Trail
     </a>
     <a
       routerLink="preview"
@@ -78,16 +95,19 @@
     <div class="sticky-action-bar">
       <div class="action-info">
         <span class="status-indicator" [class.indicator-valid]="isFormValid()" [class.indicator-invalid]="!isFormValid()"></span>
-        <span>
-          Form Status:
-          <strong>
-            @if (isFormValid()) {
-              Ready for Submission
-            } @else {
-              Missing required fields: {{ invalidFieldNames().join(', ') }}
-            }
-          </strong>
-        </span>
+        <div class="status-text-block">
+          @if (isFormValid()) {
+            <span class="status-title text-valid">Form Status: Ready for Submission</span>
+            <span class="status-desc">All required fields satisfy validation constraints.</span>
+          } @else {
+            <span class="status-title text-invalid">Incomplete Requirements ({{ missingFieldsSummary().length }} step issues)</span>
+            <span class="status-desc">
+              @for (issue of missingFieldsSummary(); track issue.step) {
+                <span><strong>{{ issue.step }}:</strong> {{ issue.fields.join(', ') }} &nbsp;</span>
+              }
+            </span>
+          }
+        </div>
       </div>
 
       <div class="action-buttons">

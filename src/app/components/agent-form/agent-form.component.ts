@@ -40,7 +40,7 @@ export class AgentFormComponent {
   readonly formSubmit = output<AgentSubmission>();
   readonly formCancel = output<void>();
 
-  // Convert RxJS service streams to signals in component UI (AGENTS.md Best Practice)
+  // Convert RxJS service streams to signals in component UI
   readonly isSubmitting = toSignal(this.agentFormService.isSubmitting$, { initialValue: false });
   readonly submissionSuccess = toSignal(this.agentFormService.submissionSuccess$, { initialValue: false });
 
@@ -106,23 +106,109 @@ export class AgentFormComponent {
 
   // Real-time computed signal tracking form validity
   readonly isFormValid = computed(() => {
-    this.formStatus(); // Establishes signal dependency on status changes
+    this.formStatus();
     return this.form.valid;
   });
 
-  // Real-time computed signal returning list of missing/invalid field names on every keystroke
-  readonly invalidFieldNames = computed(() => {
-    this.formValue(); // Establishes signal dependency on every single keystroke
+  // Step 1 Validity
+  readonly isIdentityValid = computed(() => {
+    this.formValue();
+    return (
+      this.form.get('name')?.valid &&
+      this.form.get('tagline')?.valid &&
+      this.form.get('description')?.valid &&
+      this.form.get('websiteUrl')?.valid
+    );
+  });
+
+  // Step 2 Validity
+  readonly isTaxonomyValid = computed(() => {
+    this.formValue();
+    return (
+      this.form.get('marketSide')?.valid &&
+      this.form.get('category')?.valid &&
+      this.form.get('parentEcosystem')?.valid &&
+      this.form.get('functionalClass')?.valid
+    );
+  });
+
+  // Step 3 Validity
+  readonly isSpecsValid = computed(() => {
+    this.formValue();
+    return (
+      this.form.get('targetEnvironment')?.valid &&
+      this.form.get('specifications')?.valid
+    );
+  });
+
+  // Step 4 Validity
+  readonly isMerchantValid = computed(() => {
+    this.formValue();
+    return this.form.get('targetMerchantProfile')?.valid;
+  });
+
+  // Step 5 Validity
+  readonly isCommercialsValid = computed(() => {
+    this.formValue();
+    return (
+      this.form.get('developerType')?.valid &&
+      this.form.get('pricingModel')?.valid &&
+      this.form.get('verificationStatus')?.valid
+    );
+  });
+
+  // Step 6 Validity
+  readonly isAuditValid = computed(() => {
+    this.formValue();
+    return (
+      this.form.get('status')?.valid &&
+      this.form.get('contactEmail')?.valid
+    );
+  });
+
+  // Count of completed steps (out of 6)
+  readonly completedStepsCount = computed(() => {
+    let count = 0;
+    if (this.isIdentityValid()) count++;
+    if (this.isTaxonomyValid()) count++;
+    if (this.isSpecsValid()) count++;
+    if (this.isMerchantValid()) count++;
+    if (this.isCommercialsValid()) count++;
+    if (this.isAuditValid()) count++;
+    return count;
+  });
+
+  readonly progressPercentage = computed(() => {
+    return Math.round((this.completedStepsCount() / 6) * 100);
+  });
+
+  // Human-friendly missing field labels per step
+  readonly missingFieldsSummary = computed(() => {
+    this.formValue();
     this.formStatus();
 
-    const invalid: string[] = [];
-    Object.keys(this.form.controls).forEach(key => {
-      const ctrl = this.form.get(key);
-      if (ctrl && ctrl.invalid) {
-        invalid.push(key);
-      }
-    });
-    return invalid;
+    const stepIssues: { step: string; fields: string[] }[] = [];
+
+    // Step 1
+    const s1: string[] = [];
+    if (this.form.get('name')?.invalid) s1.push('Agent Name');
+    if (this.form.get('tagline')?.invalid) s1.push('Tagline');
+    if (this.form.get('description')?.invalid) s1.push('Description');
+    if (this.form.get('websiteUrl')?.invalid) s1.push('Website URL');
+    if (s1.length) stepIssues.push({ step: 'Step 1 (Identity)', fields: s1 });
+
+    // Step 2
+    const s2: string[] = [];
+    if (this.form.get('marketSide')?.invalid) s2.push('Market Side');
+    if (this.form.get('category')?.invalid) s2.push('Category');
+    if (s2.length) stepIssues.push({ step: 'Step 2 (Taxonomy)', fields: s2 });
+
+    // Step 6
+    const s6: string[] = [];
+    if (this.form.get('contactEmail')?.invalid) s6.push('Contact Email');
+    if (s6.length) stepIssues.push({ step: 'Step 6 (Audit)', fields: s6 });
+
+    return stepIssues;
   });
 
   onSubmit(): void {
@@ -137,7 +223,6 @@ export class AgentFormComponent {
       updatedAt: new Date().toISOString()
     };
 
-    // Trigger RxJS service stream targeting 'commerce-agents' collection
     this.agentFormService.submitAgent(submissionPayload).subscribe({
       next: (result) => {
         this.formSubmit.emit(result);
