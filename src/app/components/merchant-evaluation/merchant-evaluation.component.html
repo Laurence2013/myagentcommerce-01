@@ -1,3 +1,69 @@
 <div class="merchant-evaluation-container">
-  <!-- Merchant Evaluation Component -->
+  <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit()" class="merchant-evaluation-form">
+    <h2>Merchant Evaluation Form</h2>
+
+    <div class="form-group">
+      <label for="protocolCompatibility">Protocol Compatibility</label>
+      <input
+        type="text"
+        id="protocolCompatibility"
+        formControlName="protocolCompatibility"
+        placeholder="Enter Protocol Compatibility score or details"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="paymentSecurity">Payment Security</label>
+      <input
+        type="text"
+        id="paymentSecurity"
+        formControlName="paymentSecurity"
+        placeholder="Enter Payment Security score or details"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="inventoryShipping">Inventory & Shipping</label>
+      <input
+        type="text"
+        id="inventoryShipping"
+        formControlName="inventoryShipping"
+        placeholder="Enter Inventory & Shipping score or details"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="promotions">Promotions</label>
+      <input
+        type="text"
+        id="promotions"
+        formControlName="promotions"
+        placeholder="Enter Promotions score or details"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="fraudIdentity">Fraud & Identity</label>
+      <input
+        type="text"
+        id="fraudIdentity"
+        formControlName="fraudIdentity"
+        placeholder="Enter Fraud & Identity score or details"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="returns">Returns</label>
+      <input
+        type="text"
+        id="returns"
+        formControlName="returns"
+        placeholder="Enter Returns score or details"
+      />
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="evaluationForm.invalid">Submit Evaluation</button>
+    </div>
+  </form>
 </div>

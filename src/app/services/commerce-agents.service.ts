@@ -3,24 +3,39 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { FirestoreListResponse } from '../interfaces/services/firestore-response.interface';
+import { environment } from '../../environments/environment';
 
-@Injectable({providedIn: 'root'})
+@Injectable({
+  providedIn: 'root'
+})
 export class CommerceAgentsService {
   private readonly http = inject(HttpClient, { optional: true });
 
-  readonly collectionName = 'commerce-agents';
-  private readonly firestoreRestUrl = `http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/${this.collectionName}`;
+  public readonly collectionName = 'commerce-agents';
+
+  private get firestoreRestUrl(): string {
+    const host = environment.useEmulators
+      ? `http://${environment.emulators.firestore.host}:${environment.emulators.firestore.port}`
+      : 'https://firestore.googleapis.com';
+
+    const projectId = environment.firebase.projectId || 'myagentcommerce-01';
+
+    return `${host}/v1/projects/${projectId}/databases/(default)/documents/${this.collectionName}`;
+  }
 
   private readonly selectedCriteriaSubject = new BehaviorSubject<string>('ProtocolCapability');
-  readonly selectedCriteria$: Observable<string> = this.selectedCriteriaSubject.asObservable();
+  public readonly selectedCriteria$: Observable<string> = this.selectedCriteriaSubject.asObservable();
 
-  public selectCriteria(criteria: string): void { this.selectedCriteriaSubject.next(criteria);}
+  public selectCriteria(criteria: string): void { this.selectedCriteriaSubject.next(criteria); }
+
   public get_a_document(criteria: string): Observable<Record<string, unknown>[]> {
     if (!this.http) {
       console.warn('CommerceAgentsService: HttpClient is not provided.');
       return of([]);
     }
-    return this.http.get<FirestoreListResponse>(this.firestoreRestUrl).pipe(
+    const url = this.firestoreRestUrl;
+
+    return this.http.get<FirestoreListResponse>(url).pipe(
       map((response) => {
         const docs = response.documents || [];
         const parsedDocs = docs.map((doc) => this.parseFirestoreFields(doc.fields || {}));
@@ -28,7 +43,7 @@ export class CommerceAgentsService {
         return this.filterDocsByCriteria(parsedDocs, criteria);
       }),
       catchError((error) => {
-        console.warn(`CommerceAgentsService: Error fetching from Firestore emulator REST endpoint (${this.firestoreRestUrl}):`, error);
+        console.warn(`CommerceAgentsService: Error fetching from Firestore REST endpoint (${url}):`, error);
         return of([]);
       })
     );
@@ -38,13 +53,15 @@ export class CommerceAgentsService {
       console.warn('CommerceAgentsService: HttpClient is not provided.');
       return of([]);
     }
-    return this.http.get<FirestoreListResponse>(this.firestoreRestUrl).pipe(
+    const url = this.firestoreRestUrl;
+
+    return this.http.get<FirestoreListResponse>(url).pipe(
       map((response) => {
         const docs = response.documents || [];
         return docs.map((doc) => this.parseFirestoreFields(doc.fields || {}));
       }),
       catchError((error) => {
-        console.warn(`CommerceAgentsService: Error fetching from Firestore emulator REST endpoint (${this.firestoreRestUrl}):`, error);
+        console.warn(`CommerceAgentsService: Error fetching from Firestore REST endpoint (${url}):`, error);
         return of([]);
       })
     );
