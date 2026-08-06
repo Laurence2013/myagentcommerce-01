@@ -1,0 +1,85 @@
+HTTP Method: PATCH                                                                                                              
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/collection_protocols/a2a                
+  • Headers: Content-Type: application/json                                                                                         
+  • Body (Select raw ➔ JSON):                                                                                                       
+                                                                                                                                    
+    {                                                                                                                               
+      "fields": {                                                                                                                   
+        "name": {                                                                                                                   
+          "stringValue": "Agent-to-Agent Protocol"                                                                                  
+        },                                                                                                                          
+        "status": {                                                                                                                 
+          "stringValue": "ACTIVE"                                                                                                   
+        },                                                                                                                          
+        "layers": {                                                                                                                 
+          "arrayValue": {                                                                                                           
+            "values": [                                                                                                             
+              {                                                                                                                     
+                "stringValue": "Foundation"                                                                                         
+              },                                                                                                                    
+              {                                                                                                                     
+                "stringValue": "Communication"                                                                                      
+              }                                                                                                                     
+            ]                                                                                                                       
+          }                                                                                                                         
+        },                                                                                                                          
+        "primaryFunctions": {                                                                                                       
+          "arrayValue": {                                                                                                           
+            "values": [                                                                                                             
+              {                                                                                                                     
+                "stringValue": "Agent Coordination"                                                                                 
+              },                                                                                                                    
+              {                                                                                                                     
+                "stringValue": "Capability Discovery"                                                                               
+              },                                                                                                                    
+              {                                                                                                                     
+                "stringValue": "Task Delegation"                                                                                    
+              }                                                                                                                     
+            ]
+          }
+        },
+        "keyBackers": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Google"
+              },
+              {
+                "stringValue": "Linux Foundation"
+              }
+            ]
+          }
+        },
+        "transports": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "HTTPS"
+              },
+              {
+                "stringValue": "gRPC"
+              },
+              {
+                "stringValue": "JSON-RPC"
+              }
+            ]
+          }
+        },
+        "governance": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Open Foundation"
+              },
+              {
+                "stringValue": "Linux Foundation"
+              }
+            ]
+          }
+        },
+        "evaluationContext": {
+          "stringValue": "Horizontal messaging protocol for inter-agent task handoff and capability negotiation."
+        }
+      }
+    }
+

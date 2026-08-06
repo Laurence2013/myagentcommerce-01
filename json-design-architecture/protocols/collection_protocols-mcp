@@ -1,0 +1,83 @@
+HTTP Method: PATCH                                                                                                              
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/collection_protocols/mcp                
+  • Headers: Content-Type: application/json                                                                                         
+  • Body (Select raw ➔ JSON):                                                                                                       
+                                                                                                                                    
+    {                                                                                                                               
+      "fields": {                                                                                                                   
+        "name": {                                                                                                                   
+          "stringValue": "Model Context Protocol"                                                                                   
+        },                                                                                                                          
+        "status": {                                                                                                                 
+          "stringValue": "ACTIVE"                                                                                                   
+        },                                                                                                                          
+        "layers": {                                                                                                                 
+          "arrayValue": {                                                                                                           
+            "values": [                                                                                                             
+              {                                                                                                                     
+                "stringValue": "Foundation"                                                                                         
+              },                                                                                                                    
+              {                                                                                                                     
+                "stringValue": "Communication"                                                                                      
+              }                                                                                                                     
+            ]                                                                                                                       
+          }                                                                                                                         
+        },                                                                                                                          
+        "primaryFunctions": {                                                                                                       
+          "arrayValue": {                                                                                                           
+            "values": [                                                                                                             
+              {                                                                                                                     
+                "stringValue": "Tool Access"                                                                                        
+              },                                                                                                                    
+              {                                                                                                                     
+                "stringValue": "Data Access"                                                                                        
+              },                                                                                                                    
+              {                                                                                                                     
+                "stringValue": "API Context Binding"
+              }
+            ]
+          }
+        },
+        "keyBackers": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Anthropic"
+              },
+              {
+                "stringValue": "Linux Foundation"
+              }
+            ]
+          }
+        },
+        "transports": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "stdio"
+              },
+              {
+                "stringValue": "HTTP-SSE"
+              }
+            ]
+          }
+        },
+        "governance": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Open Foundation"
+              },
+              {
+                "stringValue": "Linux Foundation"
+              }
+            ]
+          }
+        },
+        "evaluationContext": {
+          "stringValue": "Vertical protocol connecting agents to tools and data sources. Governance transferred to the Linux        
+  Foundation."
+        }
+      }
+    }
+

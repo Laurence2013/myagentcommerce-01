@@ -1,0 +1,66 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/collection_protocols/mc-intent
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "Mastercard Verifiable Intent"
+        },
+        "status": {
+          "stringValue": "ACTIVE"
+        },
+        "layers": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Trust & Identity"
+              }
+            ]
+          }
+        },
+        "primaryFunctions": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Purchase Intent Tokenization"
+              },
+              {
+                "stringValue": "Payment Binding"
+              }
+            ]
+          }
+        },
+        "keyBackers": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Mastercard"
+              }
+            ]
+          }
+        },
+        "transports": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Tokenization API"
+              }
+            ]
+          }
+        },
+        "governance": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Proprietary Rail Standard"
+              }
+            ]
+          }
+        },
+        "evaluationContext": {
+          "stringValue": "Tokenizes user purchase intent into signed artifacts that resolve directly onto Mastercard payment rails."
+        }
+      }
+    }

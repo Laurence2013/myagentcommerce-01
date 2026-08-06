@@ -1,0 +1,66 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/collection_protocols/visa-tap
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "Visa Trusted Agent Protocol"
+        },
+        "status": {
+          "stringValue": "ACTIVE"
+        },
+        "layers": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Trust & Identity"
+              }
+            ]
+          }
+        },
+        "primaryFunctions": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Agent Identity Verification"
+              },
+              {
+                "stringValue": "Card Rail Authentication"
+              }
+            ]
+          }
+        },
+        "keyBackers": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Visa"
+              }
+            ]
+          }
+        },
+        "transports": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "HTTP Message Signatures"
+              }
+            ]
+          }
+        },
+        "governance": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Proprietary Rail Standard"
+              }
+            ]
+          }
+        },
+        "evaluationContext": {
+          "stringValue": "Validates agent identities and keys at the network layer for card-present/card-not-present merchant acquiring."
+        }
+      }
+    }

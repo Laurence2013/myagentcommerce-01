@@ -1,0 +1,72 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/collection_protocols/mpp
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "Machine Payments Protocol"
+        },
+        "status": {
+          "stringValue": "ACTIVE"
+        },
+        "layers": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Programmable Settlement"
+              }
+            ]
+          }
+        },
+        "primaryFunctions": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Continuous Micro-Settlement"
+              },
+              {
+                "stringValue": "Off-chain Vouchers"
+              }
+            ]
+          }
+        },
+        "keyBackers": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Stripe"
+              },
+              {
+                "stringValue": "Tempo"
+              }
+            ]
+          }
+        },
+        "transports": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "REST"
+              },
+              {
+                "stringValue": "gRPC"
+              }
+            ]
+          }
+        },
+        "governance": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Open Standard"
+              }
+            ]
+          }
+        },
+        "evaluationContext": {
+          "stringValue": "Manages streaming pay-as-you-go sessions and batch off-chain voucher settlements for continuous machine service usage."
+        }
+      }
+    }

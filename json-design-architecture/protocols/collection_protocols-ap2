@@ -1,0 +1,77 @@
+HTTP Method: PATCH                                                                                                              
+      • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/collection_protocols/ap2            
+      • Headers: Content-Type: application/json                                                                                     
+      • Body (Select raw ➔ JSON):                                                                                                   
+                                                                                                                                    
+        {                                                                                                                           
+          "fields": {                                                                                                               
+            "name": {                                                                                                               
+              "stringValue": "Agent Payments Protocol"                                                                              
+            },                                                                                                                      
+            "status": {                                                                                                             
+              "stringValue": "ACTIVE"                                                                                               
+            },                                                                                                                      
+            "layers": {                                                                                                             
+              "arrayValue": {                                                                                                       
+                "values": [                                                                                                         
+                  {                                                                                                                 
+                    "stringValue": "Trust & Identity"                                                                               
+                  }                                                                                                                 
+                ]                                                                                                                   
+              }                                                                                                                     
+            },                                                                                                                      
+            "primaryFunctions": {                                                                                                   
+              "arrayValue": {                                                                                                       
+                "values": [                                                                                                         
+                  {                                                                                                                 
+                    "stringValue": "Payment Authorization"                                                                          
+                  },                                                                                                                
+                  {                                                                                                                 
+                    "stringValue": "Cryptographic Mandates"
+                  },
+                  {
+                    "stringValue": "Delegated Spend"
+                  }
+                ]
+              }
+            },
+            "keyBackers": {
+              "arrayValue": {
+                "values": [
+                  {
+                    "stringValue": "Google"
+                  },
+                  {
+                    "stringValue": "FIDO Alliance"
+                  }
+                ]
+              }
+            },
+            "transports": {
+              "arrayValue": {
+                "values": [
+                  {
+                    "stringValue": "A2A Extension"
+                  },
+                  {
+                    "stringValue": "HTTP"
+                  }
+                ]
+              }
+            },
+            "governance": {
+              "arrayValue": {
+                "values": [
+                  {
+                    "stringValue": "FIDO Alliance"
+                  }
+                ]
+              }
+            },
+            "evaluationContext": {
+              "stringValue": "Provides cryptographically signed Intent, Cart, and Payment Mandates to verify user authorization     
+  without manual re-approval."
+            }
+          }
+        }
+

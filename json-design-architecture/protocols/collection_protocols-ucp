@@ -1,0 +1,89 @@
+HTTP Method: PATCH                                                                                                              
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/collection_protocols/ucp                
+  • Headers: Content-Type: application/json                                                                                         
+  • Body (Select raw ➔ JSON):                                                                                                       
+                                                                                                                                    
+    {                                                                                                                               
+      "fields": {                                                                                                                   
+        "name": {                                                                                                                   
+          "stringValue": "Universal Commerce Protocol"                                                                              
+        },                                                                                                                          
+        "status": {                                                                                                                 
+          "stringValue": "ACTIVE"                                                                                                   
+        },                                                                                                                          
+        "layers": {                                                                                                                 
+          "arrayValue": {                                                                                                           
+            "values": [                                                                                                             
+              {                                                                                                                     
+                "stringValue": "Commerce Semantics"                                                                                 
+              }                                                                                                                     
+            ]                                                                                                                       
+          }                                                                                                                         
+        },                                                                                                                          
+        "primaryFunctions": {                                                                                                       
+          "arrayValue": {                                                                                                           
+            "values": [                                                                                                             
+              {                                                                                                                     
+                "stringValue": "Discovery"                                                                                          
+              },                                                                                                                    
+              {                                                                                                                     
+                "stringValue": "Cart Negotiation"                                                                                   
+              },                                                                                                                    
+              {                                                                                                                     
+                "stringValue": "Checkout Execution"                                                                                 
+              },                                                                                                                    
+              {                                                                                                                     
+                "stringValue": "Order Lifecycle"                                                                                    
+              }                                                                                                                     
+            ]                                                                                                                       
+          }                                                                                                                         
+        },                                                                                                                          
+        "keyBackers": {                                                                                                             
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Google"
+              },
+              {
+                "stringValue": "Shopify"
+              },
+              {
+                "stringValue": "Walmart"
+              },
+              {
+                "stringValue": "Target"
+              }
+            ]
+          }
+        },
+        "transports": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "REST"
+              },
+              {
+                "stringValue": "MCP"
+              },
+              {
+                "stringValue": "A2A"
+              }
+            ]
+          }
+        },
+        "governance": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Industry Consortium"
+              }
+            ]
+          }
+        },
+        "evaluationContext": {
+          "stringValue": "Vendor-neutral commerce spec defining cart, checkout, and inventory lifecycle bindings over REST, MCP, or 
+  A2A."
+        }
+      }
+    }
+

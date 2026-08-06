@@ -1,0 +1,101 @@
+[
+  {
+    "id": "mcp",
+    "name": "Model Context Protocol",
+    "status": "ACTIVE",
+    "layers": ["Foundation", "Communication"],
+    "primaryFunctions": ["Tool Access", "Data Access", "API Context Binding"],
+    "keyBackers": ["Anthropic", "Linux Foundation"],
+    "transports": ["stdio", "HTTP-SSE"],
+    "governance": ["Open Foundation", "Linux Foundation"],
+    "evaluationContext": "Vertical protocol connecting agents to tools and data sources. Governance transferred to the Linux Foundation."
+  },
+  {
+    "id": "a2a",
+    "name": "Agent-to-Agent Protocol",
+    "status": "ACTIVE",
+    "layers": ["Foundation", "Communication"],
+    "primaryFunctions": ["Agent Coordination", "Capability Discovery", "Task Delegation"],
+    "keyBackers": ["Google", "Linux Foundation"],
+    "transports": ["HTTPS", "gRPC", "JSON-RPC"],
+    "governance": ["Open Foundation", "Linux Foundation"],
+    "evaluationContext": "Horizontal messaging protocol for inter-agent task handoff and capability negotiation."
+  },
+  {
+    "id": "ucp",
+    "name": "Universal Commerce Protocol",
+    "status": "ACTIVE",
+    "layers": ["Commerce Semantics"],
+    "primaryFunctions": ["Discovery", "Cart Negotiation", "Checkout Execution", "Order Lifecycle"],
+    "keyBackers": ["Google", "Shopify", "Walmart", "Target"],
+    "transports": ["REST", "MCP", "A2A"],
+    "governance": ["Industry Consortium"],
+    "evaluationContext": "Vendor-neutral commerce spec defining cart, checkout, and inventory lifecycle bindings over REST, MCP, or A2A."
+  },
+  {
+    "id": "acp",
+    "name": "Agentic Commerce Protocol",
+    "status": "ACTIVE",
+    "layers": ["Commerce Semantics"],
+    "primaryFunctions": ["Product Discovery", "Direct Checkout"],
+    "keyBackers": ["OpenAI", "Stripe"],
+    "transports": ["REST", "Stripe API"],
+    "governance": ["Open Spec (Apache 2.0)"],
+    "evaluationContext": "Commerce feed and direct instant checkout standard for conversational chat interfaces like ChatGPT."
+  },
+  {
+    "id": "ap2",
+    "name": "Agent Payments Protocol",
+    "status": "ACTIVE",
+    "layers": ["Trust & Identity"],
+    "primaryFunctions": ["Payment Authorization", "Cryptographic Mandates", "Delegated Spend"],
+    "keyBackers": ["Google", "FIDO Alliance"],
+    "transports": ["A2A Extension", "HTTP"],
+    "governance": ["FIDO Alliance"],
+    "evaluationContext": "Provides cryptographically signed Intent, Cart, and Payment Mandates to verify user authorization without manual re-approval."
+  },
+  {
+    "id": "visa-tap",
+    "name": "Visa Trusted Agent Protocol",
+    "status": "ACTIVE",
+    "layers": ["Trust & Identity"],
+    "primaryFunctions": ["Agent Identity Verification", "Card Rail Authentication"],
+    "keyBackers": ["Visa"],
+    "transports": ["HTTP Message Signatures"],
+    "governance": ["Proprietary Rail Standard"],
+    "evaluationContext": "Validates agent identities and keys at the network layer for card-present/card-not-present merchant acquiring."
+  },
+  {
+    "id": "mc-intent",
+    "name": "Mastercard Verifiable Intent",
+    "status": "ACTIVE",
+    "layers": ["Trust & Identity"],
+    "primaryFunctions": ["Purchase Intent Tokenization", "Payment Binding"],
+    "keyBackers": ["Mastercard"],
+    "transports": ["Tokenization API"],
+    "governance": ["Proprietary Rail Standard"],
+    "evaluationContext": "Tokenizes user purchase intent into signed artifacts that resolve directly onto Mastercard payment rails."
+  },
+  {
+    "id": "x402",
+    "name": "x402 Protocol",
+    "status": "ACTIVE",
+    "layers": ["Programmable Settlement"],
+    "primaryFunctions": ["Crypto Settlement", "HTTP Micro-Payments"],
+    "keyBackers": ["Coinbase"],
+    "transports": ["HTTP 402", "Web3 / L2"],
+    "governance": ["Open Standard"],
+    "evaluationContext": "Native HTTP 402 implementation enabling instantaneous, low-fee stablecoin (USDC) settlements for M2M micro-transactions."
+  },
+  {
+    "id": "mpp",
+    "name": "Machine Payments Protocol",
+    "status": "ACTIVE",
+    "layers": ["Programmable Settlement"],
+    "primaryFunctions": ["Continuous Micro-Settlement", "Off-chain Vouchers"],
+    "keyBackers": ["Stripe", "Tempo"],
+    "transports": ["REST", "gRPC"],
+    "governance": ["Open Standard"],
+    "evaluationContext": "Manages streaming pay-as-you-go sessions and batch off-chain voucher settlements for continuous machine service usage."
+  }
+]

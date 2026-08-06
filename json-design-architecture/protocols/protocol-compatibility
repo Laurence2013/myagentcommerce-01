@@ -1,0 +1,68 @@
+{
+  "Name: Protocol Compatibility": [
+    {
+      "Name": "MCP",
+      "Full Name": "Model Context Protocol",
+      "Layer": "Communication & Discovery",
+      "Primary Function": "['Connects agents to tools', 'data sources', 'merchant APIs']",
+      "Key Backers": "['Anthropic', 'Linux Foundation]",
+      "Compatibility": "Stacks with all commerce and payment protocols; widely adopted across AI platforms"
+    },
+    {
+      "Name": "A2A",
+      "Full Name": "Agent-to-Agent Protocol",
+      "Layer": "Communication & Discovery",
+      "Primary Function": "Enables heterogeneous agents to negotiate and coordinate tasks directly",
+      "Key Backers": "Google, Linux Foundation",
+      "Compatibility": "Designed to work with UCP, AP2, and MCP; supports multi-agent commerce flows"
+    },
+    {
+      "Name": "UCP",
+      "Full Name": "Universal Commerce Protocol",
+      "Layer": "Commerce & Checkout",
+      "Primary Function": "Standardizes full merchant journey from discovery to order management",
+      "Key Backers": "Google, Shopify",
+      "Compatibility": "Explicitly compatible with MCP, A2A, and AP2; competes partially with ACP on checkout"
+    },
+    {
+      "Name": "ACP",
+      "Full Name": "Agentic Commerce Protocol",
+      "Layer": "Commerce & Checkout",
+      "Primary Function": "Enables in-surface checkout with scoped payment tokens",
+      "Key Backers": "OpenAI, Stripe",
+      "Compatibility": "Composes with AP2 for authorization and x402/MPP for settlement; competes with UCP on checkout"
+    },
+    {
+      "Name": "AP2",
+      "Full Name": "Agent Payments Protocol",
+      "Layer": "Authorization & Trust",
+      "Primary Function": "Provides cryptographic proof of user authorization via signed mandates",
+      "Key Backers": "Google, FIDO Alliance, Mastercard, PayPal, Visa",
+      "Compatibility": "Works with UCP, ACP, x402, and MPP; can use x402 for stablecoin settlement via A2A extension"
+    },
+    {
+      "Name": "x402",
+      "Full Name": "HTTP 402 Payment Required Protocol",
+      "Layer": "Settlement",
+      "Primary Function": "Enables direct machine-to-machine payments over HTTP using stablecoins",
+      "Key Backers": "Coinbase",
+      "Compatibility": "Composes with AP2 for authorization; used for micropayments and API-to-API settlement"
+    },
+    {
+      "Name": "MPP",
+      "Full Name": "Machine Payments Protocol",
+      "Layer": "Settlement",
+      "Primary Function": "Handles programmable settlement between agents and services via card rails or Tempo blockchain",
+      "Key Backers": "Stripe, Tempo",
+      "Compatibility": "Shares token primitives with ACP; composes with AP2 for enterprise procurement flows"
+    },
+    {
+      "Name": "Visa TAP / Mastercard Agent Pay",
+      "Full Name": "Trusted Agent Protocol / Agent Pay",
+      "Layer": "Authorization & Trust / Settlement",
+      "Primary Function": "Brings agent-initiated payments onto traditional card rails with tokenization and intent validation",
+      "Key Backers": "Visa, Mastercard",
+      "Compatibility": "Integrates with UCP and ACP; serves as alternative or complement to AP2 for card-based flows"
+    }
+  ]
+}   

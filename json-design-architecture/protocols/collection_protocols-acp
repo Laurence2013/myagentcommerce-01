@@ -1,0 +1,73 @@
+HTTP Method: PATCH                                                                                                              
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/collection_protocols/acp                
+  • Headers: Content-Type: application/json                                                                                         
+  • Body (Select raw ➔ JSON):                                                                                                       
+                                                                                                                                    
+    {                                                                                                                               
+      "fields": {                                                                                                                   
+        "name": {                                                                                                                   
+          "stringValue": "Agentic Commerce Protocol"                                                                                
+        },                                                                                                                          
+        "status": {                                                                                                                 
+          "stringValue": "ACTIVE"                                                                                                   
+        },                                                                                                                          
+        "layers": {                                                                                                                 
+          "arrayValue": {                                                                                                           
+            "values": [                                                                                                             
+              {                                                                                                                     
+                "stringValue": "Commerce Semantics"                                                                                 
+              }                                                                                                                     
+            ]                                                                                                                       
+          }                                                                                                                         
+        },                                                                                                                          
+        "primaryFunctions": {                                                                                                       
+          "arrayValue": {                                                                                                           
+            "values": [                                                                                                             
+              {
+                "stringValue": "Product Discovery"
+              },
+              {
+                "stringValue": "Direct Checkout"
+              }
+            ]
+          }
+        },
+        "keyBackers": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "OpenAI"
+              },
+              {
+                "stringValue": "Stripe"
+              }
+            ]
+          }
+        },
+        "transports": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "REST"
+              },
+              {
+                "stringValue": "Stripe API"
+              }
+            ]
+          }
+        },
+        "governance": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Open Spec (Apache 2.0)"
+              }
+            ]
+          }
+        },
+        "evaluationContext": {
+          "stringValue": "Commerce feed and direct instant checkout standard for conversational chat interfaces like ChatGPT."      
+        }
+      }
+    }
+
