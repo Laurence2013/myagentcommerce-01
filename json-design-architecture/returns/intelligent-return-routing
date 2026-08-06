@@ -1,0 +1,48 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/returns/intelligent-return-routing
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "id": {
+          "stringValue": "intelligent-return-routing"
+        },
+        "name": {
+          "stringValue": "Intelligent Return Routing"
+        },
+        "primaryRiskMitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "High Reverse Logistics Cost"
+              }
+            ]
+          }
+        },
+        "keyEnabler": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Disposition & Routing Logic"
+              }
+            ]
+          }
+        },
+        "architecturalValidity": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Accurate"
+              },
+              {
+                "stringValue": "Mitigates high reverse logistics expenses"
+              },
+              {
+                "stringValue": "Dynamically routes to refurb, donate, or keep-it"
+              }
+            ]
+          }
+        }
+      }
+    }

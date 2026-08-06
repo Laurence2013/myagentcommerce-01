@@ -1,0 +1,24 @@
+The same for machine-readable-offer-schemas can you update "{
+    "name": "machine-readable-offer-schemas",
+    "capability": [
+      "Machine-Readable Offers",
+      "Structured Schema Declarations"
+    ],
+    "primaryRiskMitigated": [
+      "Hallucinated Eligibility",
+      "LLM Interpretation Errors",
+      "Checkout Parsing Failures"
+    ],
+    "keyEnabler": [
+      "Structured JSON APIs",
+      "OpenAPI / UCP Specifications",
+      "JSON-LD & Schema.org Markup"
+    ],
+    "architecturalNuance": [
+      "HTML fine print causes LLMs to misinterpret multi-item condition logic",
+      "Offers must expose explicit Boolean eligibility flags and structured terms",
+      "Standardized formats ensure predictable parsing across ACP/UCP integrations"
+    ]
+  }," to JSON format add this JSON format into /home/lozza187/projects/myagentcommerce-01/json-design-architecture/promotions, do not add collection_security-, do not add /home/lozza187/projects/myagentcommerce-01/security folder, start url with
+  'http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/promotions', and do not create a JSON
+  file?

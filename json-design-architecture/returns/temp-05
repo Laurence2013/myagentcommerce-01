@@ -1,0 +1,18 @@
+The same for refund-&-credit-orchestration can you update "{
+    "id": "refund-&-credit-orchestration",
+    "name": "Refund & Credit Orchestration",
+    "primaryRiskMitigated": [
+      "Customer Dissatisfaction",
+      "Churn"
+    ],
+    "keyEnabler": [
+      "Flexible Payment Logic"
+    ],
+    "architecturalValidity": [
+      "Accurate",
+      "Ensures instant reconciliation",
+      "Coordinates partial/full refunds on carrier scan"
+    ]
+  }," to JSON format add this JSON format into /home/lozza187/projects/myagentcommerce-01/json-design-architecture/returns, do not add collection_security-, do not add /home/lozza187/projects/myagentcommerce-01/security folder, start url with
+  'http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/returns', and do not create a JSON
+  file?

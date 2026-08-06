@@ -1,0 +1,69 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/promotions/single-use-cryptographic-tokens
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "single-use-cryptographic-tokens"
+        },
+        "capability": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Single-use Codes"
+              },
+              {
+                "stringValue": "Scoped Dynamic Tokens"
+              }
+            ]
+          }
+        },
+        "primaryRiskMitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Coupon Leakage"
+              },
+              {
+                "stringValue": "Code Scraping & Harvesting"
+              },
+              {
+                "stringValue": "Cross-Agent Sybil Fraud"
+              }
+            ]
+          }
+        },
+        "keyEnabler": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Cryptographic Token Generation"
+              },
+              {
+                "stringValue": "Agent-Bound HMAC Signatures"
+              },
+              {
+                "stringValue": "Single-Use Nonce Validation"
+              }
+            ]
+          }
+        },
+        "architecturalNuance": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Public promo strings (e.g., 'SAVE20') are instantly indexed by agent clusters"
+              },
+              {
+                "stringValue": "Tokens must be cryptographically bound to specific Agent-IDs or Session-IDs"
+              },
+              {
+                "stringValue": "Requires atomic consumption tracking across distributed databases"
+              }
+            ]
+          }
+        }
+      }
+    }

@@ -1,0 +1,24 @@
+The same for replay-protection-n-concurrency-guarding can you update "{
+    "name": "replay-protection-n-concurrency-guarding",
+    "capability": [
+      "Replay Protection",
+      "Concurrency Guarding"
+    ],
+    "primaryRiskMitigated": [
+      "Double-Spend Attacks",
+      "Race Condition Exploits",
+      "Token Squatting"
+    ],
+    "keyEnabler": [
+      "Cryptographic Nonces",
+      "Distributed Lock Managers",
+      "Atomic Verification Counters"
+    ],
+    "architecturalNuance": [
+      "Parallel agent threads may submit identical promo tokens concurrently",
+      "Requires idempotency keys and state locking during cart checkout",
+      "Prevents duplicate promo redemptions across distributed microservices"
+    ]
+  }," to JSON format add this JSON format into /home/lozza187/projects/myagentcommerce-01/json-design-architecture/promotions, do not add collection_security-, do not add /home/lozza187/projects/myagentcommerce-01/security folder, start url with
+  'http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/promotions', and do not create a JSON
+  file?

@@ -1,0 +1,51 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/returns/automated-label-generation
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "id": {
+          "stringValue": "automated-label-generation"
+        },
+        "name": {
+          "stringValue": "Automated Label Generation"
+        },
+        "primaryRiskMitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Shipping Errors"
+              },
+              {
+                "stringValue": "Delays"
+              }
+            ]
+          }
+        },
+        "keyEnabler": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Carrier API Integration"
+              }
+            ]
+          }
+        },
+        "architecturalValidity": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Accurate"
+              },
+              {
+                "stringValue": "Eliminates fulfillment latency"
+              },
+              {
+                "stringValue": "Generates digital QR codes and carrier pass keys via direct API"
+              }
+            ]
+          }
+        }
+      }
+    }

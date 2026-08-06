@@ -1,0 +1,51 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/returns/refund-n-credit-orchestration
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "id": {
+          "stringValue": "refund-n-credit-orchestration"
+        },
+        "name": {
+          "stringValue": "Refund & Credit Orchestration"
+        },
+        "primaryRiskMitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Customer Dissatisfaction"
+              },
+              {
+                "stringValue": "Churn"
+              }
+            ]
+          }
+        },
+        "keyEnabler": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Flexible Payment Logic"
+              }
+            ]
+          }
+        },
+        "architecturalValidity": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Accurate"
+              },
+              {
+                "stringValue": "Ensures instant reconciliation"
+              },
+              {
+                "stringValue": "Coordinates partial/full refunds on carrier scan"
+              }
+            ]
+          }
+        }
+      }
+    }

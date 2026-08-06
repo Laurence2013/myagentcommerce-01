@@ -1,0 +1,69 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/promotions/replay-protection-n-concurrency-guarding
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "replay-protection-n-concurrency-guarding"
+        },
+        "capability": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Replay Protection"
+              },
+              {
+                "stringValue": "Concurrency Guarding"
+              }
+            ]
+          }
+        },
+        "primaryRiskMitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Double-Spend Attacks"
+              },
+              {
+                "stringValue": "Race Condition Exploits"
+              },
+              {
+                "stringValue": "Token Squatting"
+              }
+            ]
+          }
+        },
+        "keyEnabler": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Cryptographic Nonces"
+              },
+              {
+                "stringValue": "Distributed Lock Managers"
+              },
+              {
+                "stringValue": "Atomic Verification Counters"
+              }
+            ]
+          }
+        },
+        "architecturalNuance": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Parallel agent threads may submit identical promo tokens concurrently"
+              },
+              {
+                "stringValue": "Requires idempotency keys and state locking during cart checkout"
+              },
+              {
+                "stringValue": "Prevents duplicate promo redemptions across distributed microservices"
+              }
+            ]
+          }
+        }
+      }
+    }

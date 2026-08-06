@@ -1,0 +1,18 @@
+The same for automated-label-generation can you update "{
+    "id": "automated-label-generation",
+    "name": "Automated Label Generation",
+    "primaryRiskMitigated": [
+      "Shipping Errors",
+      "Delays"
+    ],
+    "keyEnabler": [
+      "Carrier API Integration"
+    ],
+    "architecturalValidity": [
+      "Accurate",
+      "Eliminates fulfillment latency",
+      "Generates digital QR codes and carrier pass keys via direct API"
+    ]
+  }," to JSON format add this JSON format into /home/lozza187/projects/myagentcommerce-01/json-design-architecture/returns, do not add collection_security-, do not add /home/lozza187/projects/myagentcommerce-01/security folder, start url with
+  'http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/returns', and do not create a JSON
+  file?

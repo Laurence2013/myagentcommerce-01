@@ -1,0 +1,18 @@
+The same for programmatic-return-apis can you update "{
+    "id": "programmatic-return-apis",
+    "name": "Programmatic Return APIs",
+    "primaryRiskMitigated": [
+      "Manual Intervention",
+      "Friction"
+    ],
+    "keyEnabler": [
+      "Headless Returns Platform"
+    ],
+    "architecturalValidity": [
+      "Accurate",
+      "Avoids web DOM/CAPTCHA barriers",
+      "Enables REST/MCP agent execution"
+    ]
+  }," to JSON format add this JSON format into /home/lozza187/projects/myagentcommerce-01/json-design-architecture/returns, do not add collection_security-, do not add /home/lozza187/projects/myagentcommerce-01/security folder, start url with
+  'http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/returns', and do not create a JSON
+  file?

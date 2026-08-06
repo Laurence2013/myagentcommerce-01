@@ -1,0 +1,45 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/fraud-n-identity/synthetic-identity-defense
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "synthetic_identity_defense"
+        },
+        "capability": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Synthetic Identity Defense"
+              }
+            ]
+          }
+        },
+        "primary_risk_mitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Fake Accounts"
+              },
+              {
+                "stringValue": "Mule Networks"
+              }
+            ]
+          }
+        },
+        "key_enabler": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Graph Analysis"
+              },
+              {
+                "stringValue": "Liveness Checks"
+              }
+            ]
+          }
+        }
+      }
+    }

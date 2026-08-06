@@ -1,0 +1,24 @@
+The same for dynamic-combinability-n-stacking-logic can you update "{
+    "name": "dynamic-combinability-n-stacking-logic",
+    "capability": [
+      "Dynamic Combinability Logic",
+      "Stacking Rules Engine"
+    ],
+    "primaryRiskMitigated": [
+      "Invalid Promo Stacking",
+      "Checkout API Halts",
+      "Conflicting Discount Application"
+    ],
+    "keyEnabler": [
+      "Combinability Flags & Matrices",
+      "Explicit Exclusion Vectors",
+      "Deterministic Best-Value Engine"
+    ],
+    "architecturalNuance": [
+      "Agents test multiple offer combinations simultaneously during cart building",
+      "Ambiguous rules result in runtime API exceptions or unhandled halts",
+      "Server must proactively return prioritized non-conflicting discount arrays"
+    ]
+  }," to JSON format add this JSON format into /home/lozza187/projects/myagentcommerce-01/json-design-architecture/promotions, do not add collection_security-, do not add /home/lozza187/projects/myagentcommerce-01/security folder, start url with
+  'http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/promotions', and do not create a JSON
+  file?

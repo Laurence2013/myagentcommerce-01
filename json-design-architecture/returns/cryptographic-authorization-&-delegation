@@ -1,0 +1,54 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/returns/cryptographic-authorisation-n-delegation
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "id": {
+          "stringValue": "cryptographic-authorisation-n-delegation"
+        },
+        "name": {
+          "stringValue": "Cryptographic Authorisation & Delegation"
+        },
+        "primaryRiskMitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Impersonation"
+              },
+              {
+                "stringValue": "Unauthorized Return Claims"
+              }
+            ]
+          }
+        },
+        "keyEnabler": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Trusted Agent Protocols"
+              },
+              {
+                "stringValue": "Agentic Tokenisation"
+              }
+            ]
+          }
+        },
+        "architecturalValidity": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Accurate"
+              },
+              {
+                "stringValue": "Verifies buyer agent delegation"
+              },
+              {
+                "stringValue": "Provides cryptographic proof-of-purchase"
+              }
+            ]
+          }
+        }
+      }
+    }

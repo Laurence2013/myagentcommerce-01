@@ -1,0 +1,18 @@
+The same for instant-eligibility-&-fraud-scoring can you update "{
+    "id": "instant-eligibility-&-fraud-scoring",
+    "name": "Instant Eligibility & Fraud Scoring",
+    "primaryRiskMitigated": [
+      "Return Fraud",
+      "Abuse"
+    ],
+    "keyEnabler": [
+      "Real-Time Risk Engines"
+    ],
+    "architecturalValidity": [
+      "Accurate",
+      "Blocks automated return farming",
+      "Evaluates agent telemetry and buyer reputation instantly"
+    ]
+  }," to JSON format add this JSON format into /home/lozza187/projects/myagentcommerce-01/json-design-architecture/returns, do not add collection_security-, do not add /home/lozza187/projects/myagentcommerce-01/security folder, start url with
+  'http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/returns', and do not create a JSON
+  file?

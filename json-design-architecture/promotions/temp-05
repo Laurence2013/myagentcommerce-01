@@ -1,0 +1,24 @@
+The same for automated-asynchronous-lifecycle-management can you update "{
+    "name": "automated-asynchronous-lifecycle-management",
+    "capability": [
+      "Automated Lifecycle Management",
+      "Asynchronous Expiry Engine"
+    ],
+    "primaryRiskMitigated": [
+      "Expired Offer Application",
+      "Stale Cart Execution",
+      "Timezone & Timestamp Drift"
+    ],
+    "keyEnabler": [
+      "Time-bound Rule Enforcement",
+      "UTC ISO-8601 Expiry Timestamps",
+      "TTL Cache Invalidation"
+    ],
+    "architecturalNuance": [
+      "Asynchronous shopping workflows mean hours between discovery and checkout",
+      "Client-side clocks cannot be trusted for expiry validation",
+      "Promotions must use strict server UTC timestamp verification at point of lock"
+    ]
+  }," to JSON format add this JSON format into /home/lozza187/projects/myagentcommerce-01/json-design-architecture/promotions, do not add collection_security-, do not add /home/lozza187/projects/myagentcommerce-01/security folder, start url with
+  'http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/promotions', and do not create a JSON
+  file?

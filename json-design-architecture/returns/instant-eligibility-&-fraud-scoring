@@ -1,0 +1,51 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/returns/instant-eligibility-&-fraud-scoring
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "id": {
+          "stringValue": "instant-eligibility-&-fraud-scoring"
+        },
+        "name": {
+          "stringValue": "Instant Eligibility & Fraud Scoring"
+        },
+        "primaryRiskMitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Return Fraud"
+              },
+              {
+                "stringValue": "Abuse"
+              }
+            ]
+          }
+        },
+        "keyEnabler": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Real-Time Risk Engines"
+              }
+            ]
+          }
+        },
+        "architecturalValidity": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Accurate"
+              },
+              {
+                "stringValue": "Blocks automated return farming"
+              },
+              {
+                "stringValue": "Evaluates agent telemetry and buyer reputation instantly"
+              }
+            ]
+          }
+        }
+      }
+    }

@@ -1,0 +1,51 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/returns/machine-readable-policy-logic
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "id": {
+          "stringValue": "machine-readable-policy-logic"
+        },
+        "name": {
+          "stringValue": "Machine-Readable Policy Logic"
+        },
+        "primaryRiskMitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Hallucinated Terms"
+              },
+              {
+                "stringValue": "Eligibility Errors"
+              }
+            ]
+          }
+        },
+        "keyEnabler": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Structured Rule Engines"
+              }
+            ]
+          }
+        },
+        "architecturalValidity": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Accurate"
+              },
+              {
+                "stringValue": "Eliminates LLM policy hallucination"
+              },
+              {
+                "stringValue": "Provides deterministic JSON/JSON-LD constraints"
+              }
+            ]
+          }
+        }
+      }
+    }

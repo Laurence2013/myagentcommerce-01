@@ -1,0 +1,9 @@
+The same for synthetic-identity-defense can you update "{
+      "name": "synthetic_identity_defense",
+      "name": "Synthetic Identity & Mule Network Detection",
+      "capability": ["Synthetic Identity Defense"],
+      "primary_risk_mitigated": ["Fake Accounts", "Mule Networks"],
+      "key_enabler": ["Graph Analysis", "Liveness Checks"]
+    }," to JSON format add this JSON format into /home/lozza187/projects/myagentcommerce-01/json-design-architecture/fraud-n-identity, do not add collection_security-, do not add /home/lozza187/projects/myagentcommerce-01/security folder, start url with
+  'http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/fraud-n-identity', and do not create a JSON
+  file?

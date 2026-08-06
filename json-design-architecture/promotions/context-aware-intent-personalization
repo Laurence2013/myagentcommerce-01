@@ -1,0 +1,69 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/promotions/context-aware-intent-personalisation
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "context-aware-intent-personalisation"
+        },
+        "capability": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Context-Aware Personalization"
+              },
+              {
+                "stringValue": "Intent-Based Targeting"
+              }
+            ]
+          }
+        },
+        "primaryRiskMitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Missed Conversion Opportunities"
+              },
+              {
+                "stringValue": "Blanket Over-Discounting"
+              },
+              {
+                "stringValue": "Irrelevant Offer Delivery"
+              }
+            ]
+          }
+        },
+        "keyEnabler": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Real-time Segmentation"
+              },
+              {
+                "stringValue": "Buyer-Agent Payload Analysis"
+              },
+              {
+                "stringValue": "Margin-Aware Dynamic Discounts"
+              }
+            ]
+          }
+        },
+        "architecturalNuance": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Agent query payloads contain explicit budget and constraint parameters"
+              },
+              {
+                "stringValue": "Enables real-time targeted discounts without degrading baseline public pricing"
+              },
+              {
+                "stringValue": "Requires strict privacy guardrails to prevent intent exploitation"
+              }
+            ]
+          }
+        }
+      }
+    }

@@ -1,0 +1,45 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/fraud-n-identity/behavioural-telemetry
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "behavioural_telemetry"
+        },
+        "capability": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Behavioral Biometrics"
+              }
+            ]
+          }
+        },
+        "primary_risk_mitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Prompt Injection"
+              },
+              {
+                "stringValue": "Bot Attacks"
+              }
+            ]
+          }
+        },
+        "key_enabler": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "AI Telemetry"
+              },
+              {
+                "stringValue": "Anomaly Detection"
+              }
+            ]
+          }
+        }
+      }
+    }

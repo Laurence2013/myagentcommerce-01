@@ -1,0 +1,45 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/fraud-n-identity/kya-governance
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "kya_governance"
+        },
+        "capability": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Know Your Agent (KYA)"
+              }
+            ]
+          }
+        },
+        "primary_risk_mitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Rogue Agents"
+              },
+              {
+                "stringValue": "Compromised Agents"
+              }
+            ]
+          }
+        },
+        "key_enabler": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Reputation Registries"
+              },
+              {
+                "stringValue": "Audits"
+              }
+            ]
+          }
+        }
+      }
+    }

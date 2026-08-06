@@ -1,0 +1,24 @@
+The same for agent-protocol-attribution-n-analytics can you update "{
+    "name": "agent-protocol-attribution-n-analytics",
+    "capability": [
+      "Attribution & Analytics",
+      "Agent Protocol Tracking"
+    ],
+    "primaryRiskMitigated": [
+      "Unmeasured Promo ROI",
+      "Agent-Merchant Misalignment",
+      "Unattributed Synthetic Traffic"
+    ],
+    "keyEnabler": [
+      "Agent-ID Tagging",
+      "Protocol Headers (x-agent-id)",
+      "Cryptographic Session Telemetry"
+    ],
+    "architecturalNuance": [
+      "Essential for separating human organic traffic from automated aggregator agents",
+      "Enables differential promotion structures for direct vs. mediated sales",
+      "Prevents affiliate coupon fraud across automated shopping protocols"
+    ]
+  }," to JSON format add this JSON format into /home/lozza187/projects/myagentcommerce-01/json-design-architecture/promotions, do not add collection_security-, do not add /home/lozza187/projects/myagentcommerce-01/security folder, start url with
+  'http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/promotions', and do not create a JSON
+  file?

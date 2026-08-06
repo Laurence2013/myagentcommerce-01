@@ -1,0 +1,69 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/promotions/machine-readable-offer-schemas
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "machine-readable-offer-schemas"
+        },
+        "capability": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Machine-Readable Offers"
+              },
+              {
+                "stringValue": "Structured Schema Declarations"
+              }
+            ]
+          }
+        },
+        "primaryRiskMitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Hallucinated Eligibility"
+              },
+              {
+                "stringValue": "LLM Interpretation Errors"
+              },
+              {
+                "stringValue": "Checkout Parsing Failures"
+              }
+            ]
+          }
+        },
+        "keyEnabler": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Structured JSON APIs"
+              },
+              {
+                "stringValue": "OpenAPI / UCP Specifications"
+              },
+              {
+                "stringValue": "JSON-LD & Schema.org Markup"
+              }
+            ]
+          }
+        },
+        "architecturalNuance": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "HTML fine print causes LLMs to misinterpret multi-item condition logic"
+              },
+              {
+                "stringValue": "Offers must expose explicit Boolean eligibility flags and structured terms"
+              },
+              {
+                "stringValue": "Standardized formats ensure predictable parsing across ACP/UCP integrations"
+              }
+            ]
+          }
+        }
+      }
+    }

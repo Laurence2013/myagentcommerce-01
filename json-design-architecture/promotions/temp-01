@@ -1,0 +1,24 @@
+The same for single-use-cryptographic-tokens can you update "{
+    "name": "single-use-cryptographic-tokens",
+    "capability": [
+      "Single-use Codes",
+      "Scoped Dynamic Tokens"
+    ],
+    "primaryRiskMitigated": [
+      "Coupon Leakage",
+      "Code Scraping & Harvesting",
+      "Cross-Agent Sybil Fraud"
+    ],
+    "keyEnabler": [
+      "Cryptographic Token Generation",
+      "Agent-Bound HMAC Signatures",
+      "Single-Use Nonce Validation"
+    ],
+    "architecturalNuance": [
+      "Public promo strings (e.g., 'SAVE20') are instantly indexed by agent clusters",
+      "Tokens must be cryptographically bound to specific Agent-IDs or Session-IDs",
+      "Requires atomic consumption tracking across distributed databases"
+    ]
+  }," to JSON format add this JSON format into /home/lozza187/projects/myagentcommerce-01/json-design-architecture/promotions, do not add collection_security-, do not add /home/lozza187/projects/myagentcommerce-01/security folder, start url with
+  'http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/promotions', and do not create a JSON
+  file?

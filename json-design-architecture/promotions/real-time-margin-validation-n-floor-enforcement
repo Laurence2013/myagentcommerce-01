@@ -1,0 +1,69 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/promotions/real-time-margin-validation-n-floor-enforcement
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "real-time-margin-validation-n-floor-enforcement"
+        },
+        "capability": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Real-time Margin Validation"
+              },
+              {
+                "stringValue": "Cost-Floor Enforcement"
+              }
+            ]
+          }
+        },
+        "primaryRiskMitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Profit Leakage"
+              },
+              {
+                "stringValue": "Negative Margin Sales"
+              },
+              {
+                "stringValue": "Algorithmic Stacking Arbitrage"
+              }
+            ]
+          }
+        },
+        "keyEnabler": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Rules Engine with Cost Basis"
+              },
+              {
+                "stringValue": "COGS API Integration"
+              },
+              {
+                "stringValue": "Dynamic Price Floor Logic"
+              }
+            ]
+          }
+        },
+        "architecturalNuance": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Autonomous agents systematically probe for multi-offer stacking"
+              },
+              {
+                "stringValue": "High-frequency evaluation requires sub-50ms floor validation"
+              },
+              {
+                "stringValue": "Margin guards must execute server-side prior to order commitment"
+              }
+            ]
+          }
+        }
+      }
+    }

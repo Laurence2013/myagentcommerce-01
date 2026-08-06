@@ -1,0 +1,24 @@
+The same for context-aware-intent-personalization can you update "{
+    "name": "context-aware-intent-personalization",
+    "capability": [
+      "Context-Aware Personalization",
+      "Intent-Based Targeting"
+    ],
+    "primaryRiskMitigated": [
+      "Missed Conversion Opportunities",
+      "Blanket Over-Discounting",
+      "Irrelevant Offer Delivery"
+    ],
+    "keyEnabler": [
+      "Real-time Segmentation",
+      "Buyer-Agent Payload Analysis",
+      "Margin-Aware Dynamic Discounts"
+    ],
+    "architecturalNuance": [
+      "Agent query payloads contain explicit budget and constraint parameters",
+      "Enables real-time targeted discounts without degrading baseline public pricing",
+      "Requires strict privacy guardrails to prevent intent exploitation"
+    ]
+  }," to JSON format add this JSON format into /home/lozza187/projects/myagentcommerce-01/json-design-architecture/promotions, do not add collection_security-, do not add /home/lozza187/projects/myagentcommerce-01/security folder, start url with
+  'http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/promotions', and do not create a JSON
+  file?

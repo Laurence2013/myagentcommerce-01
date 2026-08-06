@@ -1,0 +1,51 @@
+{
+    {
+      "name": "crypto_verification",
+      "name": "Cryptographic Intent & Transaction Verification",
+      "capability": ["Cryptographic Verification", "TAP/AP2"],
+      "primary_risk_mitigated": ["Impersonation", "Unauthorized Spending"],
+      "key_enabler": ["Digital Signatures", "Mandates"]
+    },
+    {
+      "name": "kya_governance",
+      "name": "Know Your Agent (KYA) Operator Governance",
+      "capability": ["Know Your Agent (KYA)"],
+      "primary_risk_mitigated": ["Rogue Agents", "Compromised Agents"],
+      "key_enabler": ["Reputation Registries", "Audits"]
+    },
+    {
+      "name": "behavioral_telemetry",
+      "name": "Agent Behavioral Telemetry & Anomaly Defense",
+      "capability": ["Behavioral Biometrics"],
+      "primary_risk_mitigated": ["Prompt Injection", "Bot Attacks"],
+      "key_enabler": ["AI Telemetry", "Anomaly Detection"]
+    },
+    {
+      "name": "synthetic_identity_defense",
+      "name": "Synthetic Identity & Mule Network Detection",
+      "capability": ["Synthetic Identity Defense"],
+      "primary_risk_mitigated": ["Fake Accounts", "Mule Networks"],
+      "key_enabler": ["Graph Analysis", "Liveness Checks"]
+    },
+    {
+      "name": "delegated_authority",
+      "name": "Delegated Authority & Scoped Authorization",
+      "capability": ["Delegated Authority Validation"],
+      "primary_risk_mitigated": ["Privilege Escalation", "Limit Breach"],
+      "key_enabler": ["Policy Engines", "Scoped Tokens"]
+    },
+    {
+      "name": "identity_continuity",
+      "name": "Continuous Session & Identity Persistence",
+      "capability": ["Identity Continuity"],
+      "primary_risk_mitigated": ["Session Hijacking", "Context Loss"],
+      "key_enabler": ["Session Binding", "Continuous Auth"]
+    },
+    {
+      "name": "dispute_attribution",
+      "name": "Automated Dispute & Chargeback Attribution",
+      "capability": ["Automated Dispute Attribution"],
+      "primary_risk_mitigated": ["Liability Ambiguity", "Chargebacks"],
+      "key_enabler": ["Immutable Audit Trails"]
+    }
+}

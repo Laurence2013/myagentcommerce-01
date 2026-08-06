@@ -1,0 +1,178 @@
+{
+  {
+    "name": "Real-Time Margin Validation & Floor Enforcement",
+    "capability": [
+      "Real-time Margin Validation",
+      "Cost-Floor Enforcement"
+    ],
+    "primaryRiskMitigated": [
+      "Profit Leakage",
+      "Negative Margin Sales",
+      "Algorithmic Stacking Arbitrage"
+    ],
+    "keyEnabler": [
+      "Rules Engine with Cost Basis",
+      "COGS API Integration",
+      "Dynamic Price Floor Logic"
+    ],
+    "architecturalNuance": [
+      "Autonomous agents systematically probe for multi-offer stacking",
+      "High-frequency evaluation requires sub-50ms floor validation",
+      "Margin guards must execute server-side prior to order commitment"
+    ]
+  },
+  {
+    "name": "Single-Use Cryptographic Tokens",
+    "capability": [
+      "Single-use Codes",
+      "Scoped Dynamic Tokens"
+    ],
+    "primaryRiskMitigated": [
+      "Coupon Leakage",
+      "Code Scraping & Harvesting",
+      "Cross-Agent Sybil Fraud"
+    ],
+    "keyEnabler": [
+      "Cryptographic Token Generation",
+      "Agent-Bound HMAC Signatures",
+      "Single-Use Nonce Validation"
+    ],
+    "architecturalNuance": [
+      "Public promo strings (e.g., 'SAVE20') are instantly indexed by agent clusters",
+      "Tokens must be cryptographically bound to specific Agent-IDs or Session-IDs",
+      "Requires atomic consumption tracking across distributed databases"
+    ]
+  },
+  {
+    "name": "Machine-Readable Offer Schemas",
+    "capability": [
+      "Machine-Readable Offers",
+      "Structured Schema Declarations"
+    ],
+    "primaryRiskMitigated": [
+      "Hallucinated Eligibility",
+      "LLM Interpretation Errors",
+      "Checkout Parsing Failures"
+    ],
+    "keyEnabler": [
+      "Structured JSON APIs",
+      "OpenAPI / UCP Specifications",
+      "JSON-LD & Schema.org Markup"
+    ],
+    "architecturalNuance": [
+      "HTML fine print causes LLMs to misinterpret multi-item condition logic",
+      "Offers must expose explicit Boolean eligibility flags and structured terms",
+      "Standardized formats ensure predictable parsing across ACP/UCP integrations"
+    ]
+  },
+  {
+    "name": "Dynamic Combinability & Stacking Logic",
+    "capability": [
+      "Dynamic Combinability Logic",
+      "Stacking Rules Engine"
+    ],
+    "primaryRiskMitigated": [
+      "Invalid Promo Stacking",
+      "Checkout API Halts",
+      "Conflicting Discount Application"
+    ],
+    "keyEnabler": [
+      "Combinability Flags & Matrices",
+      "Explicit Exclusion Vectors",
+      "Deterministic Best-Value Engine"
+    ],
+    "architecturalNuance": [
+      "Agents test multiple offer combinations simultaneously during cart building",
+      "Ambiguous rules result in runtime API exceptions or unhandled halts",
+      "Server must proactively return prioritized non-conflicting discount arrays"
+    ]
+  },
+  {
+    "name": "Context-Aware Intent Personalization",
+    "capability": [
+      "Context-Aware Personalization",
+      "Intent-Based Targeting"
+    ],
+    "primaryRiskMitigated": [
+      "Missed Conversion Opportunities",
+      "Blanket Over-Discounting",
+      "Irrelevant Offer Delivery"
+    ],
+    "keyEnabler": [
+      "Real-time Segmentation",
+      "Buyer-Agent Payload Analysis",
+      "Margin-Aware Dynamic Discounts"
+    ],
+    "architecturalNuance": [
+      "Agent query payloads contain explicit budget and constraint parameters",
+      "Enables real-time targeted discounts without degrading baseline public pricing",
+      "Requires strict privacy guardrails to prevent intent exploitation"
+    ]
+  },
+  {
+    "name": "Automated Asynchronous Lifecycle Management",
+    "capability": [
+      "Automated Lifecycle Management",
+      "Asynchronous Expiry Engine"
+    ],
+    "primaryRiskMitigated": [
+      "Expired Offer Application",
+      "Stale Cart Execution",
+      "Timezone & Timestamp Drift"
+    ],
+    "keyEnabler": [
+      "Time-bound Rule Enforcement",
+      "UTC ISO-8601 Expiry Timestamps",
+      "TTL Cache Invalidation"
+    ],
+    "architecturalNuance": [
+      "Asynchronous shopping workflows mean hours between discovery and checkout",
+      "Client-side clocks cannot be trusted for expiry validation",
+      "Promotions must use strict server UTC timestamp verification at point of lock"
+    ]
+  },
+  {
+    "name": "Agent Protocol Attribution & Analytics",
+    "capability": [
+      "Attribution & Analytics",
+      "Agent Protocol Tracking"
+    ],
+    "primaryRiskMitigated": [
+      "Unmeasured Promo ROI",
+      "Agent-Merchant Misalignment",
+      "Unattributed Synthetic Traffic"
+    ],
+    "keyEnabler": [
+      "Agent-ID Tagging",
+      "Protocol Headers (x-agent-id)",
+      "Cryptographic Session Telemetry"
+    ],
+    "architecturalNuance": [
+      "Essential for separating human organic traffic from automated aggregator agents",
+      "Enables differential promotion structures for direct vs. mediated sales",
+      "Prevents affiliate coupon fraud across automated shopping protocols"
+    ]
+  },
+  {
+    "name": "Replay Protection & Concurrency Guarding",
+    "capability": [
+      "Replay Protection",
+      "Concurrency Guarding"
+    ],
+    "primaryRiskMitigated": [
+      "Double-Spend Attacks",
+      "Race Condition Exploits",
+      "Token Squatting"
+    ],
+    "keyEnabler": [
+      "Cryptographic Nonces",
+      "Distributed Lock Managers",
+      "Atomic Verification Counters"
+    ],
+    "architecturalNuance": [
+      "Parallel agent threads may submit identical promo tokens concurrently",
+      "Requires idempotency keys and state locking during cart checkout",
+      "Prevents duplicate promo redemptions across distributed microservices"
+    ]
+  }
+}

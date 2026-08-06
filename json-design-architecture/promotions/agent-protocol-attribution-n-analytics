@@ -1,0 +1,69 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/promotions/agent-protocol-attribution-n-analytics
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "agent-protocol-attribution-n-analytics"
+        },
+        "capability": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Attribution & Analytics"
+              },
+              {
+                "stringValue": "Agent Protocol Tracking"
+              }
+            ]
+          }
+        },
+        "primaryRiskMitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Unmeasured Promo ROI"
+              },
+              {
+                "stringValue": "Agent-Merchant Misalignment"
+              },
+              {
+                "stringValue": "Unattributed Synthetic Traffic"
+              }
+            ]
+          }
+        },
+        "keyEnabler": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Agent-ID Tagging"
+              },
+              {
+                "stringValue": "Protocol Headers (x-agent-id)"
+              },
+              {
+                "stringValue": "Cryptographic Session Telemetry"
+              }
+            ]
+          }
+        },
+        "architecturalNuance": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Essential for separating human organic traffic from automated aggregator agents"
+              },
+              {
+                "stringValue": "Enables differential promotion structures for direct vs. mediated sales"
+              },
+              {
+                "stringValue": "Prevents affiliate coupon fraud across automated shopping protocols"
+              }
+            ]
+          }
+        }
+      }
+    }

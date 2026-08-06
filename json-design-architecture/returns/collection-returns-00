@@ -1,0 +1,145 @@
+{
+  {
+    "id": "programmatic-return-apis",
+    "name": "Programmatic Return APIs",
+    "primaryRiskMitigated": [
+      "Manual Intervention",
+      "Friction"
+    ],
+    "keyEnabler": [
+      "Headless Returns Platform"
+    ],
+    "architecturalValidity": [
+      "Accurate",
+      "Avoids web DOM/CAPTCHA barriers",
+      "Enables REST/MCP agent execution"
+    ]
+  },
+  {
+    "id": "machine-readable-policy-logic",
+    "name": "Machine-Readable Policy Logic",
+    "primaryRiskMitigated": [
+      "Hallucinated Terms",
+      "Eligibility Errors"
+    ],
+    "keyEnabler": [
+      "Structured Rule Engines"
+    ],
+    "architecturalValidity": [
+      "Accurate",
+      "Eliminates LLM policy hallucination",
+      "Provides deterministic JSON/JSON-LD constraints"
+    ]
+  },
+  {
+    "id": "intelligent-return-routing",
+    "name": "Intelligent Return Routing",
+    "primaryRiskMitigated": [
+      "High Reverse Logistics Cost"
+    ],
+    "keyEnabler": [
+      "Disposition & Routing Logic"
+    ],
+    "architecturalValidity": [
+      "Accurate",
+      "Mitigates high reverse logistics expenses",
+      "Dynamically routes to refurb, donate, or keep-it"
+    ]
+  },
+  {
+    "id": "instant-eligibility-&-fraud-scoring",
+    "name": "Instant Eligibility & Fraud Scoring",
+    "primaryRiskMitigated": [
+      "Return Fraud",
+      "Abuse"
+    ],
+    "keyEnabler": [
+      "Real-Time Risk Engines"
+    ],
+    "architecturalValidity": [
+      "Accurate",
+      "Blocks automated return farming",
+      "Evaluates agent telemetry and buyer reputation instantly"
+    ]
+  },
+  {
+    "id": "automated-label-generation",
+    "name": "Automated Label Generation",
+    "primaryRiskMitigated": [
+      "Shipping Errors",
+      "Delays"
+    ],
+    "keyEnabler": [
+      "Carrier API Integration"
+    ],
+    "architecturalValidity": [
+      "Accurate",
+      "Eliminates fulfillment latency",
+      "Generates digital QR codes and carrier pass keys via direct API"
+    ]
+  },
+  {
+    "id": "refund-&-credit-orchestration",
+    "name": "Refund & Credit Orchestration",
+    "primaryRiskMitigated": [
+      "Customer Dissatisfaction",
+      "Churn"
+    ],
+    "keyEnabler": [
+      "Flexible Payment Logic"
+    ],
+    "architecturalValidity": [
+      "Accurate",
+      "Ensures instant reconciliation",
+      "Coordinates partial/full refunds on carrier scan"
+    ]
+  },
+  {
+    "id": "autonomous-exception-handling",
+    "name": "Autonomous Exception Handling",
+    "primaryRiskMitigated": [
+      "Unresolved Edge Cases",
+      "Infinite Loops"
+    ],
+    "keyEnabler": [
+      "Escalation Workflows"
+    ],
+    "architecturalValidity": [
+      "Accurate",
+      "Prevents agent polling deadlocks",
+      "Provides HITL (Human-in-the-Loop) fallbacks"
+    ]
+  },
+  {
+    "id": "cryptographic-authorization-&-delegation",
+    "name": "Cryptographic Authorization & Delegation",
+    "primaryRiskMitigated": [
+      "Impersonation",
+      "Unauthorized Return Claims"
+    ],
+    "keyEnabler": [
+      "Trusted Agent Protocols",
+      "Agentic Tokenization"
+    ],
+    "architecturalValidity": [
+      "Accurate",
+      "Verifies buyer agent delegation",
+      "Provides cryptographic proof-of-purchase"
+    ]
+  },
+  {
+    "id": "multimodal-visual-triage",
+    "name": "Multimodal Visual Triage",
+    "primaryRiskMitigated": [
+      "Fraudulent Damaged Goods Claims"
+    ],
+    "keyEnabler": [
+      "Vision-Language Models (VLM) Triage API"
+    ],
+    "architecturalValidity": [
+      "Accurate",
+      "Inspects photo evidence autonomously",
+      "Auto-approves claims without physical reverse transport"
+    ]
+  }
+}

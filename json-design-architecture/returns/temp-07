@@ -1,0 +1,19 @@
+The same for cryptographic-authorization-&-delegation can you update "{
+    "id": "cryptographic-authorization-&-delegation",
+    "name": "Cryptographic Authorization & Delegation",
+    "primaryRiskMitigated": [
+      "Impersonation",
+      "Unauthorized Return Claims"
+    ],
+    "keyEnabler": [
+      "Trusted Agent Protocols",
+      "Agentic Tokenization"
+    ],
+    "architecturalValidity": [
+      "Accurate",
+      "Verifies buyer agent delegation",
+      "Provides cryptographic proof-of-purchase"
+    ]
+  }," to JSON format add this JSON format into /home/lozza187/projects/myagentcommerce-01/json-design-architecture/returns, do not add collection_security-, do not add /home/lozza187/projects/myagentcommerce-01/security folder, start url with
+  'http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/returns', and do not create a JSON
+  file?

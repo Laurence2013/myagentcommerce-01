@@ -1,0 +1,9 @@
+The same for delegated-authority can you update "{
+      "name": "delegated_authority",
+      "name": "Delegated Authority & Scoped Authorization",
+      "capability": ["Delegated Authority Validation"],
+      "primary_risk_mitigated": ["Privilege Escalation", "Limit Breach"],
+      "key_enabler": ["Policy Engines", "Scoped Tokens"]
+    }," to JSON format add this JSON format into /home/lozza187/projects/myagentcommerce-01/json-design-architecture/fraud-n-identity, do not add collection_security-, do not add /home/lozza187/projects/myagentcommerce-01/security folder, start url with
+  'http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/fraud-n-identity', and do not create a JSON
+  file?

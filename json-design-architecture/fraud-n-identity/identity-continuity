@@ -1,0 +1,45 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/fraud-n-identity/identity-continuity
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "identity_continuity"
+        },
+        "capability": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Identity Continuity"
+              }
+            ]
+          }
+        },
+        "primary_risk_mitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Session Hijacking"
+              },
+              {
+                "stringValue": "Context Loss"
+              }
+            ]
+          }
+        },
+        "key_enabler": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Session Binding"
+              },
+              {
+                "stringValue": "Continuous Auth"
+              }
+            ]
+          }
+        }
+      }
+    }
