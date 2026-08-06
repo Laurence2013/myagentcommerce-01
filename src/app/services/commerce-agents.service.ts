@@ -2,18 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-
-export interface FirestoreDocument {
-  name?: string;
-  fields?: Record<string, unknown>;
-  createTime?: string;
-  updateTime?: string;
-}
-
-export interface FirestoreListResponse {
-  documents?: FirestoreDocument[];
-  nextPageToken?: string;
-}
+import { FirestoreListResponse } from '../interfaces/services/firestore-response.interface';
 
 @Injectable({
   providedIn: 'root'

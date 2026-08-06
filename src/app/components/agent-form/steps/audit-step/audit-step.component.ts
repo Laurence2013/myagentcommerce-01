@@ -3,7 +3,7 @@ import { ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
 import { UpperCasePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { AgentFormComponent } from '../../agent-form.component';
-import { AgentSubmission } from '../../../../interface/agent-submission.interface';
+import { AgentSubmission } from '../../../../interfaces/forms/agent-submission.interface';
 
 @Component({
   selector: 'app-audit-step',

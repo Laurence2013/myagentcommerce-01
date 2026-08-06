@@ -5,7 +5,7 @@ import { ProtocolCapabilityComponent } from '../protocol-capability/protocol-cap
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, CommerceAgentsComponent, ProtocolCapabilityComponent],
+  imports: [RouterLink, CommerceAgentsComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.sass',
   host: {

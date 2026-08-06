@@ -7,7 +7,7 @@ import {
   AuthenticationType,
   TechnicalSpecifications,
   TargetEnvironment
-} from '../../../../interface/agent-submission.interface';
+} from '../../../../interfaces/forms/agent-submission.interface';
 
 @Component({
   selector: 'app-specs-step',

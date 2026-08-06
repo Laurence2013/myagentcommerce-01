@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, delay, map, tap } from 'rxjs/operators';
-import { AgentSubmission } from '../interface/agent-submission.interface';
+import { AgentSubmission } from '../interfaces/forms/agent-submission.interface';
 
 @Injectable({
   providedIn: 'root'

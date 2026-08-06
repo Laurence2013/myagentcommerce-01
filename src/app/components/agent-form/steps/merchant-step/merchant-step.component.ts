@@ -5,7 +5,7 @@ import { AgentFormComponent } from '../../agent-form.component';
 import {
   TargetMerchantScale,
   TargetMerchantProfile
-} from '../../../../interface/agent-submission.interface';
+} from '../../../../interfaces/forms/agent-submission.interface';
 
 @Component({
   selector: 'app-merchant-step',

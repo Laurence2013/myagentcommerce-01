@@ -5,7 +5,7 @@ import { AgentFormComponent } from '../../agent-form.component';
 import {
   DeveloperType,
   AgentSubmission
-} from '../../../../interface/agent-submission.interface';
+} from '../../../../interfaces/forms/agent-submission.interface';
 
 @Component({
   selector: 'app-commercials-step',

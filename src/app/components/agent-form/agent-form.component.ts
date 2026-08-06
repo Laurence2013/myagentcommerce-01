@@ -15,7 +15,7 @@ import {
   TargetEnvironment,
   TechnicalSpecifications,
   TargetMerchantProfile
-} from '../../interface/agent-submission.interface';
+} from '../../interfaces/forms/agent-submission.interface';
 
 @Component({
   selector: 'app-agent-form',

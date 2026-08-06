@@ -6,7 +6,7 @@ import {
   MarketSide,
   ParentEcosystem,
   FunctionalClass
-} from '../../../../interface/agent-submission.interface';
+} from '../../../../interfaces/forms/agent-submission.interface';
 
 @Component({
   selector: 'app-taxonomy-step',
