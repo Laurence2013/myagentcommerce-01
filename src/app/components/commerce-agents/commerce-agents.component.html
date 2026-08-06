@@ -1,0 +1,15 @@
+<div class="commerce-agents-container">
+  <h3 class="section-title">Commerce Agents Collection</h3>
+  @if (agents().length > 0) {
+    <ul class="agents-list">
+      @for (agent of agents(); track $index) {
+        <li class="agent-item">
+          <strong>{{ agent['name'] || 'Unnamed Agent' }}</strong>
+          <span class="agent-category">{{ agent['category'] || 'General' }}</span>
+        </li>
+      }
+    </ul>
+  } @else {
+    <p class="empty-state">No commerce agents loaded yet (Check browser console for test00 output).</p>
+  }
+</div>
