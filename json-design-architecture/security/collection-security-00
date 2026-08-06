@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Payment Tokenization",
+    "Capability": ["Shared Payment Tokens", "Dynamic Scope Bounding"],
+    "Primary Risk Mitigated": ["Credential Theft", "Replay Attacks", "Scope Creep"],
+    "Protocols": ["ACP (Stripe)", "OpenAI ACP"],
+    "Mechanisms": ["Vaulted Token Generation"]
+  },
+  {
+    "name": "Merchant of Record Preservation",
+    "Capability": ["MoR Retention", "Merchant-of-Record Preservation"],
+    "Primary Risk Mitigated": ["Legal Ambiguity", "Liability Ambiguity", "Tax Non-Compliance"],
+    "Protocols": ["ACP", "UCP"],
+    "Mechanisms": ["Direct Merchant Settlement"]
+  },
+  {
+    "name": "Cryptographic Mandates",
+    "Capability": ["Cryptographic Mandates", "Intent & Cart Locking"],
+    "Primary Risk Mitigated": ["Intent Spoofing", "Cart Tampering", "MITM Alterations"],
+    "Protocols": ["AP2", "ECDSA JSON-LD", "DPoP"],
+    "Mechanisms": ["Digital Signatures", "Mandate Verification"]
+  },
+  {
+    "name": "Decision & Execution Separation",
+    "Capability": ["Decision/Execution Separation", "Vaulted Isolation"],
+    "Primary Risk Mitigated": ["Prompt Injection", "Model Compromise", "Hallucinated Execution"],
+    "Protocols": [],
+    "Mechanisms": ["Architecture Pattern", "Zero-Trust Agent Proxy"]
+  },
+  {
+    "name": "Real-Time Revocation & Velocity Control",
+    "Capability": ["Real-Time Revocation", "Session Governors"],
+    "Primary Risk Mitigated": ["Runaway Agents", "Infinite Loops", "Unchecked API Spend"],
+    "Protocols": [],
+    "Mechanisms": ["Policy Engines", "API Velocity Limiters"]
+  },
+  {
+    "name": "Agent Identity (KYA)",
+    "Capability": ["Agent Identity (KYA)", "Verifiable Identity Certificates"],
+    "Primary Risk Mitigated": ["Bot Impersonation", "Malicious Scraping", "Credential Stuffing"],
+    "Protocols": ["Visa TAP", "Mastercard Agent Pay"],
+    "Mechanisms": ["Skyfire Registry", "Public Key Infrastructure (PKI)"]
+  },
+  {
+    "name": "Behavioral Anomaly Monitoring",
+    "Capability": ["Behavioral Monitoring", "Telemetry Context Analysis"],
+    "Primary Risk Mitigated": ["Anomalous Logic", "Fraudulent Trajectories", "Hijacked Reasoning"],
+    "Protocols": [],
+    "Mechanisms": ["AI Risk Engines", "Behavioral Anomaly Models"]
+  },
+  {
+    "name": "Micro-Settlement Gating",
+    "Capability": ["Micro-Settlement Gating", "Machine-to-Machine Payments"],
+    "Primary Risk Mitigated": ["High API Payment Overhead", "M2M Transaction Friction", "Unsettled Sub-Cent Spend"],
+    "Protocols": ["x402 HTTP Standard", "MPP (Micro-Payment Protocol)"],
+    "Mechanisms": ["Header-Based Payment Gating"]
+  },
+  {
+    "name": "Hardware Attestation & Confidential Execution",
+    "Capability": ["Hardware Attestation", "Confidential Agent Execution"],
+    "Primary Risk Mitigated": ["Runtime Tampering", "Memory Inspection", "Host Infrastructure Compromise"],
+    "Protocols": [],
+    "Mechanisms": ["TEE (Trusted Execution Environments)", "Hardware Enclaves (SGX/SEV)"]
+  }
+]

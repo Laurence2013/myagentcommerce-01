@@ -1,0 +1,54 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/inventory-n-shipping/exception-handling
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "exception_handling"
+        },
+        "capability": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Autonomous Exception Handling"
+              },
+              {
+                "stringValue": "Self-Healing Order Execution"
+              }
+            ]
+          }
+        },
+        "primary_risk_mitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "High Support Costs"
+              },
+              {
+                "stringValue": "Customer/Agent Frustration"
+              },
+              {
+                "stringValue": "Post-Purchase SLA Failures"
+              }
+            ]
+          }
+        },
+        "key_enabler": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Modifiable Order State APIs"
+              },
+              {
+                "stringValue": "Automated Reroute & Cancel Workflows"
+              },
+              {
+                "stringValue": "Agentic Decision Frameworks"
+              }
+            ]
+          }
+        }
+      }
+    }

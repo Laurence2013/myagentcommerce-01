@@ -1,0 +1,66 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/securities/cryptographic-mandates
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "Cryptographic Mandates"
+        },
+        "capability": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Cryptographic Mandates"
+              },
+              {
+                "stringValue": "Intent & Cart Locking"
+              }
+            ]
+          }
+        },
+        "primaryRiskMitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Intent Spoofing"
+              },
+              {
+                "stringValue": "Cart Tampering"
+              },
+              {
+                "stringValue": "MITM Alterations"
+              }
+            ]
+          }
+        },
+        "protocols": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "AP2"
+              },
+              {
+                "stringValue": "ECDSA JSON-LD"
+              },
+              {
+                "stringValue": "DPoP"
+              }
+            ]
+          }
+        },
+        "mechanisms": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Digital Signatures"
+              },
+              {
+                "stringValue": "Mandate Verification"
+              }
+            ]
+          }
+        }
+      }
+    }

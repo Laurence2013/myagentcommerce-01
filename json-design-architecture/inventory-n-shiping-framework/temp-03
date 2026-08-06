@@ -1,0 +1,20 @@
+The same for event-streaming can you update "{
+    "name": "event_streaming",
+    "capability": [
+      "Unified Event Streaming",
+      "Real-Time State Synchronization"
+    ],
+    "primary_risk_mitigated": [
+      "Information Gaps & Black-Hole Orders",
+      "Excessive WISMO Calls",
+      "Polling Latency & API Overload"
+    ],
+    "key_enabler": [
+      "Webhooks & Event Buses (Kafka / EventBridge)",
+      "Standardized Order Event Schemas",
+      "Push-Based Status Streamers"
+    ]
+  }" to JSON format add this JSON format into /home/lozza187/projects/myagentcommerce-01/json-design-architecture/inventory-n-shipping-framework, do not add collection_security-, do not add /home/lozza187/projects/myagentcommerce-01/security folder, start url with
+  'http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/inventory-n-shipping', and do not create a JSON
+  file?
+

@@ -1,0 +1,20 @@
+The same for inventory-reservation can you update "{
+    "name": "inventory_reservation",
+    "capability": [
+      "Atomic Inventory Reservation",
+      "Concurrent Cart Locking"
+    ],
+    "primary_risk_mitigated": [
+      "Race Conditions / Concurrency Conflicts",
+      "Lost High-Intent Sales",
+      "Cart Hoarding & Stock Bloat"
+    ],
+    "key_enabler": [
+      "Distributed Locking (Redis / DB)",
+      "ACID-Compliant Cart State",
+      "TTL Hold Workers"
+    ]
+  }," to JSON format add this JSON format into /home/lozza187/projects/myagentcommerce-01/json-design-architecture/inventory-n-shipping-framework, do not add collection_security-, do not add /home/lozza187/projects/myagentcommerce-01/security folder, start url with
+  'http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/inventory-n-shipping', and do not create a JSON
+  file?
+

@@ -1,0 +1,20 @@
+The same for exception-handling can you update "{
+    "name": "exception_handling",
+    "capability": [
+      "Autonomous Exception Handling",
+      "Self-Healing Order Execution"
+    ],
+    "primary_risk_mitigated": [
+      "High Support Costs",
+      "Customer/Agent Frustration",
+      "Post-Purchase SLA Failures"
+    ],
+    "key_enabler": [
+      "Modifiable Order State APIs",
+      "Automated Reroute & Cancel Workflows",
+      "Agentic Decision Frameworks"
+    ]
+  }," to JSON format add this JSON format into /home/lozza187/projects/myagentcommerce-01/json-design-architecture/inventory-n-shipping-framework, do not add collection_security-, do not add /home/lozza187/projects/myagentcommerce-01/security folder, start url with
+  'http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/inventory-n-shipping', and do not create a JSON
+  file?
+

@@ -1,0 +1,60 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/securities/micro-settlement-gating
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "Micro-Settlement Gating"
+        },
+        "capability": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Micro-Settlement Gating"
+              },
+              {
+                "stringValue": "Machine-to-Machine Payments"
+              }
+            ]
+          }
+        },
+        "primaryRiskMitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "High API Payment Overhead"
+              },
+              {
+                "stringValue": "M2M Transaction Friction"
+              },
+              {
+                "stringValue": "Unsettled Sub-Cent Spend"
+              }
+            ]
+          }
+        },
+        "protocols": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "x402 HTTP Standard"
+              },
+              {
+                "stringValue": "MPP (Micro-Payment Protocol)"
+              }
+            ]
+          }
+        },
+        "mechanisms": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Header-Based Payment Gating"
+              }
+            ]
+          }
+        }
+      }
+    }

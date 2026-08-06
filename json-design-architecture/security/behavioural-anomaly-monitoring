@@ -1,0 +1,56 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/securities/behavioural-anomaly-monitoring
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "Behavioral Anomaly Monitoring"
+        },
+        "capability": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Behavioral Monitoring"
+              },
+              {
+                "stringValue": "Telemetry Context Analysis"
+              }
+            ]
+          }
+        },
+        "primaryRiskMitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Anomalous Logic"
+              },
+              {
+                "stringValue": "Fraudulent Trajectories"
+              },
+              {
+                "stringValue": "Hijacked Reasoning"
+              }
+            ]
+          }
+        },
+        "protocols": {
+          "arrayValue": {
+            "values": []
+          }
+        },
+        "mechanisms": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "AI Risk Engines"
+              },
+              {
+                "stringValue": "Behavioral Anomaly Models"
+              }
+            ]
+          }
+        }
+      }
+    }

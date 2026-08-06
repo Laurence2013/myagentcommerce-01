@@ -1,0 +1,54 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/inventory-n-shipping/inventory-visibility
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "inventory_visibility"
+        },
+        "capability": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Distributed Inventory Visibility"
+              },
+              {
+                "stringValue": "Multi-Node ATP Aggregation"
+              }
+            ]
+          }
+        },
+        "primary_risk_mitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Overselling / Double-Booking"
+              },
+              {
+                "stringValue": "Stockouts / Phantom Inventory"
+              },
+              {
+                "stringValue": "Siloed Fulfillment Node Data"
+              }
+            ]
+          }
+        },
+        "key_enabler": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Unified OMS Layer"
+              },
+              {
+                "stringValue": "Real-Time Inventory Mesh"
+              },
+              {
+                "stringValue": "Centralized Supply Graph"
+              }
+            ]
+          }
+        }
+      }
+    }

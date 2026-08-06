@@ -1,0 +1,54 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/inventory-n-shipping/carrier-promising
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "carrier_promising"
+        },
+        "capability": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Sub-Second Live Carrier Promises"
+              },
+              {
+                "stringValue": "Dynamic Delivery SLA Commitments"
+              }
+            ]
+          }
+        },
+        "primary_risk_mitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Failed Checkout / Abandoned Carts"
+              },
+              {
+                "stringValue": "Broken Customer/Agent Trust"
+              },
+              {
+                "stringValue": "API Timeouts & Latency Spikes"
+              }
+            ]
+          }
+        },
+        "key_enabler": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Live Carrier APIs"
+              },
+              {
+                "stringValue": "Low-Latency Rating Engines"
+              },
+              {
+                "stringValue": "Edge-Cached SLA Rule Systems"
+              }
+            ]
+          }
+        }
+      }
+    }

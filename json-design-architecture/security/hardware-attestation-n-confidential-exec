@@ -1,0 +1,56 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/securities/hardware-attestation-n-confidential-exec
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "Hardware Attestation & Confidential Execution"
+        },
+        "capability": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Hardware Attestation"
+              },
+              {
+                "stringValue": "Confidential Agent Execution"
+              }
+            ]
+          }
+        },
+        "primaryRiskMitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Runtime Tampering"
+              },
+              {
+                "stringValue": "Memory Inspection"
+              },
+              {
+                "stringValue": "Host Infrastructure Compromise"
+              }
+            ]
+          }
+        },
+        "protocols": {
+          "arrayValue": {
+            "values": []
+          }
+        },
+        "mechanisms": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "TEE (Trusted Execution Environments)"
+              },
+              {
+                "stringValue": "Hardware Enclaves (SGX/SEV)"
+              }
+            ]
+          }
+        }
+      }
+    }

@@ -1,0 +1,54 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/inventory-n-shipping/event-streaming
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "event_streaming"
+        },
+        "capability": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Unified Event Streaming"
+              },
+              {
+                "stringValue": "Real-Time State Synchronization"
+              }
+            ]
+          }
+        },
+        "primary_risk_mitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Information Gaps & Black-Hole Orders"
+              },
+              {
+                "stringValue": "Excessive WISMO Calls"
+              },
+              {
+                "stringValue": "Polling Latency & API Overload"
+              }
+            ]
+          }
+        },
+        "key_enabler": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Webhooks & Event Buses (Kafka / EventBridge)"
+              },
+              {
+                "stringValue": "Standardized Order Event Schemas"
+              },
+              {
+                "stringValue": "Push-Based Status Streamers"
+              }
+            ]
+          }
+        }
+      }
+    }

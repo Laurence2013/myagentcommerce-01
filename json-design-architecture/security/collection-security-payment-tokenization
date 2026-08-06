@@ -1,0 +1,60 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/collection-security/payment-tokenization
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "Payment Tokenization"
+        },
+        "capability": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Shared Payment Tokens"
+              },
+              {
+                "stringValue": "Dynamic Scope Bounding"
+              }
+            ]
+          }
+        },
+        "primaryRiskMitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Credential Theft"
+              },
+              {
+                "stringValue": "Replay Attacks"
+              },
+              {
+                "stringValue": "Scope Creep"
+              }
+            ]
+          }
+        },
+        "protocols": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "ACP (Stripe)"
+              },
+              {
+                "stringValue": "OpenAI ACP"
+              }
+            ]
+          }
+        },
+        "mechanisms": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Vaulted Token Generation"
+              }
+            ]
+          }
+        }
+      }
+    }

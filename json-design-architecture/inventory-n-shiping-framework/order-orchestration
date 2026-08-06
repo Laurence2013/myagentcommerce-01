@@ -1,0 +1,54 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/inventory-n-shipping/order-orchestration
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "order_orchestration"
+        },
+        "capability": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Intelligent Order Orchestration"
+              },
+              {
+                "stringValue": "Dynamic Route Optimization"
+              }
+            ]
+          }
+        },
+        "primary_risk_mitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "High Fulfillment Overhead"
+              },
+              {
+                "stringValue": "Late Delivery SLA Breaches"
+              },
+              {
+                "stringValue": "Unnecessary Split Shipments"
+              }
+            ]
+          }
+        },
+        "key_enabler": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "DOM Rules Engine"
+              },
+              {
+                "stringValue": "Constraint-Based Route Optimizers"
+              },
+              {
+                "stringValue": "Cost/Distance Scoring Models"
+              }
+            ]
+          }
+        }
+      }
+    }

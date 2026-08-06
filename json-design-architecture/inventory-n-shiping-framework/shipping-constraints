@@ -1,0 +1,54 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/inventory-n-shipping/shipping-constraints
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "shipping_constraints"
+        },
+        "capability": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Shipping Constraint Propagation"
+              },
+              {
+                "stringValue": "Upstream Policy Filtering"
+              }
+            ]
+          }
+        },
+        "primary_risk_mitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Compliance Failures & Fines"
+              },
+              {
+                "stringValue": "High Return / Rejected Rates"
+              },
+              {
+                "stringValue": "Unserviceable Carrier Modes"
+              }
+            ]
+          }
+        },
+        "key_enabler": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Structured Product Attribute Data"
+              },
+              {
+                "stringValue": "Hazmat & Regional Rule Engines"
+              },
+              {
+                "stringValue": "Tax/Duty Compliance Matrices"
+              }
+            ]
+          }
+        }
+      }
+    }

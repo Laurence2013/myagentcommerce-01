@@ -1,0 +1,54 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/inventory-n-shipping/inventory-reservation
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "inventory_reservation"
+        },
+        "capability": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Atomic Inventory Reservation"
+              },
+              {
+                "stringValue": "Concurrent Cart Locking"
+              }
+            ]
+          }
+        },
+        "primary_risk_mitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Race Conditions / Concurrency Conflicts"
+              },
+              {
+                "stringValue": "Lost High-Intent Sales"
+              },
+              {
+                "stringValue": "Cart Hoarding & Stock Bloat"
+              }
+            ]
+          }
+        },
+        "key_enabler": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Distributed Locking (Redis / DB)"
+              },
+              {
+                "stringValue": "ACID-Compliant Cart State"
+              },
+              {
+                "stringValue": "TTL Hold Workers"
+              }
+            ]
+          }
+        }
+      }
+    }

@@ -1,0 +1,63 @@
+HTTP Method: PATCH
+  • URL: http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/securities/agent-identity-kya
+  • Headers: Content-Type: application/json
+  • Body (Select raw ➔ JSON):
+
+    {
+      "fields": {
+        "name": {
+          "stringValue": "Agent Identity (KYA)"
+        },
+        "capability": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Agent Identity (KYA)"
+              },
+              {
+                "stringValue": "Verifiable Identity Certificates"
+              }
+            ]
+          }
+        },
+        "primaryRiskMitigated": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Bot Impersonation"
+              },
+              {
+                "stringValue": "Malicious Scraping"
+              },
+              {
+                "stringValue": "Credential Stuffing"
+              }
+            ]
+          }
+        },
+        "protocols": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Visa TAP"
+              },
+              {
+                "stringValue": "Mastercard Agent Pay"
+              }
+            ]
+          }
+        },
+        "mechanisms": {
+          "arrayValue": {
+            "values": [
+              {
+                "stringValue": "Skyfire Registry"
+              },
+              {
+                "stringValue": "Public Key Infrastructure (PKI)"
+              }
+            ]
+          }
+        }
+      }
+    }

@@ -1,0 +1,121 @@
+{
+  {
+    "name": "carrier_promising",
+    "capability": [
+      "Sub-Second Live Carrier Promises",
+      "Dynamic Delivery SLA Commitments"
+    ],
+    "primary_risk_mitigated": [
+      "Failed Checkout / Abandoned Carts",
+      "Broken Customer/Agent Trust",
+      "API Timeouts & Latency Spikes"
+    ],
+    "key_enabler": [
+      "Live Carrier APIs",
+      "Low-Latency Rating Engines",
+      "Edge-Cached SLA Rule Systems"
+    ]
+  },
+  {
+    "name": "inventory_visibility",
+    "capability": [
+      "Distributed Inventory Visibility",
+      "Multi-Node ATP Aggregation"
+    ],
+    "primary_risk_mitigated": [
+      "Overselling / Double-Booking",
+      "Stockouts / Phantom Inventory",
+      "Siloed Fulfillment Node Data"
+    ],
+    "key_enabler": [
+      "Unified OMS Layer",
+      "Real-Time Inventory Mesh",
+      "Centralized Supply Graph"
+    ]
+  },
+  {
+    "name": "order_orchestration",
+    "capability": [
+      "Intelligent Order Orchestration",
+      "Dynamic Route Optimization"
+    ],
+    "primary_risk_mitigated": [
+      "High Fulfillment Overhead",
+      "Late Delivery SLA Breaches",
+      "Unnecessary Split Shipments"
+    ],
+    "key_enabler": [
+      "DOM Rules Engine",
+      "Constraint-Based Route Optimizers",
+      "Cost/Distance Scoring Models"
+    ]
+  },
+  {
+    "name": "inventory_reservation",
+    "capability": [
+      "Atomic Inventory Reservation",
+      "Concurrent Cart Locking"
+    ],
+    "primary_risk_mitigated": [
+      "Race Conditions / Concurrency Conflicts",
+      "Lost High-Intent Sales",
+      "Cart Hoarding & Stock Bloat"
+    ],
+    "key_enabler": [
+      "Distributed Locking (Redis / DB)",
+      "ACID-Compliant Cart State",
+      "TTL Hold Workers"
+    ]
+  },
+  {
+    "name": "shipping_constraints",
+    "capability": [
+      "Shipping Constraint Propagation",
+      "Upstream Policy Filtering"
+    ],
+    "primary_risk_mitigated": [
+      "Compliance Failures & Fines",
+      "High Return / Rejected Rates",
+      "Unserviceable Carrier Modes"
+    ],
+    "key_enabler": [
+      "Structured Product Attribute Data",
+      "Hazmat & Regional Rule Engines",
+      "Tax/Duty Compliance Matrices"
+    ]
+  },
+  {
+    "name": "exception_handling",
+    "capability": [
+      "Autonomous Exception Handling",
+      "Self-Healing Order Execution"
+    ],
+    "primary_risk_mitigated": [
+      "High Support Costs",
+      "Customer/Agent Frustration",
+      "Post-Purchase SLA Failures"
+    ],
+    "key_enabler": [
+      "Modifiable Order State APIs",
+      "Automated Reroute & Cancel Workflows",
+      "Agentic Decision Frameworks"
+    ]
+  },
+  {
+    "name": "event_streaming",
+    "capability": [
+      "Unified Event Streaming",
+      "Real-Time State Synchronization"
+    ],
+    "primary_risk_mitigated": [
+      "Information Gaps & Black-Hole Orders",
+      "Excessive WISMO Calls",
+      "Polling Latency & API Overload"
+    ],
+    "key_enabler": [
+      "Webhooks & Event Buses (Kafka / EventBridge)",
+      "Standardized Order Event Schemas",
+      "Push-Based Status Streamers"
+    ]
+  }
+}

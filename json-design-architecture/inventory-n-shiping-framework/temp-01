@@ -1,0 +1,20 @@
+The same for shipping-constraints can you update "{
+    "name": "shipping_constraints",
+    "capability": [
+      "Shipping Constraint Propagation",
+      "Upstream Policy Filtering"
+    ],
+    "primary_risk_mitigated": [
+      "Compliance Failures & Fines",
+      "High Return / Rejected Rates",
+      "Unserviceable Carrier Modes"
+    ],
+    "key_enabler": [
+      "Structured Product Attribute Data",
+      "Hazmat & Regional Rule Engines",
+      "Tax/Duty Compliance Matrices"
+    ]
+  }," to JSON format add this JSON format into /home/lozza187/projects/myagentcommerce-01/json-design-architecture/inventory-n-shipping-framework, do not add collection_security-, do not add /home/lozza187/projects/myagentcommerce-01/security folder, start url with
+  'http://localhost:8080/v1/projects/myagentcommerce-01/databases/(default)/documents/inventory-n-shipping', and do not create a JSON
+  file?
+
