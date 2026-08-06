@@ -1,15 +1,180 @@
-<div class="commerce-agents-container">
-  <h3 class="section-title">Commerce Agents Collection</h3>
-  @if (agents().length > 0) {
-    <ul class="agents-list">
-      @for (agent of agents(); track $index) {
-        <li class="agent-item">
-          <strong>{{ agent['name'] || 'Unnamed Agent' }}</strong>
-          <span class="agent-category">{{ agent['category'] || 'General' }}</span>
-        </li>
-      }
-    </ul>
-  } @else {
-    <p class="empty-state">No commerce agents loaded yet (Check browser console for test00 output).</p>
-  }
-</div>
+<section class="commerce-agents-section" aria-labelledby="agents-heading">
+  <div class="section-header">
+    <div class="header-badge">
+      <span class="badge-dot"></span>
+      Agentic AI Feature Overview
+    </div>
+    <h2 id="agents-heading" class="section-title">
+      Autonomous Commerce <span class="gradient-text">Feature Matrix</span>
+    </h2>
+    <p class="section-subtitle">
+      Click any feature card to view and filter registered commerce agent documents.
+    </p>
+  </div>
+
+  <!-- Row 1: Protocol & Security Cards -->
+  <div class="cards-grid">
+    <!-- Card 1: Protocol & Capability -->
+    <article
+      class="feature-card"
+      [class.active-card]="selectedCriteria() === protocolCard().id"
+      (click)="onCardSelect(protocolCard().id)"
+      tabindex="0"
+      role="button"
+      [attr.aria-pressed]="selectedCriteria() === protocolCard().id"
+      (keyup.enter)="onCardSelect(protocolCard().id)"
+    >
+      <div class="card-header">
+        <span class="card-icon" aria-hidden="true">{{ protocolCard().icon }}</span>
+        <h3 class="card-title">{{ protocolCard().title }}</h3>
+        @if (selectedCriteria() === protocolCard().id) {
+          <span class="active-badge">Active</span>
+        }
+      </div>
+      <div class="card-body">
+        <div class="metric-row">
+          <span class="metric-label">Protocols</span>
+          <div class="tags-container">
+            @for (proto of protocolCard().protocols; track proto) {
+              <span class="tag-chip protocol-chip">{{ proto }}</span>
+            }
+          </div>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Transports</span>
+          <div class="tags-container">
+            @for (trans of protocolCard().transports; track trans) {
+              <span class="tag-chip">{{ trans }}</span>
+            }
+          </div>
+        </div>
+        <div class="metric-status">
+          <span class="status-indicator"></span>
+          {{ protocolCard().manifestStatus }}
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 2: Security & Governance -->
+    <article
+      class="feature-card"
+      [class.active-card]="selectedCriteria() === securityCard().id"
+      (click)="onCardSelect(securityCard().id)"
+      tabindex="0"
+      role="button"
+      [attr.aria-pressed]="selectedCriteria() === securityCard().id"
+      (keyup.enter)="onCardSelect(securityCard().id)"
+    >
+      <div class="card-header">
+        <span class="card-icon" aria-hidden="true">{{ securityCard().icon }}</span>
+        <h3 class="card-title">{{ securityCard().title }}</h3>
+        @if (selectedCriteria() === securityCard().id) {
+          <span class="active-badge">Active</span>
+        }
+      </div>
+      <div class="card-body">
+        <div class="metric-row">
+          <span class="metric-label">Audit Status</span>
+          <span class="value-highlight">{{ securityCard().verificationStatus }}</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Auth Methods</span>
+          <div class="tags-container">
+            @for (auth of securityCard().authMethods; track auth) {
+              <span class="tag-chip security-chip">{{ auth }}</span>
+            }
+          </div>
+        </div>
+        <div class="metric-status">
+          <span class="status-shield" aria-hidden="true">🔒</span>
+          {{ securityCard().riskProfile }}
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- Horizontal Line Divider -->
+  <div class="horizontal-line-divider" role="separator" aria-label="Feature matrix separator">
+    <div class="line-glow"></div>
+  </div>
+
+  <!-- Row 2: Taxonomy & Merchant Cards -->
+  <div class="cards-grid">
+    <!-- Card 3: Taxonomy & Classification -->
+    <article
+      class="feature-card"
+      [class.active-card]="selectedCriteria() === taxonomyCard().id"
+      (click)="onCardSelect(taxonomyCard().id)"
+      tabindex="0"
+      role="button"
+      [attr.aria-pressed]="selectedCriteria() === taxonomyCard().id"
+      (keyup.enter)="onCardSelect(taxonomyCard().id)"
+    >
+      <div class="card-header">
+        <span class="card-icon" aria-hidden="true">{{ taxonomyCard().icon }}</span>
+        <h3 class="card-title">{{ taxonomyCard().title }}</h3>
+        @if (selectedCriteria() === taxonomyCard().id) {
+          <span class="active-badge">Active</span>
+        }
+      </div>
+      <div class="card-body">
+        <div class="metric-row">
+          <span class="metric-label">Market Side</span>
+          <div class="tags-container">
+            @for (side of taxonomyCard().marketSides; track side) {
+              <span class="tag-chip taxonomy-chip">{{ side }}</span>
+            }
+          </div>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Functional Role</span>
+          <div class="tags-container">
+            @for (func of taxonomyCard().functionalClasses; track func) {
+              <span class="tag-chip">{{ func }}</span>
+            }
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Card 4: Merchant Specs -->
+    <article
+      class="feature-card"
+      [class.active-card]="selectedCriteria() === merchantCard().id"
+      (click)="onCardSelect(merchantCard().id)"
+      tabindex="0"
+      role="button"
+      [attr.aria-pressed]="selectedCriteria() === merchantCard().id"
+      (keyup.enter)="onCardSelect(merchantCard().id)"
+    >
+      <div class="card-header">
+        <span class="card-icon" aria-hidden="true">{{ merchantCard().icon }}</span>
+        <h3 class="card-title">{{ merchantCard().title }}</h3>
+        @if (selectedCriteria() === merchantCard().id) {
+          <span class="active-badge">Active</span>
+        }
+      </div>
+      <div class="card-body">
+        <div class="metric-row">
+          <span class="metric-label">Platforms</span>
+          <div class="tags-container">
+            @for (plat of merchantCard().platforms; track plat) {
+              <span class="tag-chip platform-chip">{{ plat }}</span>
+            }
+          </div>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Pricing Models</span>
+          <div class="tags-container">
+            @for (price of merchantCard().pricingModels; track price) {
+              <span class="tag-chip">{{ price }}</span>
+            }
+          </div>
+        </div>
+        <div class="metric-status">
+          <span class="status-range">{{ merchantCard().aovRange }}</span>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
