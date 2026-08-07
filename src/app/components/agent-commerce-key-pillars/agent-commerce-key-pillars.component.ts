@@ -45,4 +45,31 @@ export class AgentCommerceKeyPillars {
     this.agentPillarsService.getReturns(),
     { initialValue: [] }
   );
+
+  public getObjectEntries(item: Record<string, unknown>): { key: string; value: unknown }[] {
+    if (!item || typeof item !== 'object') return [];
+    return Object.entries(item).map(([key, value]) => ({ key, value }));
+  }
+
+  public isArray(val: unknown): boolean {
+    return Array.isArray(val);
+  }
+
+  public formatKeyName(key: string): string {
+    return key
+      .replace(/_/g, ' ')
+      .replace(/([A-Z])/g, ' $1')
+      .replace(/^./, (str) => str.toUpperCase())
+      .trim();
+  }
+
+  public formatTitle(name: string): string {
+    if (!name) return '';
+    return name
+      .replace(/[-_]/g, ' ')
+      .split(' ')
+      .filter(Boolean)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  }
 }
