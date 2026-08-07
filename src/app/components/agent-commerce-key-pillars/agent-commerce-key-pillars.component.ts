@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AgentPillarsService } from '../../services/agent-pillars/agent-pillars.service';
 
 @Component({
   selector: 'app-agent-commerce-key-pillars',
@@ -12,6 +13,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 })
 export class AgentCommerceKeyPillars {
   private readonly fb = inject(FormBuilder);
+  protected readonly agentPillarsService = inject(AgentPillarsService);
 
   public readonly evaluationForm: FormGroup = this.fb.group({
     protocolCompatibility: ['', Validators.required],
