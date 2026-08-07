@@ -1,69 +1,198 @@
 <div class="agent-commerce-key-pillars-container">
-  <form [formGroup]="evaluationForm" (ngSubmit)="onSubmit()" class="agent-commerce-key-pillars-form">
+  <header class="page-header">
     <h2>Agent Commerce Key Pillars</h2>
+    <p class="page-description">Overview of all six foundational agentic commerce collection objects.</p>
+  </header>
 
-    <div class="form-group">
-      <label for="protocolCompatibility">Protocol Compatibility</label>
-      <input
-        type="text"
-        id="protocolCompatibility"
-        formControlName="protocolCompatibility"
-        placeholder="Enter Protocol Compatibility score or details"
-      />
-    </div>
+  <div class="pillars-list">
+    <!-- Pillar 1: Protocols -->
+    <section class="pillar-section">
+      <div class="section-header">
+        <h3>1. Protocols</h3>
+        <span class="count-badge">{{ protocols().length }} items</span>
+      </div>
 
-    <div class="form-group">
-      <label for="paymentSecurity">Payment Security</label>
-      <input
-        type="text"
-        id="paymentSecurity"
-        formControlName="paymentSecurity"
-        placeholder="Enter Payment Security score or details"
-      />
-    </div>
+      @if (protocols().length > 0) {
+        <div class="collection-grid">
+          @for (item of protocols(); track item.id || item.name) {
+            <div class="collection-card">
+              <div class="card-header">
+                <span class="card-name">{{ item.name }}</span>
+                @if (item.status) {
+                  <span class="card-badge">{{ item.status }}</span>
+                }
+              </div>
+              @if (item.evaluationContext) {
+                <p class="card-context">{{ item.evaluationContext }}</p>
+              }
+              @if (item.layers && item.layers.length > 0) {
+                <div class="card-tags">
+                  @for (layer of item.layers; track layer) {
+                    <span class="tag">{{ layer }}</span>
+                  }
+                </div>
+              }
+            </div>
+          }
+        </div>
+      } @else {
+        <p class="empty-state">No items found in 'protocols' collection.</p>
+      }
+    </section>
 
-    <div class="form-group">
-      <label for="inventoryShipping">Inventory & Shipping</label>
-      <input
-        type="text"
-        id="inventoryShipping"
-        formControlName="inventoryShipping"
-        placeholder="Enter Inventory & Shipping score or details"
-      />
-    </div>
+    <hr class="pillar-divider" />
 
-    <div class="form-group">
-      <label for="promotions">Promotions</label>
-      <input
-        type="text"
-        id="promotions"
-        formControlName="promotions"
-        placeholder="Enter Promotions score or details"
-      />
-    </div>
+    <!-- Pillar 2: Securities -->
+    <section class="pillar-section">
+      <div class="section-header">
+        <h3>2. Securities</h3>
+        <span class="count-badge">{{ securities().length }} items</span>
+      </div>
 
-    <div class="form-group">
-      <label for="fraudIdentity">Fraud & Identity</label>
-      <input
-        type="text"
-        id="fraudIdentity"
-        formControlName="fraudIdentity"
-        placeholder="Enter Fraud & Identity score or details"
-      />
-    </div>
+      @if (securities().length > 0) {
+        <div class="collection-grid">
+          @for (item of securities(); track item.name) {
+            <div class="collection-card">
+              <div class="card-header">
+                <span class="card-name">{{ item.name }}</span>
+              </div>
+              @if (item.Capability && item.Capability.length > 0) {
+                <div class="card-tags">
+                  @for (cap of item.Capability; track cap) {
+                    <span class="tag tag-security">{{ cap }}</span>
+                  }
+                </div>
+              }
+            </div>
+          }
+        </div>
+      } @else {
+        <p class="empty-state">No items found in 'securities' collection.</p>
+      }
+    </section>
 
-    <div class="form-group">
-      <label for="returns">Returns</label>
-      <input
-        type="text"
-        id="returns"
-        formControlName="returns"
-        placeholder="Enter Returns score or details"
-      />
-    </div>
+    <hr class="pillar-divider" />
 
-    <div class="form-actions">
-      <button type="submit" [disabled]="evaluationForm.invalid">Submit Evaluation</button>
-    </div>
-  </form>
+    <!-- Pillar 3: Inventory & Shipping -->
+    <section class="pillar-section">
+      <div class="section-header">
+        <h3>3. Inventory & Shipping</h3>
+        <span class="count-badge">{{ inventoryShipping().length }} items</span>
+      </div>
+
+      @if (inventoryShipping().length > 0) {
+        <div class="collection-grid">
+          @for (item of inventoryShipping(); track item.name) {
+            <div class="collection-card">
+              <div class="card-header">
+                <span class="card-name">{{ item.name }}</span>
+              </div>
+              @if (item.capability && item.capability.length > 0) {
+                <div class="card-tags">
+                  @for (cap of item.capability; track cap) {
+                    <span class="tag tag-inventory">{{ cap }}</span>
+                  }
+                </div>
+              }
+            </div>
+          }
+        </div>
+      } @else {
+        <p class="empty-state">No items found in 'inventory-n-shipping' collection.</p>
+      }
+    </section>
+
+    <hr class="pillar-divider" />
+
+    <!-- Pillar 4: Promotions -->
+    <section class="pillar-section">
+      <div class="section-header">
+        <h3>4. Promotions</h3>
+        <span class="count-badge">{{ promotions().length }} items</span>
+      </div>
+
+      @if (promotions().length > 0) {
+        <div class="collection-grid">
+          @for (item of promotions(); track item.name) {
+            <div class="collection-card">
+              <div class="card-header">
+                <span class="card-name">{{ item.name }}</span>
+              </div>
+              @if (item.capability && item.capability.length > 0) {
+                <div class="card-tags">
+                  @for (cap of item.capability; track cap) {
+                    <span class="tag tag-promotion">{{ cap }}</span>
+                  }
+                </div>
+              }
+            </div>
+          }
+        </div>
+      } @else {
+        <p class="empty-state">No items found in 'promotions' collection.</p>
+      }
+    </section>
+
+    <hr class="pillar-divider" />
+
+    <!-- Pillar 5: Fraud & Identity -->
+    <section class="pillar-section">
+      <div class="section-header">
+        <h3>5. Fraud & Identity</h3>
+        <span class="count-badge">{{ fraudIdentity().length }} items</span>
+      </div>
+
+      @if (fraudIdentity().length > 0) {
+        <div class="collection-grid">
+          @for (item of fraudIdentity(); track item.name) {
+            <div class="collection-card">
+              <div class="card-header">
+                <span class="card-name">{{ item.name }}</span>
+              </div>
+              @if (item.capability && item.capability.length > 0) {
+                <div class="card-tags">
+                  @for (cap of item.capability; track cap) {
+                    <span class="tag tag-fraud">{{ cap }}</span>
+                  }
+                </div>
+              }
+            </div>
+          }
+        </div>
+      } @else {
+        <p class="empty-state">No items found in 'fraud-n-identity' collection.</p>
+      }
+    </section>
+
+    <hr class="pillar-divider" />
+
+    <!-- Pillar 6: Returns -->
+    <section class="pillar-section">
+      <div class="section-header">
+        <h3>6. Returns</h3>
+        <span class="count-badge">{{ returns().length }} items</span>
+      </div>
+
+      @if (returns().length > 0) {
+        <div class="collection-grid">
+          @for (item of returns(); track item.id || item.name) {
+            <div class="collection-card">
+              <div class="card-header">
+                <span class="card-name">{{ item.name }}</span>
+              </div>
+              @if (item.primaryRiskMitigated && item.primaryRiskMitigated.length > 0) {
+                <div class="card-tags">
+                  @for (risk of item.primaryRiskMitigated; track risk) {
+                    <span class="tag tag-return">{{ risk }}</span>
+                  }
+                </div>
+              }
+            </div>
+          }
+        </div>
+      } @else {
+        <p class="empty-state">No items found in 'returns' collection.</p>
+      }
+    </section>
+  </div>
 </div>

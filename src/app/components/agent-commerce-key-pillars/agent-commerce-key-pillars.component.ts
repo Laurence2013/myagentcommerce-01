@@ -1,10 +1,17 @@
-import { Component, inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, inject, Signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { AgentPillarsService } from '../../services/agent-pillars/agent-pillars.service';
+import {
+  ProtocolItem,
+  SecurityItem,
+  InventoryAndShippingItem,
+  PromotionItem,
+  FraudDetectionItem,
+  ReturnItem
+} from '../../interfaces/agent-commerce-pillars';
 
 @Component({
   selector: 'app-agent-commerce-key-pillars',
-  imports: [ReactiveFormsModule],
   templateUrl: './agent-commerce-key-pillars.component.html',
   styleUrl: './agent-commerce-key-pillars.component.sass',
   host: {
@@ -12,23 +19,30 @@ import { AgentPillarsService } from '../../services/agent-pillars/agent-pillars.
   }
 })
 export class AgentCommerceKeyPillars {
-  private readonly fb = inject(FormBuilder);
   protected readonly agentPillarsService = inject(AgentPillarsService);
 
-  public readonly evaluationForm: FormGroup = this.fb.group({
-    protocolCompatibility: ['', Validators.required],
-    paymentSecurity: ['', Validators.required],
-    inventoryShipping: ['', Validators.required],
-    promotions: ['', Validators.required],
-    fraudIdentity: ['', Validators.required],
-    returns: ['', Validators.required]
-  });
-
-  public onSubmit(): void {
-    if (this.evaluationForm.valid) {
-      console.log('Merchant Evaluation Form Submitted:', this.evaluationForm.value);
-    } else {
-      this.evaluationForm.markAllAsTouched();
-    }
-  }
+  public readonly protocols: Signal<ProtocolItem[]> = toSignal(
+    this.agentPillarsService.getProtocols(),
+    { initialValue: [] }
+  );
+  public readonly securities: Signal<SecurityItem[]> = toSignal(
+    this.agentPillarsService.getSecurities(),
+    { initialValue: [] }
+  );
+  public readonly inventoryShipping: Signal<InventoryAndShippingItem[]> = toSignal(
+    this.agentPillarsService.getInventoryAndShipping(),
+    { initialValue: [] }
+  );
+  public readonly promotions: Signal<PromotionItem[]> = toSignal(
+    this.agentPillarsService.getPromotions(),
+    { initialValue: [] }
+  );
+  public readonly fraudIdentity: Signal<FraudDetectionItem[]> = toSignal(
+    this.agentPillarsService.getFraudAndIdentity(),
+    { initialValue: [] }
+  );
+  public readonly returns: Signal<ReturnItem[]> = toSignal(
+    this.agentPillarsService.getReturns(),
+    { initialValue: [] }
+  );
 }
