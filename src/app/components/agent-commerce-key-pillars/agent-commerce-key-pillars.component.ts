@@ -109,7 +109,12 @@ export class AgentCommerceKeyPillars {
   }
 
   public onModalSubmit(event: CrudModalSubmitEvent): void {
-    console.log(`CRUD action '${event.mode}' submitted for pillar '${event.pillarId}':`, event.item);
+    console.log('[AgentCommerceKeyPillars] Form Submitted from Modal:', {
+      mode: event.mode,
+      pillarId: event.pillarId,
+      pillarName: this.getPillarName(event.pillarId),
+      payload: event.item
+    });
     this.onModalClose();
   }
 
