@@ -28,27 +28,62 @@ export class CrudModalPopupsComponent {
   public readonly closeModal = output<void>();
   public readonly confirmAction = output<CrudModalSubmitEvent>();
 
+  // Common Field
   public readonly formName = signal<string>('');
+
+  // Protocol-Specific Fields
+  public readonly formLayers = signal<string>('');
+  public readonly formPrimaryFunctions = signal<string>('');
+  public readonly formKeyBackers = signal<string>('');
+  public readonly formTransports = signal<string>('');
+  public readonly formGovernance = signal<string>('');
+  public readonly formEvaluationContext = signal<string>('');
+
+  // Generic/Other Pillar Fields
   public readonly formCapabilities = signal<string>('');
   public readonly formPrimaryRisk = signal<string>('');
   public readonly formKeyEnablers = signal<string>('');
 
   constructor() {
     effect(() => {
-      if (this.isOpen() && this.mode() === 'edit' && this.item()) {
+      if (this.isOpen()) {
         const currentItem = this.item() || {};
-        this.formName.set(String(currentItem['name'] || ''));
-        const caps = currentItem['capability'] || currentItem['Capability'];
-        this.formCapabilities.set(Array.isArray(caps) ? caps.join(', ') : '');
-        const risk = currentItem['primaryRiskMitigated'] || currentItem['primary_risk_mitigated'] || currentItem['Primary Risk Mitigated'];
-        this.formPrimaryRisk.set(Array.isArray(risk) ? risk.join(', ') : '');
-        const enablers = currentItem['keyEnabler'] || currentItem['key_enabler'] || currentItem['Key Enablers'];
-        this.formKeyEnablers.set(Array.isArray(enablers) ? enablers.join(', ') : '');
-      } else if (this.isOpen() && this.mode() === 'create') {
-        this.formName.set('');
-        this.formCapabilities.set('');
-        this.formPrimaryRisk.set('');
-        this.formKeyEnablers.set('');
+        const pid = this.pillarId();
+        if (this.mode() === 'edit' && currentItem) {
+          this.formName.set(String(currentItem['name'] || ''));
+
+          if (pid === 'protocols') {
+            const layers = currentItem['layers'];
+            this.formLayers.set(Array.isArray(layers) ? layers.join(', ') : '');
+            const funcs = currentItem['primaryFunctions'];
+            this.formPrimaryFunctions.set(Array.isArray(funcs) ? funcs.join(', ') : '');
+            const backers = currentItem['keyBackers'];
+            this.formKeyBackers.set(Array.isArray(backers) ? backers.join(', ') : '');
+            const transports = currentItem['transports'];
+            this.formTransports.set(Array.isArray(transports) ? transports.join(', ') : '');
+            const gov = currentItem['governance'];
+            this.formGovernance.set(Array.isArray(gov) ? gov.join(', ') : '');
+            this.formEvaluationContext.set(String(currentItem['evaluationContext'] || ''));
+          } else {
+            const caps = currentItem['capability'] || currentItem['Capability'];
+            this.formCapabilities.set(Array.isArray(caps) ? caps.join(', ') : '');
+            const risk = currentItem['primaryRiskMitigated'] || currentItem['primary_risk_mitigated'] || currentItem['Primary Risk Mitigated'];
+            this.formPrimaryRisk.set(Array.isArray(risk) ? risk.join(', ') : '');
+            const enablers = currentItem['keyEnabler'] || currentItem['key_enabler'] || currentItem['Key Enablers'];
+            this.formKeyEnablers.set(Array.isArray(enablers) ? enablers.join(', ') : '');
+          }
+        } else if (this.mode() === 'create') {
+          this.formName.set('');
+          this.formLayers.set('');
+          this.formPrimaryFunctions.set('');
+          this.formKeyBackers.set('');
+          this.formTransports.set('');
+          this.formGovernance.set('');
+          this.formEvaluationContext.set('');
+          this.formCapabilities.set('');
+          this.formPrimaryRisk.set('');
+          this.formKeyEnablers.set('');
+        }
       }
     });
   }
@@ -67,6 +102,30 @@ export class CrudModalPopupsComponent {
 
   public onNameInput(event: Event): void {
     this.formName.set((event.target as HTMLInputElement).value);
+  }
+
+  public onLayersInput(event: Event): void {
+    this.formLayers.set((event.target as HTMLInputElement).value);
+  }
+
+  public onPrimaryFunctionsInput(event: Event): void {
+    this.formPrimaryFunctions.set((event.target as HTMLInputElement).value);
+  }
+
+  public onKeyBackersInput(event: Event): void {
+    this.formKeyBackers.set((event.target as HTMLInputElement).value);
+  }
+
+  public onTransportsInput(event: Event): void {
+    this.formTransports.set((event.target as HTMLInputElement).value);
+  }
+
+  public onGovernanceInput(event: Event): void {
+    this.formGovernance.set((event.target as HTMLInputElement).value);
+  }
+
+  public onEvaluationContextInput(event: Event): void {
+    this.formEvaluationContext.set((event.target as HTMLInputElement).value);
   }
 
   public onCapabilitiesInput(event: Event): void {
@@ -96,22 +155,28 @@ export class CrudModalPopupsComponent {
       return;
     }
 
-    const payload: Record<string, unknown> = {
-      ...(this.item() || {}),
-      name: this.formName().trim(),
-      capability: this.formCapabilities()
-        .split(',')
-        .map((s) => s.trim())
-        .filter(Boolean),
-      primaryRiskMitigated: this.formPrimaryRisk()
-        .split(',')
-        .map((s) => s.trim())
-        .filter(Boolean),
-      keyEnabler: this.formKeyEnablers()
-        .split(',')
-        .map((s) => s.trim())
-        .filter(Boolean)
-    };
+    let payload: Record<string, unknown>;
+
+    if (currentPillar === 'protocols') {
+      payload = {
+        ...(this.item() || {}),
+        name: this.formName().trim(),
+        layers: this.formLayers().split(',').map((s) => s.trim()).filter(Boolean),
+        primaryFunctions: this.formPrimaryFunctions().split(',').map((s) => s.trim()).filter(Boolean),
+        keyBackers: this.formKeyBackers().split(',').map((s) => s.trim()).filter(Boolean),
+        transports: this.formTransports().split(',').map((s) => s.trim()).filter(Boolean),
+        governance: this.formGovernance().split(',').map((s) => s.trim()).filter(Boolean),
+        evaluationContext: this.formEvaluationContext().trim()
+      };
+    } else {
+      payload = {
+        ...(this.item() || {}),
+        name: this.formName().trim(),
+        capability: this.formCapabilities().split(',').map((s) => s.trim()).filter(Boolean),
+        primaryRiskMitigated: this.formPrimaryRisk().split(',').map((s) => s.trim()).filter(Boolean),
+        keyEnabler: this.formKeyEnablers().split(',').map((s) => s.trim()).filter(Boolean)
+      };
+    }
 
     this.confirmAction.emit({
       mode: currentMode,
