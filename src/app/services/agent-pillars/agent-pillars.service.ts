@@ -5,6 +5,15 @@ import { catchError, map } from 'rxjs/operators';
 import { FirestoreListResponse } from '../../interfaces/services/firestore-response.interface';
 import { environment } from '../../../environments/environment';
 
+import {
+  FraudDetectionItem,
+  InventoryAndShippingItem,
+  PromotionItem,
+  ProtocolItem,
+  ReturnItem,
+  SecurityItem
+} from '../../interfaces/agent-commerce-pillars';
+
 export type PillarCollectionName =
   | 'fraud-n-identity'
   | 'inventory-n-shipping'
@@ -60,42 +69,42 @@ export class AgentPillarsService {
   /**
    * Gets documents from 'fraud-n-identity' collection.
    */
-  public getFraudAndIdentity<T = Record<string, unknown>>(): Observable<T[]> {
+  public getFraudAndIdentity<T = FraudDetectionItem>(): Observable<T[]> {
     return this.getPillarCollection<T>('fraud-n-identity');
   }
 
   /**
    * Gets documents from 'inventory-n-shipping' collection.
    */
-  public getInventoryAndShipping<T = Record<string, unknown>>(): Observable<T[]> {
+  public getInventoryAndShipping<T = InventoryAndShippingItem>(): Observable<T[]> {
     return this.getPillarCollection<T>('inventory-n-shipping');
   }
 
   /**
    * Gets documents from 'promotions' collection.
    */
-  public getPromotions<T = Record<string, unknown>>(): Observable<T[]> {
+  public getPromotions<T = PromotionItem>(): Observable<T[]> {
     return this.getPillarCollection<T>('promotions');
   }
 
   /**
    * Gets documents from 'protocols' collection.
    */
-  public getProtocols<T = Record<string, unknown>>(): Observable<T[]> {
+  public getProtocols<T = ProtocolItem>(): Observable<T[]> {
     return this.getPillarCollection<T>('protocols');
   }
 
   /**
    * Gets documents from 'returns' collection.
    */
-  public getReturns<T = Record<string, unknown>>(): Observable<T[]> {
+  public getReturns<T = ReturnItem>(): Observable<T[]> {
     return this.getPillarCollection<T>('returns');
   }
 
   /**
    * Gets documents from 'securities' collection.
    */
-  public getSecurities<T = Record<string, unknown>>(): Observable<T[]> {
+  public getSecurities<T = SecurityItem>(): Observable<T[]> {
     return this.getPillarCollection<T>('securities');
   }
 
