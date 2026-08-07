@@ -101,13 +101,11 @@ export class AgentCommerceKeyPillars {
     this.modalMode.set('delete');
     this.isModalOpen.set(true);
   }
-
   public onModalClose(): void {
     this.isModalOpen.set(false);
     this.modalMode.set(null);
     this.selectedItem.set(null);
   }
-
   public onModalSubmit(event: CrudModalSubmitEvent): void {
     console.log('[AgentCommerceKeyPillars] Form Submitted from Modal:', {
       mode: event.mode,
@@ -115,9 +113,18 @@ export class AgentCommerceKeyPillars {
       pillarName: this.getPillarName(event.pillarId),
       payload: event.item
     });
+    if (event.pillarId === 'protocols' && (event.mode === 'create' || event.mode === 'edit')) {
+      this.agentPillarsService.addProtocol(event.item).subscribe({
+        next: (created) => {
+          console.log('[AgentCommerceKeyPillars] Successfully saved protocol to Firestore emulator:', created);
+        },
+        error: (err) => {
+          console.error('[AgentCommerceKeyPillars] Failed to save protocol to Firestore emulator:', err);
+        }
+      });
+    }
     this.onModalClose();
   }
-
   public getPillarName(pillarId: PillarTab | null): string {
     if (!pillarId) return '';
     const match = this.tabs.find((t) => t.id === pillarId);

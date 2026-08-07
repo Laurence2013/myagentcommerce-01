@@ -79,7 +79,7 @@ export class ProtocolsFormComponent {
       transports: this.formTransports().split(',').map((s) => s.trim()).filter(Boolean),
       governance: this.formGovernance().split(',').map((s) => s.trim()).filter(Boolean),
       evaluationContext: this.formEvaluationContext().trim(),
-      collectionName: this.pillarName().trim().toLowerCase()
+      //collectionName: this.pillarName().trim().toLowerCase()
     };
   }
 

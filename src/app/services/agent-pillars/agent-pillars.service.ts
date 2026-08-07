@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError, EMPTY } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { FirestoreListResponse } from '../../interfaces/services/firestore-response.interface';
 import { environment } from '../../../environments/environment';
@@ -28,9 +28,53 @@ export type PillarCollectionName =
 export class AgentPillarsService {
   private readonly http = inject(HttpClient, { optional: true });
 
-  /**
-   * Constructs the Firestore REST URL targeting either local emulator or production REST endpoint.
-   */
+	public getFraudAndIdentity<T = FraudDetectionItem>(): Observable<T[]> {
+    return this.getPillarCollection<T>('fraud-n-identity');
+  }
+  public getInventoryAndShipping<T = InventoryAndShippingItem>(): Observable<T[]> {
+    return this.getPillarCollection<T>('inventory-n-shipping');
+  }
+  public getPromotions<T = PromotionItem>(): Observable<T[]> {
+    return this.getPillarCollection<T>('promotions');
+  }
+  public getProtocols<T = ProtocolItem>(): Observable<T[]> {
+    return this.getPillarCollection<T>('protocols');
+  }
+  public getReturns<T = ReturnItem>(): Observable<T[]> {
+    return this.getPillarCollection<T>('returns');
+  }
+  public getSecurities<T = SecurityItem>(): Observable<T[]> {
+    return this.getPillarCollection<T>('securities');
+  }
+  public addProtocol(protocol: Record<string, unknown>): Observable<ProtocolItem> {
+    return this.addPillarItem<ProtocolItem>('protocols', protocol);
+  }
+  public addPillarItem<T = Record<string, unknown>>(
+    collectionName: PillarCollectionName | string,
+    item: Record<string, unknown>
+  ): Observable<T> {
+    if (!this.http) {
+      console.warn('AgentPillarsService: HttpClient is not provided.');
+      return throwError(() => new Error('HttpClient is not provided'));
+    }
+
+    const url = this.getFirestoreRestUrl(collectionName);
+    const body = this.formatFirestoreFields(item);
+
+    return this.http.post<Record<string, unknown>>(url, body).pipe(
+      map((response) => {
+        const fields = (response['fields'] as Record<string, unknown>) || {};
+        return this.parseFirestoreFields(fields) as T;
+      }),
+      catchError((error) => {
+        console.warn(
+          `AgentPillarsService: Error adding document to '${collectionName}' in Firestore emulator REST endpoint (${url}):`,
+          error
+        );
+        return throwError(() => error);
+      })
+    );
+  }
   private getFirestoreRestUrl(collectionName: string): string {
     const host = environment.useEmulators
       ? `http://${environment.emulators.firestore.host}:${environment.emulators.firestore.port}`
@@ -40,11 +84,7 @@ export class AgentPillarsService {
 
     return `${host}/v1/projects/${projectId}/databases/(default)/documents/${collectionName}`;
   }
-
-  /**
-   * Generic RxJS HTTP stream handler to fetch any Firestore collection.
-   */
-  public getPillarCollection<T = Record<string, unknown>>(
+	public getPillarCollection<T = Record<string, unknown>>(
     collectionName: PillarCollectionName | string
   ): Observable<T[]> {
     if (!this.http) {
@@ -65,52 +105,37 @@ export class AgentPillarsService {
       })
     );
   }
+  private formatFirestoreFields(data: Record<string, unknown>): { fields: Record<string, unknown> } {
+    const fields: Record<string, unknown> = {};
 
-  /**
-   * Gets documents from 'fraud-n-identity' collection.
-   */
-  public getFraudAndIdentity<T = FraudDetectionItem>(): Observable<T[]> {
-    return this.getPillarCollection<T>('fraud-n-identity');
+    for (const [key, value] of Object.entries(data)) {
+      if (value === null || value === undefined) continue;
+
+      if (typeof value === 'string') {
+        fields[key] = { stringValue: value };
+      } else if (typeof value === 'number') {
+        fields[key] = Number.isInteger(value) ? { integerValue: String(value) } : { doubleValue: value };
+      } else if (typeof value === 'boolean') {
+        fields[key] = { booleanValue: value };
+      } else if (Array.isArray(value)) {
+        fields[key] = {
+          arrayValue: {
+            values: value.map((item) =>
+              typeof item === 'string' ? { stringValue: item } : { stringValue: String(item) }
+            )
+          }
+        };
+      } else if (typeof value === 'object') {
+        fields[key] = {
+          mapValue: {
+            fields: this.formatFirestoreFields(value as Record<string, unknown>).fields
+          }
+        };
+      }
+    }
+
+    return { fields };
   }
-
-  /**
-   * Gets documents from 'inventory-n-shipping' collection.
-   */
-  public getInventoryAndShipping<T = InventoryAndShippingItem>(): Observable<T[]> {
-    return this.getPillarCollection<T>('inventory-n-shipping');
-  }
-
-  /**
-   * Gets documents from 'promotions' collection.
-   */
-  public getPromotions<T = PromotionItem>(): Observable<T[]> {
-    return this.getPillarCollection<T>('promotions');
-  }
-
-  /**
-   * Gets documents from 'protocols' collection.
-   */
-  public getProtocols<T = ProtocolItem>(): Observable<T[]> {
-    return this.getPillarCollection<T>('protocols');
-  }
-
-  /**
-   * Gets documents from 'returns' collection.
-   */
-  public getReturns<T = ReturnItem>(): Observable<T[]> {
-    return this.getPillarCollection<T>('returns');
-  }
-
-  /**
-   * Gets documents from 'securities' collection.
-   */
-  public getSecurities<T = SecurityItem>(): Observable<T[]> {
-    return this.getPillarCollection<T>('securities');
-  }
-
-  /**
-   * Helper function to convert Firestore REST API typed values into JS primitive values/objects.
-   */
   private parseFirestoreFields(fields: Record<string, unknown>): Record<string, unknown> {
     const result: Record<string, unknown> = {};
 
@@ -143,6 +168,4 @@ export class AgentPillarsService {
     return result;
   }
 }
-
-// Export alias for convenient import under AgentPillars
 export { AgentPillarsService as AgentPillars };
