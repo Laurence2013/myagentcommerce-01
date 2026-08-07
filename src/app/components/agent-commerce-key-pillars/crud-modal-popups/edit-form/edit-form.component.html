@@ -1,3 +1,162 @@
 <div class="edit-form-container">
-	<h1>Edit Form</h1>
+  @let p = parsed();
+
+  <div class="form-header-actions">
+    <button type="button" class="btn-clear" (click)="resetForm()" title="Clear form fields">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+      </svg>
+      Clear Form
+    </button>
+  </div>
+
+  <form class="edit-form" (submit)="$event.preventDefault()">
+    <!-- Name Field -->
+    <div class="form-group">
+      <label for="edit-name" class="form-label">Name</label>
+      <input
+        type="text"
+        id="edit-name"
+        class="form-input"
+        [value]="formName()"
+        (input)="onNameInput($event)"
+        placeholder="Enter name..."
+      />
+    </div>
+
+    <!-- Layers -->
+    @if (p?.layers || formLayers()) {
+      <div class="form-group">
+        <label for="edit-layers" class="form-label">Layers (comma-separated)</label>
+        <input
+          type="text"
+          id="edit-layers"
+          class="form-input"
+          [value]="formLayers()"
+          (input)="onLayersInput($event)"
+          placeholder="e.g. Discovery, Agentic Commerce"
+        />
+      </div>
+    }
+
+    <!-- Primary Functions -->
+    @if (p?.primaryFunctions || formPrimaryFunctions()) {
+      <div class="form-group">
+        <label for="edit-primary-functions" class="form-label">Primary Functions (comma-separated)</label>
+        <input
+          type="text"
+          id="edit-primary-functions"
+          class="form-input"
+          [value]="formPrimaryFunctions()"
+          (input)="onPrimaryFunctionsInput($event)"
+          placeholder="e.g. Identity Assertion, Payment Authorization"
+        />
+      </div>
+    }
+
+    <!-- Key Backers -->
+    @if (p?.keyBackers || formKeyBackers()) {
+      <div class="form-group">
+        <label for="edit-key-backers" class="form-label">Key Backers (comma-separated)</label>
+        <input
+          type="text"
+          id="edit-key-backers"
+          class="form-input"
+          [value]="formKeyBackers()"
+          (input)="onKeyBackersInput($event)"
+          placeholder="e.g. Google, Visa"
+        />
+      </div>
+    }
+
+    <!-- Transports -->
+    @if (p?.transports || formTransports()) {
+      <div class="form-group">
+        <label for="edit-transports" class="form-label">Transports (comma-separated)</label>
+        <input
+          type="text"
+          id="edit-transports"
+          class="form-input"
+          [value]="formTransports()"
+          (input)="onTransportsInput($event)"
+          placeholder="e.g. REST, gRPC, WebSockets"
+        />
+      </div>
+    }
+
+    <!-- Governance -->
+    @if (p?.governance || formGovernance()) {
+      <div class="form-group">
+        <label for="edit-governance" class="form-label">Governance (comma-separated)</label>
+        <input
+          type="text"
+          id="edit-governance"
+          class="form-input"
+          [value]="formGovernance()"
+          (input)="onGovernanceInput($event)"
+          placeholder="e.g. Open Source, W3C Standard"
+        />
+      </div>
+    }
+
+    <!-- Evaluation Context -->
+    @if (p?.evaluationContext || formEvaluationContext()) {
+      <div class="form-group">
+        <label for="edit-evaluation-context" class="form-label">Evaluation Context</label>
+        <textarea
+          id="edit-evaluation-context"
+          class="form-textarea"
+          rows="3"
+          [value]="formEvaluationContext()"
+          (input)="onEvaluationContextInput($event)"
+          placeholder="Enter evaluation details..."
+        ></textarea>
+      </div>
+    }
+
+    <!-- Capabilities -->
+    @if (p?.capability || formCapability()) {
+      <div class="form-group">
+        <label for="edit-capability" class="form-label">Capabilities (comma-separated)</label>
+        <input
+          type="text"
+          id="edit-capability"
+          class="form-input"
+          [value]="formCapability()"
+          (input)="onCapabilityInput($event)"
+          placeholder="e.g. Automated Checkouts, Real-time Stock Sync"
+        />
+      </div>
+    }
+
+    <!-- Primary Risk Mitigated -->
+    @if (p?.primaryRiskMitigated || formPrimaryRiskMitigated()) {
+      <div class="form-group">
+        <label for="edit-primary-risk" class="form-label">Primary Risk Mitigated (comma-separated)</label>
+        <input
+          type="text"
+          id="edit-primary-risk"
+          class="form-input"
+          [value]="formPrimaryRiskMitigated()"
+          (input)="onPrimaryRiskInput($event)"
+          placeholder="e.g. Fraudulent claims, Inventory oversold"
+        />
+      </div>
+    }
+
+    <!-- Key Enablers -->
+    @if (p?.keyEnabler || formKeyEnabler()) {
+      <div class="form-group">
+        <label for="edit-key-enablers" class="form-label">Key Enablers (comma-separated)</label>
+        <input
+          type="text"
+          id="edit-key-enablers"
+          class="form-input"
+          [value]="formKeyEnabler()"
+          (input)="onKeyEnablerInput($event)"
+          placeholder="e.g. OAuth 2.0, Vision AI Models"
+        />
+      </div>
+    }
+  </form>
 </div>

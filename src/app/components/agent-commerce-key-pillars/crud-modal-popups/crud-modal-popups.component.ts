@@ -33,7 +33,7 @@ export class CrudModalPopupsComponent {
 
   public readonly protocolFormValue = signal<ProtocolFormValue | null>(null);
 
-  public constructor() { console.log(this.pillarId()) }
+  public constructor() {}
   public onProtocolFormChange(val: ProtocolFormValue): void {
     this.protocolFormValue.set(val);
   }
@@ -67,7 +67,11 @@ export class CrudModalPopupsComponent {
       const pVal = childVal || this.protocolFormValue();
       payload = {...(this.item() || {}), ...(pVal || {})};
     } else {
-      payload = {...(this.item() || {})};
+      const childVal = this.editFormComp()?.getFormValue();
+      payload = {
+        ...(this.item() || {}),
+        ...(childVal || {})
+      };
     }
     this.confirmAction.emit({
       mode: currentMode,

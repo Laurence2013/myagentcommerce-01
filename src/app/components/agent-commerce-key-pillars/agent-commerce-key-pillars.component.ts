@@ -42,7 +42,6 @@ export class AgentCommerceKeyPillars {
   public readonly modalMode = signal<CrudModalMode | null>(null);
   public readonly selectedPillar = signal<PillarTab | null>(null);
   public readonly selectedItem = signal<Record<string, unknown> | null>(null);
-
   public readonly tabs: TabDefinition[] = [
     { id: 'protocols', name: 'Protocols' },
     { id: 'securities', name: 'Securities' },
@@ -51,7 +50,6 @@ export class AgentCommerceKeyPillars {
     { id: 'fraudIdentity', name: 'Fraud & Identity' },
     { id: 'returns', name: 'Returns' }
   ];
-
   public readonly protocols: Signal<ProtocolItem[]> = toSignal(
     this.agentPillarsService.getProtocols(),
     { initialValue: [] }
@@ -76,11 +74,9 @@ export class AgentCommerceKeyPillars {
     this.agentPillarsService.getReturns(),
     { initialValue: [] }
   );
-
   public selectTab(tabId: PillarTab): void {
     this.activeTab.set(tabId);
   }
-
   public onCreate(pillarId: PillarTab): void {
     this.selectedPillar.set(pillarId);
     this.selectedItem.set(null);
@@ -88,12 +84,10 @@ export class AgentCommerceKeyPillars {
     this.isModalOpen.set(true);
   }
   public onEdit(item: Record<string, unknown> | unknown): void {
-    this.selectedPillar.set(this.activeTab());
     this.selectedItem.set((item as Record<string, unknown>) || null);
     this.modalMode.set('edit');
     this.isModalOpen.set(true);
   }
-
   public onDelete(pillarId: PillarTab, item: unknown): void {
     this.selectedPillar.set(pillarId);
     this.selectedItem.set((item as Record<string, unknown>) || null);
@@ -129,16 +123,13 @@ export class AgentCommerceKeyPillars {
     const match = this.tabs.find((t) => t.id === pillarId);
     return match ? match.name : '';
   }
-
   public getObjectEntries(item: Record<string, unknown>): { key: string; value: unknown }[] {
     if (!item || typeof item !== 'object') return [];
     return Object.entries(item).map(([key, value]) => ({ key, value }));
   }
-
   public isArray(val: unknown): boolean {
     return Array.isArray(val);
   }
-
   public formatKeyName(key: string): string {
     return key
       .replace(/_/g, ' ')
@@ -146,7 +137,6 @@ export class AgentCommerceKeyPillars {
       .replace(/^./, (str) => str.toUpperCase())
       .trim();
   }
-
   public formatTitle(name: string): string {
     if (!name) return '';
     return name
