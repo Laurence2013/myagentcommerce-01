@@ -1,4 +1,4 @@
-import { Component, effect, input, output, signal } from '@angular/core';
+import { Component, effect, input, output, signal, viewChild } from '@angular/core';
 import { PillarTab } from '../agent-commerce-key-pillars.component';
 import { ProtocolsFormComponent } from './protocols-form/protocols-form.component';
 import {
@@ -26,6 +26,9 @@ export class CrudModalPopupsComponent {
 
   public readonly closeModal = output<void>();
   public readonly confirmAction = output<CrudModalSubmitEvent>();
+
+  // Reference to child ProtocolsFormComponent
+  public readonly protocolFormComp = viewChild(ProtocolsFormComponent);
 
   // Common Field for generic pillars
   public readonly formName = signal<string>('');
@@ -58,6 +61,7 @@ export class CrudModalPopupsComponent {
           this.formCapabilities.set('');
           this.formPrimaryRisk.set('');
           this.formKeyEnablers.set('');
+          //this.protocolFormValue.set(null);
         }
       }
     });
@@ -113,7 +117,8 @@ export class CrudModalPopupsComponent {
     let payload: Record<string, unknown>;
 
     if (currentPillar === 'protocols') {
-      const pVal = this.protocolFormValue();
+      const childVal = this.protocolFormComp()?.getFormValue();
+      const pVal = childVal || this.protocolFormValue();
       payload = {
         ...(this.item() || {}),
         ...(pVal || {})

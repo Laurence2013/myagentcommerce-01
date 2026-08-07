@@ -24,7 +24,7 @@ export class ProtocolsFormComponent {
   public readonly formEvaluationContext = signal<string>('');
 
   constructor() {
-    effect(() => {
+    /*effect(() => {
       const currentItem = this.item();
       if (this.mode() === 'edit' && currentItem) {
         this.populateForm(currentItem);
@@ -32,7 +32,7 @@ export class ProtocolsFormComponent {
         this.resetForm();
       }
       this.emitChange();
-    });
+    });*/
   }
 
   public populateForm(currentItem: Record<string, unknown>): void {
@@ -69,6 +69,7 @@ export class ProtocolsFormComponent {
 
   public onNameInput(event: Event): void {
     this.formName.set((event.target as HTMLInputElement).value);
+		//console.log(this.formName());
     this.emitChange();
   }
 
