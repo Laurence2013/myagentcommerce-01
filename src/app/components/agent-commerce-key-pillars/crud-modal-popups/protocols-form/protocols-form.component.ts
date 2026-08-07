@@ -22,40 +22,8 @@ export class ProtocolsFormComponent {
   public readonly formTransports = signal<string>('');
   public readonly formGovernance = signal<string>('');
   public readonly formEvaluationContext = signal<string>('');
+	public readonly pillarName = input<string>(''); // Receiver signal input
 
-  constructor() {
-    /*effect(() => {
-      const currentItem = this.item();
-      if (this.mode() === 'edit' && currentItem) {
-        this.populateForm(currentItem);
-      } else {
-        this.resetForm();
-      }
-      this.emitChange();
-    });*/
-  }
-
-  public populateForm(currentItem: Record<string, unknown>): void {
-    this.formName.set(String(currentItem['name'] || ''));
-    const layers = currentItem['layers'];
-    this.formLayers.set(Array.isArray(layers) ? layers.join(', ') : '');
-    const funcs = currentItem['primaryFunctions'];
-    this.formPrimaryFunctions.set(Array.isArray(funcs) ? funcs.join(', ') : '');
-    const backers = currentItem['keyBackers'];
-    this.formKeyBackers.set(Array.isArray(backers) ? backers.join(', ') : '');
-    const transports = currentItem['transports'];
-    this.formTransports.set(Array.isArray(transports) ? transports.join(', ') : '');
-    const gov = currentItem['governance'];
-    this.formGovernance.set(Array.isArray(gov) ? gov.join(', ') : '');
-    this.formEvaluationContext.set(String(currentItem['evaluationContext'] || ''));
-  }
-
-  public protocol(currentItem?: Record<string, unknown>): ProtocolFormValue {
-    if (currentItem) {
-      this.populateForm(currentItem);
-    }
-    return this.getFormValue();
-  }
 
   public resetForm(): void {
     this.formName.set('');
@@ -69,7 +37,6 @@ export class ProtocolsFormComponent {
 
   public onNameInput(event: Event): void {
     this.formName.set((event.target as HTMLInputElement).value);
-		//console.log(this.formName());
     this.emitChange();
   }
 
@@ -111,7 +78,8 @@ export class ProtocolsFormComponent {
       keyBackers: this.formKeyBackers().split(',').map((s) => s.trim()).filter(Boolean),
       transports: this.formTransports().split(',').map((s) => s.trim()).filter(Boolean),
       governance: this.formGovernance().split(',').map((s) => s.trim()).filter(Boolean),
-      evaluationContext: this.formEvaluationContext().trim()
+      evaluationContext: this.formEvaluationContext().trim(),
+      collectionName: this.pillarName().trim().toLowerCase()
     };
   }
 

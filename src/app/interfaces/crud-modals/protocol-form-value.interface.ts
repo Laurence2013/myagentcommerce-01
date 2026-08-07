@@ -6,4 +6,5 @@ export interface ProtocolFormValue {
   transports: string[];
   governance: string[];
   evaluationContext: string;
+  collectionName?: string;
 }
