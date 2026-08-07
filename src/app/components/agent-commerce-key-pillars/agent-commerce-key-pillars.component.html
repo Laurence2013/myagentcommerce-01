@@ -4,421 +4,454 @@
     <p class="page-description">Structured key-value breakdown for all six foundational agentic commerce collection objects.</p>
   </header>
 
-  <div class="pillars-list">
-    <!-- Pillar 1: Protocols -->
-    <section class="pillar-section">
-      <div class="section-header">
-        <h3>1. Protocols</h3>
-        <span class="count-badge">{{ protocols().length }} items</span>
-      </div>
-
-      @if (protocols().length > 0) {
-        <div class="collection-grid">
-          @for (item of protocols(); track item.id || item.name) {
-            <div class="collection-card">
-              <div class="card-header">
-                <span class="card-name">{{ item.name }}</span>
-                @if (item.id) {
-                  <span class="card-id-badge">ID: {{ item.id }}</span>
-                }
-                @if (item.status) {
-                  <span class="card-badge">{{ item.status }}</span>
-                }
-              </div>
-
-              <div class="key-value-list">
-                @if (item.layers && item.layers.length > 0) {
-                  <div class="kv-row">
-                    <span class="kv-key">Layers:</span>
-                    <div class="kv-value-tags">
-                      @for (val of item.layers; track val) {
-                        <span class="tag tag-protocol">{{ val }}</span>
-                      }
-                    </div>
-                  </div>
-                }
-
-                @if (item.primaryFunctions && item.primaryFunctions.length > 0) {
-                  <div class="kv-row">
-                    <span class="kv-key">Primary Functions:</span>
-                    <div class="kv-value-tags">
-                      @for (val of item.primaryFunctions; track val) {
-                        <span class="tag tag-function">{{ val }}</span>
-                      }
-                    </div>
-                  </div>
-                }
-
-                @if (item.keyBackers && item.keyBackers.length > 0) {
-                  <div class="kv-row">
-                    <span class="kv-key">Key Backers:</span>
-                    <div class="kv-value-tags">
-                      @for (val of item.keyBackers; track val) {
-                        <span class="tag tag-backer">{{ val }}</span>
-                      }
-                    </div>
-                  </div>
-                }
-
-                @if (item.transports && item.transports.length > 0) {
-                  <div class="kv-row">
-                    <span class="kv-key">Transports:</span>
-                    <div class="kv-value-tags">
-                      @for (val of item.transports; track val) {
-                        <span class="tag tag-transport">{{ val }}</span>
-                      }
-                    </div>
-                  </div>
-                }
-
-                @if (item.governance && item.governance.length > 0) {
-                  <div class="kv-row">
-                    <span class="kv-key">Governance:</span>
-                    <div class="kv-value-tags">
-                      @for (val of item.governance; track val) {
-                        <span class="tag tag-governance">{{ val }}</span>
-                      }
-                    </div>
-                  </div>
-                }
-
-                @if (item.evaluationContext) {
-                  <div class="kv-row">
-                    <span class="kv-key">Evaluation Context:</span>
-                    <span class="kv-value-text">{{ item.evaluationContext }}</span>
-                  </div>
-                }
-              </div>
-            </div>
+  <!-- Accessible Tab Navigation Bar -->
+  <nav class="tabs-nav" role="tablist" aria-label="Agent Commerce Key Pillars">
+    @for (tab of tabs; track tab.id) {
+      <button
+        type="button"
+        role="tab"
+        [id]="'tab-' + tab.id"
+        [attr.aria-selected]="activeTab() === tab.id"
+        [attr.aria-controls]="'panel-' + tab.id"
+        class="tab-button"
+        [class.active]="activeTab() === tab.id"
+        (click)="selectTab(tab.id)"
+      >
+        <span class="tab-label">{{ tab.name }}</span>
+        <span class="tab-badge">
+          @switch (tab.id) {
+            @case ('protocols') { {{ protocols().length }} }
+            @case ('securities') { {{ securities().length }} }
+            @case ('inventoryShipping') { {{ inventoryShipping().length }} }
+            @case ('promotions') { {{ promotions().length }} }
+            @case ('fraudIdentity') { {{ fraudIdentity().length }} }
+            @case ('returns') { {{ returns().length }} }
           }
-        </div>
-      } @else {
-        <p class="empty-state">No items found in 'protocols' collection.</p>
-      }
-    </section>
+        </span>
+      </button>
+    }
+  </nav>
 
-    <hr class="pillar-divider" />
+  <!-- Active Tab Panel Content -->
+  <div class="tab-content">
+    @switch (activeTab()) {
+      <!-- Tab 1: Protocols -->
+      @case ('protocols') {
+        <section id="panel-protocols" role="tabpanel" aria-labelledby="tab-protocols" class="pillar-section">
+          <div class="section-header">
+            <h3>Protocols</h3>
+            <span class="count-badge">{{ protocols().length }} items</span>
+          </div>
 
-    <!-- Pillar 2: Securities -->
-    <section class="pillar-section">
-      <div class="section-header">
-        <h3>2. Securities</h3>
-        <span class="count-badge">{{ securities().length }} items</span>
-      </div>
-
-      @if (securities().length > 0) {
-        <div class="collection-grid">
-          @for (item of securities(); track item.name) {
-            <div class="collection-card">
-              <div class="card-header">
-                <span class="card-name">{{ item.name }}</span>
-              </div>
-
-              <div class="key-value-list">
-                @if (item.Capability && item.Capability.length > 0) {
-                  <div class="kv-row">
-                    <span class="kv-key">Capabilities:</span>
-                    <div class="kv-value-tags">
-                      @for (val of item.Capability; track val) {
-                        <span class="tag tag-security">{{ val }}</span>
-                      }
-                    </div>
+          @if (protocols().length > 0) {
+            <div class="collection-grid">
+              @for (item of protocols(); track item.id || item.name) {
+                <div class="collection-card">
+                  <div class="card-header">
+                    <span class="card-name">{{ item.name }}</span>
+                    @if (item.id) {
+                      <span class="card-id-badge">ID: {{ item.id }}</span>
+                    }
+                    @if (item.status) {
+                      <span class="card-badge">{{ item.status }}</span>
+                    }
                   </div>
-                }
 
-                @let risks = item['Primary Risk Mitigated'] || item.primaryRiskMitigated;
-                @if (risks && risks.length > 0) {
-                  <div class="kv-row">
-                    <span class="kv-key">Primary Risk Mitigated:</span>
-                    <div class="kv-value-tags">
-                      @for (val of risks; track val) {
-                        <span class="tag tag-risk">{{ val }}</span>
-                      }
-                    </div>
-                  </div>
-                }
+                  <div class="key-value-list">
+                    @if (item.layers && item.layers.length > 0) {
+                      <div class="kv-row">
+                        <span class="kv-key">Layers:</span>
+                        <div class="kv-value-tags">
+                          @for (val of item.layers; track val) {
+                            <span class="tag tag-protocol">{{ val }}</span>
+                          }
+                        </div>
+                      </div>
+                    }
 
-                @let prots = item.Protocols || item.protocols;
-                @if (prots && prots.length > 0) {
-                  <div class="kv-row">
-                    <span class="kv-key">Protocols:</span>
-                    <div class="kv-value-tags">
-                      @for (val of prots; track val) {
-                        <span class="tag tag-protocol">{{ val }}</span>
-                      }
-                    </div>
-                  </div>
-                }
+                    @if (item.primaryFunctions && item.primaryFunctions.length > 0) {
+                      <div class="kv-row">
+                        <span class="kv-key">Primary Functions:</span>
+                        <div class="kv-value-tags">
+                          @for (val of item.primaryFunctions; track val) {
+                            <span class="tag tag-function">{{ val }}</span>
+                          }
+                        </div>
+                      </div>
+                    }
 
-                @let mechs = item.Mechanisms || item.mechanisms;
-                @if (mechs && mechs.length > 0) {
-                  <div class="kv-row">
-                    <span class="kv-key">Mechanisms:</span>
-                    <div class="kv-value-tags">
-                      @for (val of mechs; track val) {
-                        <span class="tag tag-mechanism">{{ val }}</span>
-                      }
-                    </div>
+                    @if (item.keyBackers && item.keyBackers.length > 0) {
+                      <div class="kv-row">
+                        <span class="kv-key">Key Backers:</span>
+                        <div class="kv-value-tags">
+                          @for (val of item.keyBackers; track val) {
+                            <span class="tag tag-backer">{{ val }}</span>
+                          }
+                        </div>
+                      </div>
+                    }
+
+                    @if (item.transports && item.transports.length > 0) {
+                      <div class="kv-row">
+                        <span class="kv-key">Transports:</span>
+                        <div class="kv-value-tags">
+                          @for (val of item.transports; track val) {
+                            <span class="tag tag-transport">{{ val }}</span>
+                          }
+                        </div>
+                      </div>
+                    }
+
+                    @if (item.governance && item.governance.length > 0) {
+                      <div class="kv-row">
+                        <span class="kv-key">Governance:</span>
+                        <div class="kv-value-tags">
+                          @for (val of item.governance; track val) {
+                            <span class="tag tag-governance">{{ val }}</span>
+                          }
+                        </div>
+                      </div>
+                    }
+
+                    @if (item.evaluationContext) {
+                      <div class="kv-row">
+                        <span class="kv-key">Evaluation Context:</span>
+                        <span class="kv-value-text">{{ item.evaluationContext }}</span>
+                      </div>
+                    }
                   </div>
-                }
-              </div>
+                </div>
+              }
             </div>
+          } @else {
+            <p class="empty-state">No items found in 'protocols' collection.</p>
           }
-        </div>
-      } @else {
-        <p class="empty-state">No items found in 'securities' collection.</p>
+        </section>
       }
-    </section>
 
-    <hr class="pillar-divider" />
+      <!-- Tab 2: Securities -->
+      @case ('securities') {
+        <section id="panel-securities" role="tabpanel" aria-labelledby="tab-securities" class="pillar-section">
+          <div class="section-header">
+            <h3>Securities</h3>
+            <span class="count-badge">{{ securities().length }} items</span>
+          </div>
 
-    <!-- Pillar 3: Inventory & Shipping -->
-    <section class="pillar-section">
-      <div class="section-header">
-        <h3>3. Inventory & Shipping</h3>
-        <span class="count-badge">{{ inventoryShipping().length }} items</span>
-      </div>
-
-      @if (inventoryShipping().length > 0) {
-        <div class="collection-grid">
-          @for (item of inventoryShipping(); track item.name) {
-            <div class="collection-card">
-              <div class="card-header">
-                <span class="card-name">{{ formatTitle(item.name) }}</span>
-              </div>
-
-              <div class="key-value-list">
-                @if (item.capability && item.capability.length > 0) {
-                  <div class="kv-row">
-                    <span class="kv-key">Capabilities:</span>
-                    <div class="kv-value-tags">
-                      @for (val of item.capability; track val) {
-                        <span class="tag tag-inventory">{{ val }}</span>
-                      }
-                    </div>
+          @if (securities().length > 0) {
+            <div class="collection-grid">
+              @for (item of securities(); track item.name) {
+                <div class="collection-card">
+                  <div class="card-header">
+                    <span class="card-name">{{ item.name }}</span>
                   </div>
-                }
 
-                @let invRisks = item.primary_risk_mitigated || item.primaryRiskMitigated;
-                @if (invRisks && invRisks.length > 0) {
-                  <div class="kv-row">
-                    <span class="kv-key">Primary Risk Mitigated:</span>
-                    <div class="kv-value-tags">
-                      @for (val of invRisks; track val) {
-                        <span class="tag tag-risk">{{ val }}</span>
-                      }
-                    </div>
-                  </div>
-                }
+                  <div class="key-value-list">
+                    @if (item.Capability && item.Capability.length > 0) {
+                      <div class="kv-row">
+                        <span class="kv-key">Capabilities:</span>
+                        <div class="kv-value-tags">
+                          @for (val of item.Capability; track val) {
+                            <span class="tag tag-security">{{ val }}</span>
+                          }
+                        </div>
+                      </div>
+                    }
 
-                @let enablers = item.key_enabler || item.keyEnabler;
-                @if (enablers && enablers.length > 0) {
-                  <div class="kv-row">
-                    <span class="kv-key">Key Enablers:</span>
-                    <div class="kv-value-tags">
-                      @for (val of enablers; track val) {
-                        <span class="tag tag-enabler">{{ val }}</span>
-                      }
-                    </div>
+                    @let risks = item['Primary Risk Mitigated'] || item.primaryRiskMitigated;
+                    @if (risks && risks.length > 0) {
+                      <div class="kv-row">
+                        <span class="kv-key">Primary Risk Mitigated:</span>
+                        <div class="kv-value-tags">
+                          @for (val of risks; track val) {
+                            <span class="tag tag-risk">{{ val }}</span>
+                          }
+                        </div>
+                      </div>
+                    }
+
+                    @let prots = item.Protocols || item.protocols;
+                    @if (prots && prots.length > 0) {
+                      <div class="kv-row">
+                        <span class="kv-key">Protocols:</span>
+                        <div class="kv-value-tags">
+                          @for (val of prots; track val) {
+                            <span class="tag tag-protocol">{{ val }}</span>
+                          }
+                        </div>
+                      </div>
+                    }
+
+                    @let mechs = item.Mechanisms || item.mechanisms;
+                    @if (mechs && mechs.length > 0) {
+                      <div class="kv-row">
+                        <span class="kv-key">Mechanisms:</span>
+                        <div class="kv-value-tags">
+                          @for (val of mechs; track val) {
+                            <span class="tag tag-mechanism">{{ val }}</span>
+                          }
+                        </div>
+                      </div>
+                    }
                   </div>
-                }
-              </div>
+                </div>
+              }
             </div>
+          } @else {
+            <p class="empty-state">No items found in 'securities' collection.</p>
           }
-        </div>
-      } @else {
-        <p class="empty-state">No items found in 'inventory-n-shipping' collection.</p>
+        </section>
       }
-    </section>
 
-    <hr class="pillar-divider" />
+      <!-- Tab 3: Inventory & Shipping -->
+      @case ('inventoryShipping') {
+        <section id="panel-inventoryShipping" role="tabpanel" aria-labelledby="tab-inventoryShipping" class="pillar-section">
+          <div class="section-header">
+            <h3>Inventory & Shipping</h3>
+            <span class="count-badge">{{ inventoryShipping().length }} items</span>
+          </div>
 
-    <!-- Pillar 4: Promotions -->
-    <section class="pillar-section">
-      <div class="section-header">
-        <h3>4. Promotions</h3>
-        <span class="count-badge">{{ promotions().length }} items</span>
-      </div>
-
-      @if (promotions().length > 0) {
-        <div class="collection-grid">
-          @for (item of promotions(); track item.name) {
-            <div class="collection-card">
-              <div class="card-header">
-                <span class="card-name">{{ formatTitle(item.name) }}</span>
-              </div>
-
-              <div class="key-value-list">
-                @if (item.capability && item.capability.length > 0) {
-                  <div class="kv-row">
-                    <span class="kv-key">Capabilities:</span>
-                    <div class="kv-value-tags">
-                      @for (val of item.capability; track val) {
-                        <span class="tag tag-promotion">{{ val }}</span>
-                      }
-                    </div>
+          @if (inventoryShipping().length > 0) {
+            <div class="collection-grid">
+              @for (item of inventoryShipping(); track item.name) {
+                <div class="collection-card">
+                  <div class="card-header">
+                    <span class="card-name">{{ formatTitle(item.name) }}</span>
                   </div>
-                }
 
-                @if (item.primaryRiskMitigated && item.primaryRiskMitigated.length > 0) {
-                  <div class="kv-row">
-                    <span class="kv-key">Primary Risk Mitigated:</span>
-                    <div class="kv-value-tags">
-                      @for (val of item.primaryRiskMitigated; track val) {
-                        <span class="tag tag-risk">{{ val }}</span>
-                      }
-                    </div>
-                  </div>
-                }
+                  <div class="key-value-list">
+                    @if (item.capability && item.capability.length > 0) {
+                      <div class="kv-row">
+                        <span class="kv-key">Capabilities:</span>
+                        <div class="kv-value-tags">
+                          @for (val of item.capability; track val) {
+                            <span class="tag tag-inventory">{{ val }}</span>
+                          }
+                        </div>
+                      </div>
+                    }
 
-                @if (item.keyEnabler && item.keyEnabler.length > 0) {
-                  <div class="kv-row">
-                    <span class="kv-key">Key Enablers:</span>
-                    <div class="kv-value-tags">
-                      @for (val of item.keyEnabler; track val) {
-                        <span class="tag tag-enabler">{{ val }}</span>
-                      }
-                    </div>
-                  </div>
-                }
+                    @let invRisks = item.primary_risk_mitigated || item.primaryRiskMitigated;
+                    @if (invRisks && invRisks.length > 0) {
+                      <div class="kv-row">
+                        <span class="kv-key">Primary Risk Mitigated:</span>
+                        <div class="kv-value-tags">
+                          @for (val of invRisks; track val) {
+                            <span class="tag tag-risk">{{ val }}</span>
+                          }
+                        </div>
+                      </div>
+                    }
 
-                @if (item.architecturalNuance && item.architecturalNuance.length > 0) {
-                  <div class="kv-row">
-                    <span class="kv-key">Architectural Nuances:</span>
-                    <div class="kv-value-bullets">
-                      @for (val of item.architecturalNuance; track val) {
-                        <div class="bullet-item">• {{ val }}</div>
-                      }
-                    </div>
+                    @let enablers = item.key_enabler || item.keyEnabler;
+                    @if (enablers && enablers.length > 0) {
+                      <div class="kv-row">
+                        <span class="kv-key">Key Enablers:</span>
+                        <div class="kv-value-tags">
+                          @for (val of enablers; track val) {
+                            <span class="tag tag-enabler">{{ val }}</span>
+                          }
+                        </div>
+                      </div>
+                    }
                   </div>
-                }
-              </div>
+                </div>
+              }
             </div>
+          } @else {
+            <p class="empty-state">No items found in 'inventory-n-shipping' collection.</p>
           }
-        </div>
-      } @else {
-        <p class="empty-state">No items found in 'promotions' collection.</p>
+        </section>
       }
-    </section>
 
-    <hr class="pillar-divider" />
+      <!-- Tab 4: Promotions -->
+      @case ('promotions') {
+        <section id="panel-promotions" role="tabpanel" aria-labelledby="tab-promotions" class="pillar-section">
+          <div class="section-header">
+            <h3>Promotions</h3>
+            <span class="count-badge">{{ promotions().length }} items</span>
+          </div>
 
-    <!-- Pillar 5: Fraud & Identity -->
-    <section class="pillar-section">
-      <div class="section-header">
-        <h3>5. Fraud & Identity</h3>
-        <span class="count-badge">{{ fraudIdentity().length }} items</span>
-      </div>
-
-      @if (fraudIdentity().length > 0) {
-        <div class="collection-grid">
-          @for (item of fraudIdentity(); track item.name) {
-            <div class="collection-card">
-              <div class="card-header">
-                <span class="card-name">{{ formatTitle(item.name) }}</span>
-              </div>
-
-              <div class="key-value-list">
-                @if (item.capability && item.capability.length > 0) {
-                  <div class="kv-row">
-                    <span class="kv-key">Capabilities:</span>
-                    <div class="kv-value-tags">
-                      @for (val of item.capability; track val) {
-                        <span class="tag tag-fraud">{{ val }}</span>
-                      }
-                    </div>
+          @if (promotions().length > 0) {
+            <div class="collection-grid">
+              @for (item of promotions(); track item.name) {
+                <div class="collection-card">
+                  <div class="card-header">
+                    <span class="card-name">{{ formatTitle(item.name) }}</span>
                   </div>
-                }
 
-                @let fraudRisks = item.primary_risk_mitigated || item.primaryRiskMitigated;
-                @if (fraudRisks && fraudRisks.length > 0) {
-                  <div class="kv-row">
-                    <span class="kv-key">Primary Risk Mitigated:</span>
-                    <div class="kv-value-tags">
-                      @for (val of fraudRisks; track val) {
-                        <span class="tag tag-risk">{{ val }}</span>
-                      }
-                    </div>
-                  </div>
-                }
+                  <div class="key-value-list">
+                    @if (item.capability && item.capability.length > 0) {
+                      <div class="kv-row">
+                        <span class="kv-key">Capabilities:</span>
+                        <div class="kv-value-tags">
+                          @for (val of item.capability; track val) {
+                            <span class="tag tag-promotion">{{ val }}</span>
+                          }
+                        </div>
+                      </div>
+                    }
 
-                @let fraudEnablers = item.key_enabler || item.keyEnabler;
-                @if (fraudEnablers && fraudEnablers.length > 0) {
-                  <div class="kv-row">
-                    <span class="kv-key">Key Enablers:</span>
-                    <div class="kv-value-tags">
-                      @for (val of fraudEnablers; track val) {
-                        <span class="tag tag-enabler">{{ val }}</span>
-                      }
-                    </div>
+                    @if (item.primaryRiskMitigated && item.primaryRiskMitigated.length > 0) {
+                      <div class="kv-row">
+                        <span class="kv-key">Primary Risk Mitigated:</span>
+                        <div class="kv-value-tags">
+                          @for (val of item.primaryRiskMitigated; track val) {
+                            <span class="tag tag-risk">{{ val }}</span>
+                          }
+                        </div>
+                      </div>
+                    }
+
+                    @if (item.keyEnabler && item.keyEnabler.length > 0) {
+                      <div class="kv-row">
+                        <span class="kv-key">Key Enablers:</span>
+                        <div class="kv-value-tags">
+                          @for (val of item.keyEnabler; track val) {
+                            <span class="tag tag-enabler">{{ val }}</span>
+                          }
+                        </div>
+                      </div>
+                    }
+
+                    @if (item.architecturalNuance && item.architecturalNuance.length > 0) {
+                      <div class="kv-row">
+                        <span class="kv-key">Architectural Nuances:</span>
+                        <div class="kv-value-bullets">
+                          @for (val of item.architecturalNuance; track val) {
+                            <div class="bullet-item">• {{ val }}</div>
+                          }
+                        </div>
+                      </div>
+                    }
                   </div>
-                }
-              </div>
+                </div>
+              }
             </div>
+          } @else {
+            <p class="empty-state">No items found in 'promotions' collection.</p>
           }
-        </div>
-      } @else {
-        <p class="empty-state">No items found in 'fraud-n-identity' collection.</p>
+        </section>
       }
-    </section>
 
-    <hr class="pillar-divider" />
+      <!-- Tab 5: Fraud & Identity -->
+      @case ('fraudIdentity') {
+        <section id="panel-fraudIdentity" role="tabpanel" aria-labelledby="tab-fraudIdentity" class="pillar-section">
+          <div class="section-header">
+            <h3>Fraud & Identity</h3>
+            <span class="count-badge">{{ fraudIdentity().length }} items</span>
+          </div>
 
-    <!-- Pillar 6: Returns -->
-    <section class="pillar-section">
-      <div class="section-header">
-        <h3>6. Returns</h3>
-        <span class="count-badge">{{ returns().length }} items</span>
-      </div>
-
-      @if (returns().length > 0) {
-        <div class="collection-grid">
-          @for (item of returns(); track item.id || item.name) {
-            <div class="collection-card">
-              <div class="card-header">
-                <span class="card-name">{{ item.name }}</span>
-              </div>
-
-              <div class="key-value-list">
-                @if (item.primaryRiskMitigated && item.primaryRiskMitigated.length > 0) {
-                  <div class="kv-row">
-                    <span class="kv-key">Primary Risk Mitigated:</span>
-                    <div class="kv-value-tags">
-                      @for (val of item.primaryRiskMitigated; track val) {
-                        <span class="tag tag-risk">{{ val }}</span>
-                      }
-                    </div>
+          @if (fraudIdentity().length > 0) {
+            <div class="collection-grid">
+              @for (item of fraudIdentity(); track item.name) {
+                <div class="collection-card">
+                  <div class="card-header">
+                    <span class="card-name">{{ formatTitle(item.name) }}</span>
                   </div>
-                }
 
-                @if (item.keyEnabler && item.keyEnabler.length > 0) {
-                  <div class="kv-row">
-                    <span class="kv-key">Key Enablers:</span>
-                    <div class="kv-value-tags">
-                      @for (val of item.keyEnabler; track val) {
-                        <span class="tag tag-enabler">{{ val }}</span>
-                      }
-                    </div>
-                  </div>
-                }
+                  <div class="key-value-list">
+                    @if (item.capability && item.capability.length > 0) {
+                      <div class="kv-row">
+                        <span class="kv-key">Capabilities:</span>
+                        <div class="kv-value-tags">
+                          @for (val of item.capability; track val) {
+                            <span class="tag tag-fraud">{{ val }}</span>
+                          }
+                        </div>
+                      </div>
+                    }
 
-                @if (item.architecturalValidity && item.architecturalValidity.length > 0) {
-                  <div class="kv-row">
-                    <span class="kv-key">Architectural Validity:</span>
-                    <div class="kv-value-bullets">
-                      @for (val of item.architecturalValidity; track val) {
-                        <div class="bullet-item">• {{ val }}</div>
-                      }
-                    </div>
+                    @let fraudRisks = item.primary_risk_mitigated || item.primaryRiskMitigated;
+                    @if (fraudRisks && fraudRisks.length > 0) {
+                      <div class="kv-row">
+                        <span class="kv-key">Primary Risk Mitigated:</span>
+                        <div class="kv-value-tags">
+                          @for (val of fraudRisks; track val) {
+                            <span class="tag tag-risk">{{ val }}</span>
+                          }
+                        </div>
+                      </div>
+                    }
+
+                    @let fraudEnablers = item.key_enabler || item.keyEnabler;
+                    @if (fraudEnablers && fraudEnablers.length > 0) {
+                      <div class="kv-row">
+                        <span class="kv-key">Key Enablers:</span>
+                        <div class="kv-value-tags">
+                          @for (val of fraudEnablers; track val) {
+                            <span class="tag tag-enabler">{{ val }}</span>
+                          }
+                        </div>
+                      </div>
+                    }
                   </div>
-                }
-              </div>
+                </div>
+              }
             </div>
+          } @else {
+            <p class="empty-state">No items found in 'fraud-n-identity' collection.</p>
           }
-        </div>
-      } @else {
-        <p class="empty-state">No items found in 'returns' collection.</p>
+        </section>
       }
-    </section>
+
+      <!-- Tab 6: Returns -->
+      @case ('returns') {
+        <section id="panel-returns" role="tabpanel" aria-labelledby="tab-returns" class="pillar-section">
+          <div class="section-header">
+            <h3>Returns</h3>
+            <span class="count-badge">{{ returns().length }} items</span>
+          </div>
+
+          @if (returns().length > 0) {
+            <div class="collection-grid">
+              @for (item of returns(); track item.id || item.name) {
+                <div class="collection-card">
+                  <div class="card-header">
+                    <span class="card-name">{{ item.name }}</span>
+                  </div>
+
+                  <div class="key-value-list">
+                    @if (item.primaryRiskMitigated && item.primaryRiskMitigated.length > 0) {
+                      <div class="kv-row">
+                        <span class="kv-key">Primary Risk Mitigated:</span>
+                        <div class="kv-value-tags">
+                          @for (val of item.primaryRiskMitigated; track val) {
+                            <span class="tag tag-risk">{{ val }}</span>
+                          }
+                        </div>
+                      </div>
+                    }
+
+                    @if (item.keyEnabler && item.keyEnabler.length > 0) {
+                      <div class="kv-row">
+                        <span class="kv-key">Key Enablers:</span>
+                        <div class="kv-value-tags">
+                          @for (val of item.keyEnabler; track val) {
+                            <span class="tag tag-enabler">{{ val }}</span>
+                          }
+                        </div>
+                      </div>
+                    }
+
+                    @if (item.architecturalValidity && item.architecturalValidity.length > 0) {
+                      <div class="kv-row">
+                        <span class="kv-key">Architectural Validity:</span>
+                        <div class="kv-value-bullets">
+                          @for (val of item.architecturalValidity; track val) {
+                            <div class="bullet-item">• {{ val }}</div>
+                          }
+                        </div>
+                      </div>
+                    }
+                  </div>
+                </div>
+              }
+            </div>
+          } @else {
+            <p class="empty-state">No items found in 'returns' collection.</p>
+          }
+        </section>
+      }
+    }
   </div>
 </div>
