@@ -70,57 +70,9 @@
 								[pillarName]="pillarName()"
                 (formChange)="onProtocolFormChange($event)"
               />
-            } @else {
-              <!-- Other Pillars Generic Fields -->
-              <div class="form-group">
-                <label for="item-name" class="form-label">Item Name *</label>
-                <input
-                  id="item-name"
-                  type="text"
-                  class="form-control"
-                  placeholder="e.g. Real Time Inventory Visibility"
-                  [value]="formName()"
-                  (input)="onNameInput($event)"
-                  required
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="item-capabilities" class="form-label">Capabilities (comma separated)</label>
-                <input
-                  id="item-capabilities"
-                  type="text"
-                  class="form-control"
-                  placeholder="e.g. Stock Locking, Low Latency Query"
-                  [value]="formCapabilities()"
-                  (input)="onCapabilitiesInput($event)"
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="item-primary-risk" class="form-label">Primary Risk Mitigated (comma separated)</label>
-                <input
-                  id="item-primary-risk"
-                  type="text"
-                  class="form-control"
-                  placeholder="e.g. Overselling Risk, Cart Race Condition"
-                  [value]="formPrimaryRisk()"
-                  (input)="onPrimaryRiskInput($event)"
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="item-key-enablers" class="form-label">Key Enablers (comma separated)</label>
-                <input
-                  id="item-key-enablers"
-                  type="text"
-                  class="form-control"
-                  placeholder="e.g. Redis PubSub, Inventory Streams"
-                  [value]="formKeyEnablers()"
-                  (input)="onKeyEnablersInput($event)"
-                />
-              </div>
-            }
+							}@else{
+							<app-edit-form></app-edit-form>
+							}
           </form>
         }
       </div>

@@ -123,6 +123,32 @@
           ]
         }
       }
+    },
+    {
+      "name": "6. POST - Create Auto-ID Return Document (returns)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fields\": {\n    \"name\": {\n      \"stringValue\": \"multimodal-visual-triage\"\n    },\n    \"primaryRiskMitigated\": {\n      \"arrayValue\": {\n        \"values\": [\n          {\n            \"stringValue\": \"Fraudulent return claims\"\n          }\n        ]\n      }\n    },\n    \"keyEnabler\": {\n      \"arrayValue\": {\n        \"values\": [\n          {\n            \"stringValue\": \"Vision AI Models\"\n          }\n        ]\n      }\n    }\n  }\n}"
+        },
+        "url": {
+          "raw": "{{BASE_URL}}/returns",
+          "host": [
+            "{{BASE_URL}}"
+          ],
+          "path": [
+            "returns"
+          ]
+        },
+        "description": "HTTP POST to create auto-generated Document ID in 'returns' collection"
+      }
     }
   ]
 }

@@ -87,9 +87,8 @@ export class AgentCommerceKeyPillars {
     this.modalMode.set('create');
     this.isModalOpen.set(true);
   }
-
-  public onEdit(pillarId: PillarTab, item: unknown): void {
-    this.selectedPillar.set(pillarId);
+  public onEdit(item: Record<string, unknown> | unknown): void {
+    this.selectedPillar.set(this.activeTab());
     this.selectedItem.set((item as Record<string, unknown>) || null);
     this.modalMode.set('edit');
     this.isModalOpen.set(true);

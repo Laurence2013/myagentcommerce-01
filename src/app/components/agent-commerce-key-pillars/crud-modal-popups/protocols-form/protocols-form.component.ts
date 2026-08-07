@@ -1,4 +1,4 @@
-import { Component, effect, input, output, signal } from '@angular/core';
+import { Component, effect, input, output, signal, untracked } from '@angular/core';
 import { ProtocolFormValue, CrudModalMode } from '../../../../interfaces/crud-modals';
 
 @Component({
@@ -12,7 +12,10 @@ import { ProtocolFormValue, CrudModalMode } from '../../../../interfaces/crud-mo
 export class ProtocolsFormComponent {
   public readonly item = input<Record<string, unknown> | null>(null);
   public readonly mode = input<CrudModalMode | null>(null);
+  public readonly pillarName = input<string>('');
+
   public readonly formChange = output<ProtocolFormValue>();
+
   public readonly formName = signal<string>('');
   public readonly formLayers = signal<string>('');
   public readonly formPrimaryFunctions = signal<string>('');
@@ -20,7 +23,38 @@ export class ProtocolsFormComponent {
   public readonly formTransports = signal<string>('');
   public readonly formGovernance = signal<string>('');
   public readonly formEvaluationContext = signal<string>('');
-	public readonly pillarName = input<string>(''); // Receiver signal input
+
+  constructor() {
+    effect(() => {
+      const currentItem = this.item();
+      const currentMode = this.mode();
+
+      untracked(() => {
+        if (currentMode === 'edit' && currentItem) {
+          this.formName.set(String(currentItem['name'] || ''));
+
+          const layers = currentItem['layers'];
+          this.formLayers.set(Array.isArray(layers) ? layers.join(', ') : '');
+
+          const funcs = currentItem['primaryFunctions'];
+          this.formPrimaryFunctions.set(Array.isArray(funcs) ? funcs.join(', ') : '');
+
+          const backers = currentItem['keyBackers'];
+          this.formKeyBackers.set(Array.isArray(backers) ? backers.join(', ') : '');
+
+          const transports = currentItem['transports'];
+          this.formTransports.set(Array.isArray(transports) ? transports.join(', ') : '');
+
+          const gov = currentItem['governance'];
+          this.formGovernance.set(Array.isArray(gov) ? gov.join(', ') : '');
+
+          this.formEvaluationContext.set(String(currentItem['evaluationContext'] || ''));
+        } else if (currentMode === 'create') {
+          this.resetForm();
+        }
+      });
+    });
+  }
 
   public resetForm(): void {
     this.formName.set('');
@@ -32,34 +66,42 @@ export class ProtocolsFormComponent {
     this.formEvaluationContext.set('');
     this.emitChange();
   }
+
   public onNameInput(event: Event): void {
     this.formName.set((event.target as HTMLInputElement).value);
     this.emitChange();
   }
+
   public onLayersInput(event: Event): void {
     this.formLayers.set((event.target as HTMLInputElement).value);
     this.emitChange();
   }
+
   public onPrimaryFunctionsInput(event: Event): void {
     this.formPrimaryFunctions.set((event.target as HTMLInputElement).value);
     this.emitChange();
   }
+
   public onKeyBackersInput(event: Event): void {
     this.formKeyBackers.set((event.target as HTMLInputElement).value);
     this.emitChange();
   }
+
   public onTransportsInput(event: Event): void {
     this.formTransports.set((event.target as HTMLInputElement).value);
     this.emitChange();
   }
+
   public onGovernanceInput(event: Event): void {
     this.formGovernance.set((event.target as HTMLInputElement).value);
     this.emitChange();
   }
+
   public onEvaluationContextInput(event: Event): void {
     this.formEvaluationContext.set((event.target as HTMLInputElement).value);
     this.emitChange();
   }
+
   public getFormValue(): ProtocolFormValue {
     return {
       name: this.formName().trim(),
@@ -68,10 +110,10 @@ export class ProtocolsFormComponent {
       keyBackers: this.formKeyBackers().split(',').map((s) => s.trim()).filter(Boolean),
       transports: this.formTransports().split(',').map((s) => s.trim()).filter(Boolean),
       governance: this.formGovernance().split(',').map((s) => s.trim()).filter(Boolean),
-      evaluationContext: this.formEvaluationContext().trim(),
-      //collectionName: this.pillarName().trim().toLowerCase()
+      evaluationContext: this.formEvaluationContext().trim()
     };
   }
+
   private emitChange(): void {
     this.formChange.emit(this.getFormValue());
   }
