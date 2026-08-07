@@ -33,6 +33,7 @@ export class ProtocolsFormComponent {
     this.formTransports.set('');
     this.formGovernance.set('');
     this.formEvaluationContext.set('');
+    this.emitChange();
   }
 
   public onNameInput(event: Event): void {
