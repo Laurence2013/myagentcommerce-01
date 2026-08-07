@@ -2,15 +2,15 @@ import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-merchant-evaluation',
+  selector: 'app-agent-commerce-key-pillars',
   imports: [ReactiveFormsModule],
-  templateUrl: './merchant-evaluation.component.html',
-  styleUrl: './merchant-evaluation.component.sass',
+  templateUrl: './agent-commerce-key-pillars.component.html',
+  styleUrl: './agent-commerce-key-pillars.component.sass',
   host: {
-    'class': 'merchant-evaluation-host'
+    'class': 'agent-commerce-key-pillars-host'
   }
 })
-export class MerchantEvaluationComponent {
+export class AgentCommerceKeyPillars {
   private readonly fb = inject(FormBuilder);
 
   public readonly evaluationForm: FormGroup = this.fb.group({

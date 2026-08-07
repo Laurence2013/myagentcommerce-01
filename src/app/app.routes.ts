@@ -7,8 +7,8 @@ export const routes: Routes = [
     title: 'Agentic Commerce - Home'
   },
   {
-    path: 'admin/merchants-form/new',
-    loadComponent: () => import('./components/merchant-evaluation/merchant-evaluation.component').then((m) => m.MerchantEvaluationComponent),
+    path: 'admin/agent-commerce-key-pillars',
+    loadComponent: () => import('./components/agent-commerce-key-pillars/agent-commerce-key-pillars.component').then((m) => m.AgentCommerceKeyPillars),
   },
   {
     path: 'admin/agents/new',
