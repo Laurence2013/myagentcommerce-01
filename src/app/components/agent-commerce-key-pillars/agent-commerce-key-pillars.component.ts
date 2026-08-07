@@ -74,6 +74,18 @@ export class AgentCommerceKeyPillars {
     this.activeTab.set(tabId);
   }
 
+  public onCreate(pillarId: PillarTab): void {
+    console.log(`Create requested for pillar: ${pillarId}`);
+  }
+
+  public onEdit(pillarId: PillarTab, item: unknown): void {
+    console.log(`Edit requested for pillar '${pillarId}':`, item);
+  }
+
+  public onDelete(pillarId: PillarTab, item: unknown): void {
+    console.log(`Delete requested for pillar '${pillarId}':`, item);
+  }
+
   public getObjectEntries(item: Record<string, unknown>): { key: string; value: unknown }[] {
     if (!item || typeof item !== 'object') return [];
     return Object.entries(item).map(([key, value]) => ({ key, value }));

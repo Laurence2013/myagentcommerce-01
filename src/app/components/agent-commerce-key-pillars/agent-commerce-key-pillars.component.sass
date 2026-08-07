@@ -88,6 +88,13 @@
   align-items: center
   padding-bottom: 0.75rem
   border-bottom: 1px solid rgba(255, 255, 255, 0.08)
+  flex-wrap: wrap
+  gap: 1rem
+
+.header-title-group
+  display: flex
+  align-items: center
+  gap: 0.75rem
 
   h3
     color: #f1f5f9
@@ -102,6 +109,49 @@
   color: #818cf8
   font-size: 0.82rem
   font-weight: 600
+
+.btn
+  display: inline-flex
+  align-items: center
+  gap: 0.4rem
+  padding: 0.45rem 0.85rem
+  border-radius: 8px
+  font-size: 0.82rem
+  font-weight: 600
+  cursor: pointer
+  transition: all 0.2s ease
+  border: 1px solid transparent
+  outline: none
+
+.btn-create
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.25) 0%, rgba(168, 85, 247, 0.25) 100%)
+  border-color: rgba(129, 140, 248, 0.4)
+  color: #a5b4fc
+
+  &:hover
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.4) 0%, rgba(168, 85, 247, 0.4) 100%)
+    color: #ffffff
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3)
+
+.btn-edit
+  background: rgba(59, 130, 246, 0.12)
+  border-color: rgba(59, 130, 246, 0.3)
+  color: #93c5fd
+
+  &:hover
+    background: rgba(59, 130, 246, 0.25)
+    color: #ffffff
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3)
+
+.btn-delete
+  background: rgba(239, 68, 68, 0.12)
+  border-color: rgba(239, 68, 68, 0.3)
+  color: #fca5a5
+
+  &:hover
+    background: rgba(239, 68, 68, 0.25)
+    color: #ffffff
+    box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3)
 
 .collection-grid
   display: flex
@@ -136,7 +186,6 @@
   border-radius: 4px
 
 .card-badge
-  margin-left: auto
   padding: 0.2rem 0.65rem
   background: rgba(99, 102, 241, 0.2)
   border: 1px solid rgba(99, 102, 241, 0.4)
@@ -144,6 +193,12 @@
   color: #a5b4fc
   font-size: 0.75rem
   font-weight: 600
+
+.card-actions
+  margin-left: auto
+  display: flex
+  align-items: center
+  gap: 0.5rem
 
 .key-value-list
   display: flex

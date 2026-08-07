@@ -39,8 +39,16 @@
       @case ('protocols') {
         <section id="panel-protocols" role="tabpanel" aria-labelledby="tab-protocols" class="pillar-section">
           <div class="section-header">
-            <h3>Protocols</h3>
-            <span class="count-badge">{{ protocols().length }} items</span>
+            <div class="header-title-group">
+              <h3>Protocols</h3>
+              <span class="count-badge">{{ protocols().length }} items</span>
+            </div>
+            <button type="button" class="btn btn-create" (click)="onCreate('protocols')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 5v14M5 12h14"/>
+              </svg>
+              Create Protocols
+            </button>
           </div>
 
           @if (protocols().length > 0) {
@@ -55,6 +63,22 @@
                     @if (item.status) {
                       <span class="card-badge">{{ item.status }}</span>
                     }
+                    <div class="card-actions">
+                      <button type="button" class="btn btn-edit" (click)="onEdit('protocols', item)" title="Edit item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        Edit
+                      </button>
+                      <button type="button" class="btn btn-delete" (click)="onDelete('protocols', item)" title="Delete item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                        Delete
+                      </button>
+                    </div>
                   </div>
 
                   <div class="key-value-list">
@@ -133,8 +157,16 @@
       @case ('securities') {
         <section id="panel-securities" role="tabpanel" aria-labelledby="tab-securities" class="pillar-section">
           <div class="section-header">
-            <h3>Securities</h3>
-            <span class="count-badge">{{ securities().length }} items</span>
+            <div class="header-title-group">
+              <h3>Securities</h3>
+              <span class="count-badge">{{ securities().length }} items</span>
+            </div>
+            <button type="button" class="btn btn-create" (click)="onCreate('securities')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 5v14M5 12h14"/>
+              </svg>
+              Create Securities
+            </button>
           </div>
 
           @if (securities().length > 0) {
@@ -143,6 +175,22 @@
                 <div class="collection-card">
                   <div class="card-header">
                     <span class="card-name">{{ item.name }}</span>
+                    <div class="card-actions">
+                      <button type="button" class="btn btn-edit" (click)="onEdit('securities', item)" title="Edit item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        Edit
+                      </button>
+                      <button type="button" class="btn btn-delete" (click)="onDelete('securities', item)" title="Delete item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                        Delete
+                      </button>
+                    </div>
                   </div>
 
                   <div class="key-value-list">
@@ -206,8 +254,16 @@
       @case ('inventoryShipping') {
         <section id="panel-inventoryShipping" role="tabpanel" aria-labelledby="tab-inventoryShipping" class="pillar-section">
           <div class="section-header">
-            <h3>Inventory & Shipping</h3>
-            <span class="count-badge">{{ inventoryShipping().length }} items</span>
+            <div class="header-title-group">
+              <h3>Inventory & Shipping</h3>
+              <span class="count-badge">{{ inventoryShipping().length }} items</span>
+            </div>
+            <button type="button" class="btn btn-create" (click)="onCreate('inventoryShipping')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 5v14M5 12h14"/>
+              </svg>
+              Create Inventory & Shipping
+            </button>
           </div>
 
           @if (inventoryShipping().length > 0) {
@@ -216,6 +272,22 @@
                 <div class="collection-card">
                   <div class="card-header">
                     <span class="card-name">{{ formatTitle(item.name) }}</span>
+                    <div class="card-actions">
+                      <button type="button" class="btn btn-edit" (click)="onEdit('inventoryShipping', item)" title="Edit item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        Edit
+                      </button>
+                      <button type="button" class="btn btn-delete" (click)="onDelete('inventoryShipping', item)" title="Delete item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                        Delete
+                      </button>
+                    </div>
                   </div>
 
                   <div class="key-value-list">
@@ -267,8 +339,16 @@
       @case ('promotions') {
         <section id="panel-promotions" role="tabpanel" aria-labelledby="tab-promotions" class="pillar-section">
           <div class="section-header">
-            <h3>Promotions</h3>
-            <span class="count-badge">{{ promotions().length }} items</span>
+            <div class="header-title-group">
+              <h3>Promotions</h3>
+              <span class="count-badge">{{ promotions().length }} items</span>
+            </div>
+            <button type="button" class="btn btn-create" (click)="onCreate('promotions')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 5v14M5 12h14"/>
+              </svg>
+              Create Promotions
+            </button>
           </div>
 
           @if (promotions().length > 0) {
@@ -277,6 +357,22 @@
                 <div class="collection-card">
                   <div class="card-header">
                     <span class="card-name">{{ formatTitle(item.name) }}</span>
+                    <div class="card-actions">
+                      <button type="button" class="btn btn-edit" (click)="onEdit('promotions', item)" title="Edit item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        Edit
+                      </button>
+                      <button type="button" class="btn btn-delete" (click)="onDelete('promotions', item)" title="Delete item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                        Delete
+                      </button>
+                    </div>
                   </div>
 
                   <div class="key-value-list">
@@ -337,8 +433,16 @@
       @case ('fraudIdentity') {
         <section id="panel-fraudIdentity" role="tabpanel" aria-labelledby="tab-fraudIdentity" class="pillar-section">
           <div class="section-header">
-            <h3>Fraud & Identity</h3>
-            <span class="count-badge">{{ fraudIdentity().length }} items</span>
+            <div class="header-title-group">
+              <h3>Fraud & Identity</h3>
+              <span class="count-badge">{{ fraudIdentity().length }} items</span>
+            </div>
+            <button type="button" class="btn btn-create" (click)="onCreate('fraudIdentity')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 5v14M5 12h14"/>
+              </svg>
+              Create Fraud & Identity
+            </button>
           </div>
 
           @if (fraudIdentity().length > 0) {
@@ -347,6 +451,22 @@
                 <div class="collection-card">
                   <div class="card-header">
                     <span class="card-name">{{ formatTitle(item.name) }}</span>
+                    <div class="card-actions">
+                      <button type="button" class="btn btn-edit" (click)="onEdit('fraudIdentity', item)" title="Edit item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        Edit
+                      </button>
+                      <button type="button" class="btn btn-delete" (click)="onDelete('fraudIdentity', item)" title="Delete item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                        Delete
+                      </button>
+                    </div>
                   </div>
 
                   <div class="key-value-list">
@@ -398,8 +518,16 @@
       @case ('returns') {
         <section id="panel-returns" role="tabpanel" aria-labelledby="tab-returns" class="pillar-section">
           <div class="section-header">
-            <h3>Returns</h3>
-            <span class="count-badge">{{ returns().length }} items</span>
+            <div class="header-title-group">
+              <h3>Returns</h3>
+              <span class="count-badge">{{ returns().length }} items</span>
+            </div>
+            <button type="button" class="btn btn-create" (click)="onCreate('returns')">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M12 5v14M5 12h14"/>
+              </svg>
+              Create Returns
+            </button>
           </div>
 
           @if (returns().length > 0) {
@@ -408,6 +536,22 @@
                 <div class="collection-card">
                   <div class="card-header">
                     <span class="card-name">{{ item.name }}</span>
+                    <div class="card-actions">
+                      <button type="button" class="btn btn-edit" (click)="onEdit('returns', item)" title="Edit item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                          <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                        </svg>
+                        Edit
+                      </button>
+                      <button type="button" class="btn btn-delete" (click)="onDelete('returns', item)" title="Delete item">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <polyline points="3 6 5 6 21 6"></polyline>
+                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                        </svg>
+                        Delete
+                      </button>
+                    </div>
                   </div>
 
                   <div class="key-value-list">
