@@ -12,9 +12,7 @@ import { ProtocolFormValue, CrudModalMode } from '../../../../interfaces/crud-mo
 export class ProtocolsFormComponent {
   public readonly item = input<Record<string, unknown> | null>(null);
   public readonly mode = input<CrudModalMode | null>(null);
-
   public readonly formChange = output<ProtocolFormValue>();
-
   public readonly formName = signal<string>('');
   public readonly formLayers = signal<string>('');
   public readonly formPrimaryFunctions = signal<string>('');
@@ -23,7 +21,6 @@ export class ProtocolsFormComponent {
   public readonly formGovernance = signal<string>('');
   public readonly formEvaluationContext = signal<string>('');
 	public readonly pillarName = input<string>(''); // Receiver signal input
-
 
   public resetForm(): void {
     this.formName.set('');
@@ -35,42 +32,34 @@ export class ProtocolsFormComponent {
     this.formEvaluationContext.set('');
     this.emitChange();
   }
-
   public onNameInput(event: Event): void {
     this.formName.set((event.target as HTMLInputElement).value);
     this.emitChange();
   }
-
   public onLayersInput(event: Event): void {
     this.formLayers.set((event.target as HTMLInputElement).value);
     this.emitChange();
   }
-
   public onPrimaryFunctionsInput(event: Event): void {
     this.formPrimaryFunctions.set((event.target as HTMLInputElement).value);
     this.emitChange();
   }
-
   public onKeyBackersInput(event: Event): void {
     this.formKeyBackers.set((event.target as HTMLInputElement).value);
     this.emitChange();
   }
-
   public onTransportsInput(event: Event): void {
     this.formTransports.set((event.target as HTMLInputElement).value);
     this.emitChange();
   }
-
   public onGovernanceInput(event: Event): void {
     this.formGovernance.set((event.target as HTMLInputElement).value);
     this.emitChange();
   }
-
   public onEvaluationContextInput(event: Event): void {
     this.formEvaluationContext.set((event.target as HTMLInputElement).value);
     this.emitChange();
   }
-
   public getFormValue(): ProtocolFormValue {
     return {
       name: this.formName().trim(),
@@ -83,7 +72,6 @@ export class ProtocolsFormComponent {
       //collectionName: this.pillarName().trim().toLowerCase()
     };
   }
-
   private emitChange(): void {
     this.formChange.emit(this.getFormValue());
   }
