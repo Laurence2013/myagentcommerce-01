@@ -598,4 +598,14 @@
       }
     }
   </div>
+
+  <app-crud-modal-popups
+    [isOpen]="isModalOpen()"
+    [mode]="modalMode()"
+    [pillarId]="selectedPillar()"
+    [pillarName]="getPillarName(selectedPillar())"
+    [item]="selectedItem()"
+    (closeModal)="onModalClose()"
+    (confirmAction)="onModalSubmit($event)"
+  />
 </div>

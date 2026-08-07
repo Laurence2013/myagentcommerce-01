@@ -9,6 +9,11 @@ import {
   FraudDetectionItem,
   ReturnItem
 } from '../../interfaces/agent-commerce-pillars';
+import {
+  CrudModalPopupsComponent,
+  CrudModalMode,
+  CrudModalSubmitEvent
+} from './crud-modal-popups/crud-modal-popups.component';
 
 export type PillarTab =
   | 'protocols'
@@ -27,6 +32,7 @@ export interface TabDefinition {
   selector: 'app-agent-commerce-key-pillars',
   templateUrl: './agent-commerce-key-pillars.component.html',
   styleUrl: './agent-commerce-key-pillars.component.sass',
+  imports: [CrudModalPopupsComponent],
   host: {
     'class': 'agent-commerce-key-pillars-host'
   }
@@ -35,6 +41,10 @@ export class AgentCommerceKeyPillars {
   protected readonly agentPillarsService = inject(AgentPillarsService);
 
   public readonly activeTab = signal<PillarTab>('protocols');
+  public readonly isModalOpen = signal<boolean>(false);
+  public readonly modalMode = signal<CrudModalMode | null>(null);
+  public readonly selectedPillar = signal<PillarTab | null>(null);
+  public readonly selectedItem = signal<Record<string, unknown> | null>(null);
 
   public readonly tabs: TabDefinition[] = [
     { id: 'protocols', name: 'Protocols' },
@@ -75,15 +85,41 @@ export class AgentCommerceKeyPillars {
   }
 
   public onCreate(pillarId: PillarTab): void {
-    console.log(`Create requested for pillar: ${pillarId}`);
+    this.selectedPillar.set(pillarId);
+    this.selectedItem.set(null);
+    this.modalMode.set('create');
+    this.isModalOpen.set(true);
   }
 
   public onEdit(pillarId: PillarTab, item: unknown): void {
-    console.log(`Edit requested for pillar '${pillarId}':`, item);
+    this.selectedPillar.set(pillarId);
+    this.selectedItem.set((item as Record<string, unknown>) || null);
+    this.modalMode.set('edit');
+    this.isModalOpen.set(true);
   }
 
   public onDelete(pillarId: PillarTab, item: unknown): void {
-    console.log(`Delete requested for pillar '${pillarId}':`, item);
+    this.selectedPillar.set(pillarId);
+    this.selectedItem.set((item as Record<string, unknown>) || null);
+    this.modalMode.set('delete');
+    this.isModalOpen.set(true);
+  }
+
+  public onModalClose(): void {
+    this.isModalOpen.set(false);
+    this.modalMode.set(null);
+    this.selectedItem.set(null);
+  }
+
+  public onModalSubmit(event: CrudModalSubmitEvent): void {
+    console.log(`CRUD action '${event.mode}' submitted for pillar '${event.pillarId}':`, event.item);
+    this.onModalClose();
+  }
+
+  public getPillarName(pillarId: PillarTab | null): string {
+    if (!pillarId) return '';
+    const match = this.tabs.find((t) => t.id === pillarId);
+    return match ? match.name : '';
   }
 
   public getObjectEntries(item: Record<string, unknown>): { key: string; value: unknown }[] {

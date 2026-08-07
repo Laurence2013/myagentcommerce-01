@@ -1,0 +1,139 @@
+@if (isOpen()) {
+  <div
+    class="modal-backdrop"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-labelledby]="'modal-title'"
+    (click)="onBackdropClick($event)"
+  >
+    <div class="modal-dialog-card">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <span class="modal-icon-badge" [class]="'badge-' + mode()">
+            @switch (mode()) {
+              @case ('create') {
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M12 5v14M5 12h14"/>
+                </svg>
+              }
+              @case ('edit') {
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                </svg>
+              }
+              @case ('delete') {
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+              }
+            }
+          </span>
+
+          <h3 id="modal-title">
+            @switch (mode()) {
+              @case ('create') { Create {{ pillarName() }} Item }
+              @case ('edit') { Edit {{ pillarName() }} Item }
+              @case ('delete') { Delete {{ pillarName() }} Item }
+            }
+          </h3>
+        </div>
+
+        <button type="button" class="close-btn" (click)="closeModal.emit()" title="Close dialog">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Modal Body -->
+      <div class="modal-body">
+        @if (mode() === 'delete') {
+          <div class="delete-confirmation-box">
+            <p class="warning-text">Are you sure you want to delete this item?</p>
+            <div class="item-summary-card">
+              <span class="item-name">{{ item()?.['name'] || 'Unnamed Item' }}</span>
+              <span class="pillar-tag">{{ pillarName() }}</span>
+            </div>
+            <p class="subtext">This action cannot be undone.</p>
+          </div>
+        } @else {
+          <form class="crud-form" (submit)="$event.preventDefault(); onSubmit()">
+            <div class="form-group">
+              <label for="item-name" class="form-label">Item Name *</label>
+              <input
+                id="item-name"
+                type="text"
+                class="form-control"
+                placeholder="e.g. Real Time Inventory Visibility"
+                [value]="formName()"
+                (input)="onNameInput($event)"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="item-capabilities" class="form-label">Capabilities (comma separated)</label>
+              <input
+                id="item-capabilities"
+                type="text"
+                class="form-control"
+                placeholder="e.g. Stock Locking, Low Latency Query"
+                [value]="formCapabilities()"
+                (input)="onCapabilitiesInput($event)"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="item-primary-risk" class="form-label">Primary Risk Mitigated (comma separated)</label>
+              <input
+                id="item-primary-risk"
+                type="text"
+                class="form-control"
+                placeholder="e.g. Overselling Risk, Cart Race Condition"
+                [value]="formPrimaryRisk()"
+                (input)="onPrimaryRiskInput($event)"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="item-key-enablers" class="form-label">Key Enablers (comma separated)</label>
+              <input
+                id="item-key-enablers"
+                type="text"
+                class="form-control"
+                placeholder="e.g. Redis PubSub, Inventory Streams"
+                [value]="formKeyEnablers()"
+                (input)="onKeyEnablersInput($event)"
+              />
+            </div>
+          </form>
+        }
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-cancel" (click)="closeModal.emit()">
+          Cancel
+        </button>
+
+        @if (mode() === 'delete') {
+          <button type="button" class="btn btn-submit-delete" (click)="onSubmit()">
+            Confirm Delete
+          </button>
+        } @else if (mode() === 'edit') {
+          <button type="button" class="btn btn-submit-edit" (click)="onSubmit()">
+            Save Changes
+          </button>
+        } @else {
+          <button type="button" class="btn btn-submit-create" (click)="onSubmit()">
+            Create Item
+          </button>
+        }
+      </div>
+    </div>
+  </div>
+}
