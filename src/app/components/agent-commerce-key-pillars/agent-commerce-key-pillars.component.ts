@@ -9,11 +9,8 @@ import {
   FraudDetectionItem,
   ReturnItem
 } from '../../interfaces/agent-commerce-pillars';
-import {
-  CrudModalPopupsComponent,
-  CrudModalMode,
-  CrudModalSubmitEvent
-} from './crud-modal-popups/crud-modal-popups.component';
+import { CrudModalPopupsComponent } from './crud-modal-popups/crud-modal-popups.component';
+import { CrudModalMode, CrudModalSubmitEvent } from '../../interfaces/crud-modals';
 
 export type PillarTab =
   | 'protocols'

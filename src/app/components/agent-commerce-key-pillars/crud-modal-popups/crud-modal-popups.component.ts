@@ -1,14 +1,11 @@
 import { Component, effect, input, output, signal } from '@angular/core';
 import { PillarTab } from '../agent-commerce-key-pillars.component';
-import { ProtocolsFormComponent, ProtocolFormValue } from './protocols-form/protocols-form.component';
-
-export type CrudModalMode = 'create' | 'edit' | 'delete';
-
-export interface CrudModalSubmitEvent {
-  mode: CrudModalMode;
-  pillarId: PillarTab;
-  item: Record<string, unknown>;
-}
+import { ProtocolsFormComponent } from './protocols-form/protocols-form.component';
+import {
+  CrudModalMode,
+  CrudModalSubmitEvent,
+  ProtocolFormValue
+} from '../../../interfaces/crud-modals';
 
 @Component({
   selector: 'app-crud-modal-popups',

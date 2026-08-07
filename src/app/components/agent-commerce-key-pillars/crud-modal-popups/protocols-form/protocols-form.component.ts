@@ -1,14 +1,5 @@
 import { Component, effect, input, output, signal } from '@angular/core';
-
-export interface ProtocolFormValue {
-  name: string;
-  layers: string[];
-  primaryFunctions: string[];
-  keyBackers: string[];
-  transports: string[];
-  governance: string[];
-  evaluationContext: string;
-}
+import { ProtocolFormValue, CrudModalMode } from '../../../../interfaces/crud-modals';
 
 @Component({
   selector: 'app-protocols-form',
@@ -20,7 +11,7 @@ export interface ProtocolFormValue {
 })
 export class ProtocolsFormComponent {
   public readonly item = input<Record<string, unknown> | null>(null);
-  public readonly mode = input<'create' | 'edit' | 'delete' | null>(null);
+  public readonly mode = input<CrudModalMode | null>(null);
 
   public readonly formChange = output<ProtocolFormValue>();
 
@@ -36,23 +27,34 @@ export class ProtocolsFormComponent {
     effect(() => {
       const currentItem = this.item();
       if (this.mode() === 'edit' && currentItem) {
-        this.formName.set(String(currentItem['name'] || ''));
-        const layers = currentItem['layers'];
-        this.formLayers.set(Array.isArray(layers) ? layers.join(', ') : '');
-        const funcs = currentItem['primaryFunctions'];
-        this.formPrimaryFunctions.set(Array.isArray(funcs) ? funcs.join(', ') : '');
-        const backers = currentItem['keyBackers'];
-        this.formKeyBackers.set(Array.isArray(backers) ? backers.join(', ') : '');
-        const transports = currentItem['transports'];
-        this.formTransports.set(Array.isArray(transports) ? transports.join(', ') : '');
-        const gov = currentItem['governance'];
-        this.formGovernance.set(Array.isArray(gov) ? gov.join(', ') : '');
-        this.formEvaluationContext.set(String(currentItem['evaluationContext'] || ''));
+        this.populateForm(currentItem);
       } else {
         this.resetForm();
       }
       this.emitChange();
     });
+  }
+
+  public populateForm(currentItem: Record<string, unknown>): void {
+    this.formName.set(String(currentItem['name'] || ''));
+    const layers = currentItem['layers'];
+    this.formLayers.set(Array.isArray(layers) ? layers.join(', ') : '');
+    const funcs = currentItem['primaryFunctions'];
+    this.formPrimaryFunctions.set(Array.isArray(funcs) ? funcs.join(', ') : '');
+    const backers = currentItem['keyBackers'];
+    this.formKeyBackers.set(Array.isArray(backers) ? backers.join(', ') : '');
+    const transports = currentItem['transports'];
+    this.formTransports.set(Array.isArray(transports) ? transports.join(', ') : '');
+    const gov = currentItem['governance'];
+    this.formGovernance.set(Array.isArray(gov) ? gov.join(', ') : '');
+    this.formEvaluationContext.set(String(currentItem['evaluationContext'] || ''));
+  }
+
+  public protocol(currentItem?: Record<string, unknown>): ProtocolFormValue {
+    if (currentItem) {
+      this.populateForm(currentItem);
+    }
+    return this.getFormValue();
   }
 
   public resetForm(): void {
