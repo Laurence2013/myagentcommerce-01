@@ -1,0 +1,113 @@
+<div class="protocols-form-container">
+  <!-- 1. Item Name -->
+  <div class="form-group">
+    <div class="label-row">
+      <label for="protocol-item-name" class="form-label">Item Name</label>
+      <span class="field-badge required-badge">Required</span>
+    </div>
+    <input
+      id="protocol-item-name"
+      type="text"
+      class="form-control"
+      placeholder="e.g. UCP (Unified Commerce Protocol)"
+      [value]="formName()"
+      (input)="onNameInput($event)"
+      required
+    />
+  </div>
+
+  <!-- 2. Layers -->
+  <div class="form-group">
+    <div class="label-row">
+      <label for="protocol-item-layers" class="form-label">Layers</label>
+      <span class="field-badge hint-badge">Comma separated</span>
+    </div>
+    <input
+      id="protocol-item-layers"
+      type="text"
+      class="form-control"
+      placeholder="e.g. Agentic Layer, Discovery"
+      [value]="formLayers()"
+      (input)="onLayersInput($event)"
+    />
+  </div>
+
+  <!-- 3. Primary Functions -->
+  <div class="form-group">
+    <div class="label-row">
+      <label for="protocol-item-primary-functions" class="form-label">Primary Functions</label>
+      <span class="field-badge hint-badge">Comma separated</span>
+    </div>
+    <input
+      id="protocol-item-primary-functions"
+      type="text"
+      class="form-control"
+      placeholder="e.g. Universal Schema Parsing, Agent Negotiation"
+      [value]="formPrimaryFunctions()"
+      (input)="onPrimaryFunctionsInput($event)"
+    />
+  </div>
+
+  <!-- 4. Key Backers -->
+  <div class="form-group">
+    <div class="label-row">
+      <label for="protocol-item-key-backers" class="form-label">Key Backers</label>
+      <span class="field-badge hint-badge">Comma separated</span>
+    </div>
+    <input
+      id="protocol-item-key-backers"
+      type="text"
+      class="form-control"
+      placeholder="e.g. Google, Shopify, Linux Foundation"
+      [value]="formKeyBackers()"
+      (input)="onKeyBackersInput($event)"
+    />
+  </div>
+
+  <!-- 5. Transport -->
+  <div class="form-group">
+    <div class="label-row">
+      <label for="protocol-item-transports" class="form-label">Transport</label>
+      <span class="field-badge hint-badge">Comma separated</span>
+    </div>
+    <input
+      id="protocol-item-transports"
+      type="text"
+      class="form-control"
+      placeholder="e.g. HTTPS, gRPC, WebSockets"
+      [value]="formTransports()"
+      (input)="onTransportsInput($event)"
+    />
+  </div>
+
+  <!-- 6. Governance -->
+  <div class="form-group">
+    <div class="label-row">
+      <label for="protocol-item-governance" class="form-label">Governance</label>
+      <span class="field-badge hint-badge">Comma separated</span>
+    </div>
+    <input
+      id="protocol-item-governance"
+      type="text"
+      class="form-control"
+      placeholder="e.g. Open Standard, DAO, W3C"
+      [value]="formGovernance()"
+      (input)="onGovernanceInput($event)"
+    />
+  </div>
+
+  <!-- 7. Evaluation Context -->
+  <div class="form-group">
+    <div class="label-row">
+      <label for="protocol-item-evaluation-context" class="form-label">Evaluation Context</label>
+    </div>
+    <input
+      id="protocol-item-evaluation-context"
+      type="text"
+      class="form-control"
+      placeholder="e.g. Standard protocol for cross-platform agentic transactions"
+      [value]="formEvaluationContext()"
+      (input)="onEvaluationContextInput($event)"
+    />
+  </div>
+</div>

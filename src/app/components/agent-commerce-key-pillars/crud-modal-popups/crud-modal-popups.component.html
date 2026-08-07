@@ -62,94 +62,28 @@
           </div>
         } @else {
           <form class="crud-form" (submit)="$event.preventDefault(); onSubmit()">
-            <div class="form-group">
-              <label for="item-name" class="form-label">Item Name *</label>
-              <input
-                id="item-name"
-                type="text"
-                class="form-control"
-                placeholder="e.g. UCP (Unified Commerce Protocol)"
-                [value]="formName()"
-                (input)="onNameInput($event)"
-                required
-              />
-            </div>
-
             @if (pillarId() === 'protocols') {
-              <!-- Protocols Specific Fields -->
-              <div class="form-group">
-                <label for="item-layers" class="form-label">Layers (comma separated)</label>
-                <input
-                  id="item-layers"
-                  type="text"
-                  class="form-control"
-                  placeholder="e.g. Agentic Layer, Discovery"
-                  [value]="formLayers()"
-                  (input)="onLayersInput($event)"
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="item-primary-functions" class="form-label">Primary Functions (comma separated)</label>
-                <input
-                  id="item-primary-functions"
-                  type="text"
-                  class="form-control"
-                  placeholder="e.g. Universal Schema Parsing, Agent Negotiation"
-                  [value]="formPrimaryFunctions()"
-                  (input)="onPrimaryFunctionsInput($event)"
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="item-key-backers" class="form-label">Key Backers (comma separated)</label>
-                <input
-                  id="item-key-backers"
-                  type="text"
-                  class="form-control"
-                  placeholder="e.g. Google, Shopify, Linux Foundation"
-                  [value]="formKeyBackers()"
-                  (input)="onKeyBackersInput($event)"
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="item-transports" class="form-label">Transport (comma separated)</label>
-                <input
-                  id="item-transports"
-                  type="text"
-                  class="form-control"
-                  placeholder="e.g. HTTPS, gRPC, WebSockets"
-                  [value]="formTransports()"
-                  (input)="onTransportsInput($event)"
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="item-governance" class="form-label">Governance (comma separated)</label>
-                <input
-                  id="item-governance"
-                  type="text"
-                  class="form-control"
-                  placeholder="e.g. Open Standard, DAO, W3C"
-                  [value]="formGovernance()"
-                  (input)="onGovernanceInput($event)"
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="item-evaluation-context" class="form-label">Evaluation Context</label>
-                <input
-                  id="item-evaluation-context"
-                  type="text"
-                  class="form-control"
-                  placeholder="e.g. Standard protocol for cross-platform agentic transactions"
-                  [value]="formEvaluationContext()"
-                  (input)="onEvaluationContextInput($event)"
-                />
-              </div>
+              <!-- Protocols Sub-Component -->
+              <app-protocols-form
+                [item]="item()"
+                [mode]="mode()"
+                (formChange)="onProtocolFormChange($event)"
+              />
             } @else {
               <!-- Other Pillars Generic Fields -->
+              <div class="form-group">
+                <label for="item-name" class="form-label">Item Name *</label>
+                <input
+                  id="item-name"
+                  type="text"
+                  class="form-control"
+                  placeholder="e.g. Real Time Inventory Visibility"
+                  [value]="formName()"
+                  (input)="onNameInput($event)"
+                  required
+                />
+              </div>
+
               <div class="form-group">
                 <label for="item-capabilities" class="form-label">Capabilities (comma separated)</label>
                 <input

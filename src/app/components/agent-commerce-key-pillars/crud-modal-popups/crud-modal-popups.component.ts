@@ -1,5 +1,6 @@
 import { Component, effect, input, output, signal } from '@angular/core';
 import { PillarTab } from '../agent-commerce-key-pillars.component';
+import { ProtocolsFormComponent, ProtocolFormValue } from './protocols-form/protocols-form.component';
 
 export type CrudModalMode = 'create' | 'edit' | 'delete';
 
@@ -13,6 +14,7 @@ export interface CrudModalSubmitEvent {
   selector: 'app-crud-modal-popups',
   templateUrl: './crud-modal-popups.component.html',
   styleUrl: './crud-modal-popups.component.sass',
+  imports: [ProtocolsFormComponent],
   host: {
     'class': 'crud-modal-popups-host',
     '(keydown.escape)': 'onEscape()'
@@ -28,21 +30,16 @@ export class CrudModalPopupsComponent {
   public readonly closeModal = output<void>();
   public readonly confirmAction = output<CrudModalSubmitEvent>();
 
-  // Common Field
+  // Common Field for generic pillars
   public readonly formName = signal<string>('');
-
-  // Protocol-Specific Fields
-  public readonly formLayers = signal<string>('');
-  public readonly formPrimaryFunctions = signal<string>('');
-  public readonly formKeyBackers = signal<string>('');
-  public readonly formTransports = signal<string>('');
-  public readonly formGovernance = signal<string>('');
-  public readonly formEvaluationContext = signal<string>('');
 
   // Generic/Other Pillar Fields
   public readonly formCapabilities = signal<string>('');
   public readonly formPrimaryRisk = signal<string>('');
   public readonly formKeyEnablers = signal<string>('');
+
+  // Protocol Form Value emitted from ProtocolsFormComponent
+  public readonly protocolFormValue = signal<ProtocolFormValue | null>(null);
 
   constructor() {
     effect(() => {
@@ -50,21 +47,8 @@ export class CrudModalPopupsComponent {
         const currentItem = this.item() || {};
         const pid = this.pillarId();
         if (this.mode() === 'edit' && currentItem) {
-          this.formName.set(String(currentItem['name'] || ''));
-
-          if (pid === 'protocols') {
-            const layers = currentItem['layers'];
-            this.formLayers.set(Array.isArray(layers) ? layers.join(', ') : '');
-            const funcs = currentItem['primaryFunctions'];
-            this.formPrimaryFunctions.set(Array.isArray(funcs) ? funcs.join(', ') : '');
-            const backers = currentItem['keyBackers'];
-            this.formKeyBackers.set(Array.isArray(backers) ? backers.join(', ') : '');
-            const transports = currentItem['transports'];
-            this.formTransports.set(Array.isArray(transports) ? transports.join(', ') : '');
-            const gov = currentItem['governance'];
-            this.formGovernance.set(Array.isArray(gov) ? gov.join(', ') : '');
-            this.formEvaluationContext.set(String(currentItem['evaluationContext'] || ''));
-          } else {
+          if (pid !== 'protocols') {
+            this.formName.set(String(currentItem['name'] || ''));
             const caps = currentItem['capability'] || currentItem['Capability'];
             this.formCapabilities.set(Array.isArray(caps) ? caps.join(', ') : '');
             const risk = currentItem['primaryRiskMitigated'] || currentItem['primary_risk_mitigated'] || currentItem['Primary Risk Mitigated'];
@@ -74,18 +58,16 @@ export class CrudModalPopupsComponent {
           }
         } else if (this.mode() === 'create') {
           this.formName.set('');
-          this.formLayers.set('');
-          this.formPrimaryFunctions.set('');
-          this.formKeyBackers.set('');
-          this.formTransports.set('');
-          this.formGovernance.set('');
-          this.formEvaluationContext.set('');
           this.formCapabilities.set('');
           this.formPrimaryRisk.set('');
           this.formKeyEnablers.set('');
         }
       }
     });
+  }
+
+  public onProtocolFormChange(val: ProtocolFormValue): void {
+    this.protocolFormValue.set(val);
   }
 
   public onEscape(): void {
@@ -102,30 +84,6 @@ export class CrudModalPopupsComponent {
 
   public onNameInput(event: Event): void {
     this.formName.set((event.target as HTMLInputElement).value);
-  }
-
-  public onLayersInput(event: Event): void {
-    this.formLayers.set((event.target as HTMLInputElement).value);
-  }
-
-  public onPrimaryFunctionsInput(event: Event): void {
-    this.formPrimaryFunctions.set((event.target as HTMLInputElement).value);
-  }
-
-  public onKeyBackersInput(event: Event): void {
-    this.formKeyBackers.set((event.target as HTMLInputElement).value);
-  }
-
-  public onTransportsInput(event: Event): void {
-    this.formTransports.set((event.target as HTMLInputElement).value);
-  }
-
-  public onGovernanceInput(event: Event): void {
-    this.formGovernance.set((event.target as HTMLInputElement).value);
-  }
-
-  public onEvaluationContextInput(event: Event): void {
-    this.formEvaluationContext.set((event.target as HTMLInputElement).value);
   }
 
   public onCapabilitiesInput(event: Event): void {
@@ -158,15 +116,10 @@ export class CrudModalPopupsComponent {
     let payload: Record<string, unknown>;
 
     if (currentPillar === 'protocols') {
+      const pVal = this.protocolFormValue();
       payload = {
         ...(this.item() || {}),
-        name: this.formName().trim(),
-        layers: this.formLayers().split(',').map((s) => s.trim()).filter(Boolean),
-        primaryFunctions: this.formPrimaryFunctions().split(',').map((s) => s.trim()).filter(Boolean),
-        keyBackers: this.formKeyBackers().split(',').map((s) => s.trim()).filter(Boolean),
-        transports: this.formTransports().split(',').map((s) => s.trim()).filter(Boolean),
-        governance: this.formGovernance().split(',').map((s) => s.trim()).filter(Boolean),
-        evaluationContext: this.formEvaluationContext().trim()
+        ...(pVal || {})
       };
     } else {
       payload = {
