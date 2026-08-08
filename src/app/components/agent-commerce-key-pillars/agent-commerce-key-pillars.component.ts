@@ -1,24 +1,12 @@
 import { Component, inject, signal, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { AgentPillarsService } from '../../services/agent-pillars/agent-pillars.service';
-import {
-  ProtocolItem,
-  SecurityItem,
-  InventoryAndShippingItem,
-  PromotionItem,
-  FraudDetectionItem,
-  ReturnItem
-} from '../../interfaces/agent-commerce-pillars';
+import { ProtocolItem, SecurityItem, InventoryAndShippingItem, 
+	PromotionItem, FraudDetectionItem, ReturnItem } from '../../interfaces/agent-commerce-pillars';
 import { CrudModalPopupsComponent } from './crud-modal-popups/crud-modal-popups.component';
 import { CrudModalMode, CrudModalSubmitEvent } from '../../interfaces/crud-modals';
 
-export type PillarTab =
-  | 'protocols'
-  | 'securities'
-  | 'inventoryShipping'
-  | 'promotions'
-  | 'fraudIdentity'
-  | 'returns';
+export type PillarTab = | 'protocols' | 'securities' | 'inventoryShipping' | 'promotions' | 'fraudIdentity' | 'returns';
 
 export interface TabDefinition {
   id: PillarTab;
@@ -114,15 +102,6 @@ export class AgentCommerceKeyPillars {
       pillarName: this.getPillarName(event.pillarId),
       payload: event.item
     });
-		if(event.mode === 'create' && event.pillarId === 'securities'){
-      this.agentPillarsService.addSecurities(event.item).subscribe({
-        next: created => {
-          console.log(`[AgentCommerceKeyPillars] Successfully saved ${event.pillarId} item to Firestore emulator:`, created);
-        },
-        error: err => {
-          console.error(`[AgentCommerceKeyPillars] Failed to save ${event.pillarId} item to Firestore emulator:`, err);
-        }});
-		}
     if (event.mode === 'create' && event.pillarId === 'protocols'){
       this.agentPillarsService.addProtocol(event.item).subscribe({
         next: created => {
@@ -134,6 +113,15 @@ export class AgentCommerceKeyPillars {
 		} 
 		if (event.mode === 'edit' && event.pillarId === 'protocols') {
       this.agentPillarsService.updateProtocol(event.item).subscribe({
+        next: created => {
+          console.log(`[AgentCommerceKeyPillars] Successfully saved ${event.pillarId} item to Firestore emulator:`, created);
+        },
+        error: err => {
+          console.error(`[AgentCommerceKeyPillars] Failed to save ${event.pillarId} item to Firestore emulator:`, err);
+        }});
+		}
+		if(event.mode === 'create' && event.pillarId === 'securities'){
+      this.agentPillarsService.addSecurities(event.item).subscribe({
         next: created => {
           console.log(`[AgentCommerceKeyPillars] Successfully saved ${event.pillarId} item to Firestore emulator:`, created);
         },
