@@ -113,7 +113,7 @@ export class AgentCommerceKeyPillars {
       payload: event.item
     });
     if (event.mode === 'create' || event.mode === 'edit') {
-      this.agentPillarsService.addPillarItem(event.pillarId, event.item).subscribe({
+      this.agentPillarsService.updateProtocol(event.item).subscribe({
         next: (created) => {
           console.log(`[AgentCommerceKeyPillars] Successfully saved ${event.pillarId} item to Firestore emulator:`, created);
         },

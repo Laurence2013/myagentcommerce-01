@@ -49,6 +49,41 @@ export class AgentPillarsService {
   public addProtocol(protocol: Record<string, unknown>): Observable<ProtocolItem> {
     return this.addPillarItem<ProtocolItem>('protocols', protocol);
   }
+  public updateProtocol(protocol: Record<string, unknown>): Observable<ProtocolItem> {
+    return this.updatePillarItem<ProtocolItem>('protocols', protocol);
+  }
+  public updatePillarItem<T = Record<string, unknown>>(
+    collectionName: PillarCollectionName | string,
+    item: Record<string, unknown>
+  ): Observable<T> {
+    console.log('[AgentPillarsService] updatePillarItem called:', { collectionName, item });
+    if (!this.http) {
+      console.warn('AgentPillarsService: HttpClient is not provided.');
+      return throwError(() => new Error('HttpClient is not provided'));
+    }
+    const docId = (item['id'] || item['docId'] || item['name']) as string;
+    if (!docId) {
+      console.warn('AgentPillarsService: No document ID found on item, falling back to addPillarItem');
+      return this.addPillarItem<T>(collectionName, item);
+    }
+    const baseUrl = this.getFirestoreRestUrl(collectionName);
+    const url = `${baseUrl}/${docId}`;
+    const body = this.formatFirestoreFields(item);
+
+    return this.http.patch<Record<string, unknown>>(url, body).pipe(
+      map((response) => {
+        const fields = (response['fields'] as Record<string, unknown>) || {};
+        return this.parseFirestoreFields(fields) as T;
+      }),
+      catchError((error) => {
+        console.warn(
+          `AgentPillarsService: Error updating document '${docId}' in '${collectionName}' via REST endpoint (${url}):`,
+          error
+        );
+        return throwError(() => error);
+      })
+    );
+  }
   public addPillarItem<T = Record<string, unknown>>(
     collectionName: PillarCollectionName | string,
     item: Record<string, unknown>
@@ -85,7 +120,7 @@ export class AgentPillarsService {
 
     return `${host}/v1/projects/${projectId}/databases/(default)/documents/${collectionName}`;
   }
-	public getPillarCollection<T = Record<string, unknown>>(
+  public getPillarCollection<T = Record<string, unknown>>(
     collectionName: PillarCollectionName | string
   ): Observable<T[]> {
     if (!this.http) {
@@ -98,7 +133,16 @@ export class AgentPillarsService {
     return this.http.get<FirestoreListResponse>(url).pipe(
       map((response) => {
         const docs = response.documents || [];
-        return docs.map((doc) => this.parseFirestoreFields(doc.fields || {}) as T);
+        return docs.map((doc) => {
+          const item = this.parseFirestoreFields(doc.fields || {}) as Record<string, unknown>;
+          if (doc.name) {
+            const docId = doc.name.split('/').pop();
+            if (docId && !item['id']) {
+              item['id'] = docId;
+            }
+          }
+          return item as T;
+        });
       }),
       catchError((error) => {
         console.warn(`AgentPillarsService: Error fetching '${collectionName}' collection from Firestore emulator REST endpoint (${url}):`, error);
