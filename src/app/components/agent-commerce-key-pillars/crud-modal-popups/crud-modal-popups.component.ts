@@ -4,6 +4,10 @@ import { ProtocolsFormComponent } from './protocols-form/protocols-form.componen
 import { EditFormComponent } from './edit-form/edit-form.component';
 import { SecuritiesFormComponent, SecuritiesFormValue } from './securities-form/securities-form.component';
 import {
+  InventoryShippingFormComponent,
+  InventoryShippingFormValue
+} from './inventory-shipping-form/inventory-shipping-form.component';
+import {
   CrudModalMode,
   CrudModalSubmitEvent,
   ProtocolFormValue
@@ -13,7 +17,12 @@ import {
   selector: 'app-crud-modal-popups',
   templateUrl: './crud-modal-popups.component.html',
   styleUrl: './crud-modal-popups.component.sass',
-  imports: [ProtocolsFormComponent, EditFormComponent, SecuritiesFormComponent],
+  imports: [
+    ProtocolsFormComponent,
+    EditFormComponent,
+    SecuritiesFormComponent,
+    InventoryShippingFormComponent
+  ],
   host: {
     'class': 'crud-modal-popups-host',
     '(keydown.escape)': 'onEscape()'
@@ -32,10 +41,12 @@ export class CrudModalPopupsComponent {
   public readonly protocolFormComp = viewChild(ProtocolsFormComponent);
   public readonly editFormComp = viewChild(EditFormComponent);
   public readonly securitiesFormComp = viewChild(SecuritiesFormComponent);
+  public readonly inventoryShippingFormComp = viewChild(InventoryShippingFormComponent);
 
   public readonly protocolFormValue = signal<ProtocolFormValue | null>(null);
   public readonly editFormValue = signal<Record<string, unknown> | null>(null);
   public readonly securitiesFormValue = signal<SecuritiesFormValue | null>(null);
+  public readonly inventoryShippingFormValue = signal<InventoryShippingFormValue | null>(null);
 
   public constructor() {}
   public onProtocolFormChange(val: ProtocolFormValue): void {
@@ -46,6 +57,9 @@ export class CrudModalPopupsComponent {
   }
   public onSecuritiesFormChange(val: SecuritiesFormValue): void {
     this.securitiesFormValue.set(val);
+  }
+  public onInventoryShippingFormChange(val: InventoryShippingFormValue): void {
+    this.inventoryShippingFormValue.set(val);
   }
   public onEscape(): void {
     if (this.isOpen()) {
@@ -78,6 +92,13 @@ export class CrudModalPopupsComponent {
       const childVal = this.securitiesFormComp()?.getFormValue();
       const sVal = childVal || this.securitiesFormValue();
       payload = {...(this.item() || {}), ...(sVal || {})};
+    } else if (
+      currentPillar === 'inventoryShipping' ||
+      this.pillarName().trim().toLowerCase().includes('inventory')
+    ) {
+      const childVal = this.inventoryShippingFormComp()?.getFormValue();
+      const iVal = childVal || this.inventoryShippingFormValue();
+      payload = {...(this.item() || {}), ...(iVal || {})};
     } else {
       const childVal = this.editFormComp()?.getFormValue();
       const eVal = childVal || this.editFormValue();

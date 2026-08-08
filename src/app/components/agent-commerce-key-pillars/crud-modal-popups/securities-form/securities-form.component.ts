@@ -8,7 +8,6 @@ export interface SecuritiesFormValue {
   Protocols: string[];
   Mechanisms: string[];
 }
-
 @Component({
   selector: 'app-securities-form',
   templateUrl: './securities-form.component.html',

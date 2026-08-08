@@ -48,6 +48,14 @@
                 [pillarName]="pillarName()"
                 (formChange)="onSecuritiesFormChange($event)"
               />
+            } @else if (pillarId() === 'inventoryShipping' || pillarName().trim().toLowerCase().includes('inventory')) {
+              <!-- Inventory & Shipping Sub-Component -->
+              <app-inventory-shipping-form
+                [item]="item()"
+                [mode]="mode()"
+                [pillarName]="pillarName()"
+                (formChange)="onInventoryShippingFormChange($event)"
+              />
             } @else {
               <app-edit-form
                 [item]="item()"
