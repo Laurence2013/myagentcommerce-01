@@ -28,9 +28,6 @@
 
       <!-- Modal Body -->
       <div class="modal-body">
-				@if( pillarName().trim().toLowerCase() === 'securities'){
-					<h2>Hello</h2>
-				}
         @if (mode() === 'delete') {
           <div class="delete-confirmation-box">
             <p class="warning-text">Are you sure you want to delete this item?</p>
@@ -49,6 +46,14 @@
                 [mode]="mode()"
                 [pillarName]="pillarName()"
                 (formChange)="onProtocolFormChange($event)"
+              />
+            } @else if (pillarName().trim().toLowerCase() === 'securities') {
+              <!-- Securities Form Sub-Component -->
+              <app-securities-form
+                [item]="item()"
+                [mode]="mode()"
+                [pillarName]="pillarName()"
+                (formChange)="onSecuritiesFormChange($event)"
               />
             } @else {
               <app-edit-form

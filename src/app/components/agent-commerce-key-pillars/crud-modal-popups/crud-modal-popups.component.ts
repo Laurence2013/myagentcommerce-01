@@ -2,6 +2,7 @@ import { Component, input, output, signal, viewChild } from '@angular/core';
 import { PillarTab } from '../agent-commerce-key-pillars.component';
 import { ProtocolsFormComponent } from './protocols-form/protocols-form.component';
 import { EditFormComponent } from './edit-form/edit-form.component';
+import { SecuritiesFormComponent, SecuritiesFormValue } from './securities-form/securities-form.component';
 import {
   CrudModalMode,
   CrudModalSubmitEvent,
@@ -12,7 +13,7 @@ import {
   selector: 'app-crud-modal-popups',
   templateUrl: './crud-modal-popups.component.html',
   styleUrl: './crud-modal-popups.component.sass',
-  imports: [ProtocolsFormComponent, EditFormComponent],
+  imports: [ProtocolsFormComponent, EditFormComponent, SecuritiesFormComponent],
   host: {
     'class': 'crud-modal-popups-host',
     '(keydown.escape)': 'onEscape()'
@@ -30,9 +31,11 @@ export class CrudModalPopupsComponent {
 
   public readonly protocolFormComp = viewChild(ProtocolsFormComponent);
   public readonly editFormComp = viewChild(EditFormComponent);
+  public readonly securitiesFormComp = viewChild(SecuritiesFormComponent);
 
   public readonly protocolFormValue = signal<ProtocolFormValue | null>(null);
   public readonly editFormValue = signal<Record<string, unknown> | null>(null);
+  public readonly securitiesFormValue = signal<SecuritiesFormValue | null>(null);
 
   public constructor() {}
   public onProtocolFormChange(val: ProtocolFormValue): void {
@@ -40,6 +43,9 @@ export class CrudModalPopupsComponent {
   }
   public onEditFormChange(val: Record<string, unknown>): void {
     this.editFormValue.set(val);
+  }
+  public onSecuritiesFormChange(val: SecuritiesFormValue): void {
+    this.securitiesFormValue.set(val);
   }
   public onEscape(): void {
     if (this.isOpen()) {
@@ -52,7 +58,6 @@ export class CrudModalPopupsComponent {
     }
   }
   public onSubmit(): void {
-		console.log(this.mode());
     const currentMode = this.mode();
     const currentPillar = this.pillarId();
     if (!currentMode || !currentPillar) return;
@@ -69,6 +74,10 @@ export class CrudModalPopupsComponent {
       const childVal = this.protocolFormComp()?.getFormValue();
       const pVal = childVal || this.protocolFormValue();
       payload = {...(this.item() || {}), ...(pVal || {})};
+    } else if (currentPillar === 'securities' || this.pillarName().trim().toLowerCase() === 'securities') {
+      const childVal = this.securitiesFormComp()?.getFormValue();
+      const sVal = childVal || this.securitiesFormValue();
+      payload = {...(this.item() || {}), ...(sVal || {})};
     } else {
       const childVal = this.editFormComp()?.getFormValue();
       const eVal = childVal || this.editFormValue();
