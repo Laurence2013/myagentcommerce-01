@@ -61,16 +61,12 @@ export class AgentPillarsService {
   public updateSecurities(securities: Record<string, unknown>): Observable<ProtocolItem> {
     return this.updatePillarItem<ProtocolItem>('securities', securities);
   }
-  public deletePillarItem(
-    collectionName: PillarCollectionName | string,
-    itemOrId: Record<string, unknown> | string
-  ): Observable<boolean> {
+  public deletePillarItem(collectionName: PillarCollectionName | string,itemOrId: Record<string, unknown> | string): Observable<boolean> {
     console.log('[AgentPillarsService] deletePillarItem called:', { collectionName, itemOrId });
     if (!this.http) {
       console.warn('AgentPillarsService: HttpClient is not provided.');
       return throwError(() => new Error('HttpClient is not provided'));
     }
-
     const docId = typeof itemOrId === 'string' ? itemOrId : ((itemOrId['id'] || itemOrId['docId'] || itemOrId['name']) as string);
 
     if (!docId) {
