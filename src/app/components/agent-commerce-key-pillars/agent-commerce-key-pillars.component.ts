@@ -83,8 +83,14 @@ export class AgentCommerceKeyPillars {
     this.modalMode.set('create');
     this.isModalOpen.set(true);
   }
-  public onEdit(item: Record<string, unknown> | unknown): void {
-    this.selectedItem.set((item as Record<string, unknown>) || null);
+  public onEdit(pillarIdOrItem: PillarTab | Record<string, unknown> | unknown, item?: unknown): void {
+    if (typeof pillarIdOrItem === 'string') {
+      this.selectedPillar.set(pillarIdOrItem as PillarTab);
+      this.selectedItem.set((item as Record<string, unknown>) || null);
+    } else {
+      this.selectedPillar.set(this.activeTab());
+      this.selectedItem.set((pillarIdOrItem as Record<string, unknown>) || null);
+    }
     this.modalMode.set('edit');
     this.isModalOpen.set(true);
   }
@@ -106,13 +112,13 @@ export class AgentCommerceKeyPillars {
       pillarName: this.getPillarName(event.pillarId),
       payload: event.item
     });
-    if (event.pillarId === 'protocols' && (event.mode === 'create' || event.mode === 'edit')) {
-      this.agentPillarsService.addProtocol(event.item).subscribe({
+    if (event.mode === 'create' || event.mode === 'edit') {
+      this.agentPillarsService.addPillarItem(event.pillarId, event.item).subscribe({
         next: (created) => {
-          console.log('[AgentCommerceKeyPillars] Successfully saved protocol to Firestore emulator:', created);
+          console.log(`[AgentCommerceKeyPillars] Successfully saved ${event.pillarId} item to Firestore emulator:`, created);
         },
         error: (err) => {
-          console.error('[AgentCommerceKeyPillars] Failed to save protocol to Firestore emulator:', err);
+          console.error(`[AgentCommerceKeyPillars] Failed to save ${event.pillarId} item to Firestore emulator:`, err);
         }
       });
     }

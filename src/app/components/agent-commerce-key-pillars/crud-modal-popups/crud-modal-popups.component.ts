@@ -32,12 +32,15 @@ export class CrudModalPopupsComponent {
   public readonly editFormComp = viewChild(EditFormComponent);
 
   public readonly protocolFormValue = signal<ProtocolFormValue | null>(null);
+  public readonly editFormValue = signal<Record<string, unknown> | null>(null);
 
   public constructor() {}
   public onProtocolFormChange(val: ProtocolFormValue): void {
     this.protocolFormValue.set(val);
   }
-  public onEditFormChange(val: any): void {}
+  public onEditFormChange(val: Record<string, unknown>): void {
+    this.editFormValue.set(val);
+  }
   public onEscape(): void {
     if (this.isOpen()) {
       this.closeModal.emit();
@@ -49,7 +52,6 @@ export class CrudModalPopupsComponent {
     }
   }
   public onSubmit(): void {
-		console.log(this.pillarId());
     const currentMode = this.mode();
     const currentPillar = this.pillarId();
     if (!currentMode || !currentPillar) return;
@@ -68,9 +70,10 @@ export class CrudModalPopupsComponent {
       payload = {...(this.item() || {}), ...(pVal || {})};
     } else {
       const childVal = this.editFormComp()?.getFormValue();
+      const eVal = childVal || this.editFormValue();
       payload = {
         ...(this.item() || {}),
-        ...(childVal || {})
+        ...(eVal || {})
       };
     }
     this.confirmAction.emit({

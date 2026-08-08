@@ -53,6 +53,7 @@ export class AgentPillarsService {
     collectionName: PillarCollectionName | string,
     item: Record<string, unknown>
   ): Observable<T> {
+    console.log('[AgentPillarsService] addPillarItem called:', { collectionName, item });
     if (!this.http) {
       console.warn('AgentPillarsService: HttpClient is not provided.');
       return throwError(() => new Error('HttpClient is not provided'));

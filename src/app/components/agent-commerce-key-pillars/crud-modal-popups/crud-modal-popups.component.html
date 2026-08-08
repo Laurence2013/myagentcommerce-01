@@ -66,13 +66,17 @@
               <!-- Protocols Sub-Component -->
               <app-protocols-form
                 [item]="item()"
-               	[mode]="mode()"
-								[pillarName]="pillarName()"
+                [mode]="mode()"
+                [pillarName]="pillarName()"
                 (formChange)="onProtocolFormChange($event)"
               />
-							}@else{
-							<app-edit-form [item]="item()"></app-edit-form>
-							}
+            } @else {
+              <app-edit-form
+                [item]="item()"
+                [pillarName]="pillarName()"
+                (formChange)="onEditFormChange($event)"
+              />
+            }
           </form>
         }
       </div>
