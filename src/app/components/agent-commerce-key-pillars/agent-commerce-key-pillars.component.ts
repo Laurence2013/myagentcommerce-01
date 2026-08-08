@@ -31,7 +31,8 @@ export interface TabDefinition {
   styleUrl: './agent-commerce-key-pillars.component.sass',
   imports: [CrudModalPopupsComponent],
   host: {
-    'class': 'agent-commerce-key-pillars-host'
+    'class': 'agent-commerce-key-pillars-host',
+    '(window:scroll)': 'onWindowScroll()'
   }
 })
 export class AgentCommerceKeyPillars {
@@ -42,6 +43,7 @@ export class AgentCommerceKeyPillars {
   public readonly modalMode = signal<CrudModalMode | null>(null);
   public readonly selectedPillar = signal<PillarTab | null>(null);
   public readonly selectedItem = signal<Record<string, unknown> | null>(null);
+  public readonly showBackToTop = signal<boolean>(false);
   public readonly tabs: TabDefinition[] = [
     { id: 'protocols', name: 'Protocols' },
     { id: 'securities', name: 'Securities' },
@@ -160,5 +162,23 @@ export class AgentCommerceKeyPillars {
       .filter(Boolean)
       .map((word) => (word.toUpperCase() === 'N' ? '&' : word.charAt(0).toUpperCase() + word.slice(1)))
       .join(' ');
+  }
+  public onWindowScroll(): void {
+    const scrollPosition =
+      window.scrollY ||
+      window.pageYOffset ||
+      document.documentElement.scrollTop ||
+      document.body.scrollTop ||
+      0;
+    this.showBackToTop.set(scrollPosition > 150);
+  }
+  public scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (document.documentElement) {
+      document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    if (document.body) {
+      document.body.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 }

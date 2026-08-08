@@ -306,3 +306,43 @@
   border: 1px dashed rgba(255, 255, 255, 0.08)
   border-radius: 8px
   text-align: center
+
+@keyframes backToTopFadeIn
+  0%
+    opacity: 0
+    transform: translateY(20px) scale(0.8)
+  100%
+    opacity: 1
+    transform: translateY(0) scale(1)
+
+.back-to-top-btn
+  position: fixed
+  bottom: 2.5rem
+  right: 2.5rem
+  width: 48px
+  height: 48px
+  border-radius: 50%
+  background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%)
+  color: #ffffff
+  border: 1px solid rgba(255, 255, 255, 0.25)
+  display: flex
+  align-items: center
+  justify-content: center
+  cursor: pointer
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.45)
+  animation: backToTopFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1)
+  z-index: 9999
+  outline: none
+
+  &:hover
+    transform: translateY(-4px) scale(1.08)
+    box-shadow: 0 12px 28px rgba(99, 102, 241, 0.65)
+    background: linear-gradient(135deg, #4f46e5 0%, #9333ea 100%)
+
+  &:focus-visible
+    outline: 2px solid #818cf8
+    outline-offset: 3px
+
+  &:active
+    transform: translateY(-1px) scale(0.96)
