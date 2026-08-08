@@ -121,6 +121,15 @@ export class AgentCommerceKeyPillars {
           console.error(`[AgentCommerceKeyPillars] Failed to save ${event.pillarId} item to Firestore emulator:`, err);
         }
       });
+    } else if (event.mode === 'delete') {
+      this.agentPillarsService.deletePillarItem(event.pillarId, event.item).subscribe({
+        next: (res) => {
+          console.log(`[AgentCommerceKeyPillars] Successfully deleted ${event.pillarId} item:`, res);
+        },
+        error: (err) => {
+          console.error(`[AgentCommerceKeyPillars] Failed to delete ${event.pillarId} item:`, err);
+        }
+      });
     }
     this.onModalClose();
   }

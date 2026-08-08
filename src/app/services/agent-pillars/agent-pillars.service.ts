@@ -52,10 +52,42 @@ export class AgentPillarsService {
   public updateProtocol(protocol: Record<string, unknown>): Observable<ProtocolItem> {
     return this.updatePillarItem<ProtocolItem>('protocols', protocol);
   }
-  public updatePillarItem<T = Record<string, unknown>>(
+  public deleteProtocol(protocol: Record<string, unknown> | string): Observable<boolean> {
+    return this.deletePillarItem('protocols', protocol);
+  }
+  public deletePillarItem(
     collectionName: PillarCollectionName | string,
-    item: Record<string, unknown>
-  ): Observable<T> {
+    itemOrId: Record<string, unknown> | string
+  ): Observable<boolean> {
+    console.log('[AgentPillarsService] deletePillarItem called:', { collectionName, itemOrId });
+    if (!this.http) {
+      console.warn('AgentPillarsService: HttpClient is not provided.');
+      return throwError(() => new Error('HttpClient is not provided'));
+    }
+    const docId =
+      typeof itemOrId === 'string'
+        ? itemOrId
+        : ((itemOrId['id'] || itemOrId['docId'] || itemOrId['name']) as string);
+
+    if (!docId) {
+      console.warn('AgentPillarsService: Cannot delete document without a valid id');
+      return throwError(() => new Error('Document ID is required for deletion'));
+    }
+    const baseUrl = this.getFirestoreRestUrl(collectionName);
+    const url = `${baseUrl}/${docId}`;
+
+    return this.http.delete<unknown>(url).pipe(
+      map(() => true),
+      catchError((error) => {
+        console.warn(
+          `AgentPillarsService: Error deleting document '${docId}' in '${collectionName}' via REST endpoint (${url}):`,
+          error
+        );
+        return throwError(() => error);
+      })
+    );
+  }
+  public updatePillarItem<T = Record<string, unknown>>(collectionName: PillarCollectionName | string, item: Record<string, unknown>): Observable<T> {
     console.log('[AgentPillarsService] updatePillarItem called:', { collectionName, item });
     if (!this.http) {
       console.warn('AgentPillarsService: HttpClient is not provided.');
