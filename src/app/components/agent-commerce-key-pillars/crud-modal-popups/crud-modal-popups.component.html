@@ -1,11 +1,5 @@
 @if (isOpen()) {
-  <div
-    class="modal-backdrop"
-    role="dialog"
-    aria-modal="true"
-    [attr.aria-labelledby]="'modal-title'"
-    (click)="onBackdropClick($event)"
-  >
+  <div class="modal-backdrop" role="dialog" aria-modal="true" [attr.aria-labelledby]="'modal-title'" (click)="onBackdropClick($event)">
     <div class="modal-dialog-card">
       <!-- Modal Header -->
       <div class="modal-header">
@@ -25,7 +19,6 @@
           </svg>
         </button>
       </div>
-
       <!-- Modal Body -->
       <div class="modal-body">
         @if (mode() === 'delete') {
@@ -65,25 +58,15 @@
           </form>
         }
       </div>
-
       <!-- Modal Footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-cancel" (click)="closeModal.emit()">
-          Cancel
-        </button>
-
+        <button type="button" class="btn btn-cancel" (click)="closeModal.emit()">Cancel</button>
         @if (mode() === 'delete') {
-          <button type="button" class="btn btn-submit-delete" (click)="onSubmit()">
-            Confirm Delete
-          </button>
+          <button type="button" class="btn btn-submit-delete" (click)="onSubmit()">Confirm Delete</button>
         } @else if (mode() === 'edit') {
-          <button type="button" class="btn btn-submit-edit" (click)="onSubmit()">
-            Save Changes
-          </button>
+          <button type="button" class="btn btn-submit-edit" (click)="onSubmit()">Save Changes</button>
         } @else {
-          <button type="button" class="btn btn-submit-create" (click)="onSubmit()">
-            Create {{ pillarName() }}
-          </button>
+          <button type="button" class="btn btn-submit-create" (click)="onSubmit()">Create {{ pillarName() }}</button>
         }
       </div>
     </div>

@@ -334,7 +334,6 @@
           }
         </section>
       }
-
       <!-- Tab 4: Promotions -->
       @case ('promotions') {
         <section id="panel-promotions" role="tabpanel" aria-labelledby="tab-promotions" class="pillar-section">
@@ -350,7 +349,6 @@
               Create Promotions
             </button>
           </div>
-
           @if (promotions().length > 0) {
             <div class="collection-grid">
               @for (item of promotions(); track item.id || (item.name + '-' + $index)) {
@@ -428,7 +426,6 @@
           }
         </section>
       }
-
       <!-- Tab 5: Fraud & Identity -->
       @case ('fraudIdentity') {
         <section id="panel-fraudIdentity" role="tabpanel" aria-labelledby="tab-fraudIdentity" class="pillar-section">
@@ -513,7 +510,6 @@
           }
         </section>
       }
-
       <!-- Tab 6: Returns -->
       @case ('returns') {
         <section id="panel-returns" role="tabpanel" aria-labelledby="tab-returns" class="pillar-section">
@@ -529,7 +525,6 @@
               Create Returns
             </button>
           </div>
-
           @if (returns().length > 0) {
             <div class="collection-grid">
               @for (item of returns(); track item.id || (item.name + '-' + $index)) {
@@ -553,7 +548,6 @@
                       </button>
                     </div>
                   </div>
-
                   <div class="key-value-list">
                     @if (item.primaryRiskMitigated && item.primaryRiskMitigated.length > 0) {
                       <div class="kv-row">
@@ -565,7 +559,6 @@
                         </div>
                       </div>
                     }
-
                     @if (item.keyEnabler && item.keyEnabler.length > 0) {
                       <div class="kv-row">
                         <span class="kv-key">Key Enablers:</span>
@@ -576,7 +569,6 @@
                         </div>
                       </div>
                     }
-
                     @if (item.architecturalValidity && item.architecturalValidity.length > 0) {
                       <div class="kv-row">
                         <span class="kv-key">Architectural Validity:</span>
@@ -598,7 +590,6 @@
       }
     }
   </div>
-
   <app-crud-modal-popups
     [isOpen]="isModalOpen()"
     [mode]="modalMode()"
@@ -608,18 +599,17 @@
     (closeModal)="onModalClose()"
     (confirmAction)="onModalSubmit($event)"
   />
-
 </div>
-
 @if (showBackToTop()) {
-  <button
-    type="button"
-    class="back-to-top-btn"
-    (click)="scrollToTop()"
-    aria-label="Back to top"
-    title="Back to top"
-  >
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+  <button type="button" class="back-to-top-btn" (click)="scrollToTop()" aria-label="Back to top" title="Back to top">
+    <svg width="20" 
+			height="20" 
+			viewBox="0 0 24 24" 
+			fill="none" 
+			stroke="currentColor" 
+			stroke-width="2.5" 
+			stroke-linecap="round" 
+			stroke-linejoin="round">
       <path d="M18 15l-6-6-6 6"/>
     </svg>
   </button>
