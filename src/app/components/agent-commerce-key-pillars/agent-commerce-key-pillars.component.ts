@@ -115,44 +115,49 @@ export class AgentCommerceKeyPillars {
       payload: event.item
     });
 		if(event.mode === 'create' && event.pillarId === 'securities'){
-			console.log(event.mode);
-			console.log(event.pillarId);
       this.agentPillarsService.addSecurities(event.item).subscribe({
-        next: (created) => {
+        next: created => {
           console.log(`[AgentCommerceKeyPillars] Successfully saved ${event.pillarId} item to Firestore emulator:`, created);
         },
-        error: (err) => {
+        error: err => {
           console.error(`[AgentCommerceKeyPillars] Failed to save ${event.pillarId} item to Firestore emulator:`, err);
         }});
 		}
     if (event.mode === 'create' && event.pillarId === 'protocols'){
-			console.log(event.mode);
-			console.log(event.pillarId);
       this.agentPillarsService.addProtocol(event.item).subscribe({
-        next: (created) => {
+        next: created => {
           console.log(`[AgentCommerceKeyPillars] Successfully saved ${event.pillarId} item to Firestore emulator:`, created);
         },
-        error: (err) => {
+        error: err => {
           console.error(`[AgentCommerceKeyPillars] Failed to save ${event.pillarId} item to Firestore emulator:`, err);
         }});
 		} 
 		if (event.mode === 'edit' && event.pillarId === 'protocols') {
-			console.log(event.mode);
-			console.log(event.pillarId);
       this.agentPillarsService.updateProtocol(event.item).subscribe({
-        next: (created) => {
+        next: created => {
           console.log(`[AgentCommerceKeyPillars] Successfully saved ${event.pillarId} item to Firestore emulator:`, created);
         },
-        error: (err) => {
+        error: err => {
+          console.error(`[AgentCommerceKeyPillars] Failed to save ${event.pillarId} item to Firestore emulator:`, err);
+        }});
+		}
+		if (event.mode === 'edit' && event.pillarId === 'securities') {
+			console.log(event.mode);
+			console.log(event.pillarId);
+      this.agentPillarsService.updateSecurities(event.item).subscribe({
+        next: created => {
+          console.log(`[AgentCommerceKeyPillars] Successfully saved ${event.pillarId} item to Firestore emulator:`, created);
+        },
+        error: err => {
           console.error(`[AgentCommerceKeyPillars] Failed to save ${event.pillarId} item to Firestore emulator:`, err);
         }});
 		}
     if (event.mode === 'delete') {
       this.agentPillarsService.deletePillarItem(event.pillarId, event.item).subscribe({
-        next: (res) => {
+        next: res => {
           console.log(`[AgentCommerceKeyPillars] Successfully deleted ${event.pillarId} item:`, res);
         },
-        error: (err) => {
+        error: err => {
           console.error(`[AgentCommerceKeyPillars] Failed to delete ${event.pillarId} item:`, err);
         }});
     }

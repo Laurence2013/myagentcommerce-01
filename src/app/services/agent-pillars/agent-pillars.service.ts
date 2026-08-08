@@ -49,14 +49,17 @@ export class AgentPillarsService {
   public addProtocol(protocol: Record<string, unknown>): Observable<ProtocolItem> {
     return this.addPillarItem<ProtocolItem>('protocols', protocol);
   }
-  public addSecurities(securities: Record<string, unknown>): Observable<ProtocolItem> {
-    return this.addPillarItem<ProtocolItem>('securities', securities);
-  }
   public updateProtocol(protocol: Record<string, unknown>): Observable<ProtocolItem> {
     return this.updatePillarItem<ProtocolItem>('protocols', protocol);
   }
   public deleteProtocol(protocol: Record<string, unknown> | string): Observable<boolean> {
     return this.deletePillarItem('protocols', protocol);
+  }
+  public addSecurities(securities: Record<string, unknown>): Observable<ProtocolItem> {
+    return this.addPillarItem<ProtocolItem>('securities', securities);
+  }
+  public updateSecurities(securities: Record<string, unknown>): Observable<ProtocolItem> {
+    return this.updatePillarItem<ProtocolItem>('securities', securities);
   }
   public deletePillarItem(
     collectionName: PillarCollectionName | string,
