@@ -49,6 +49,9 @@ export class AgentPillarsService {
   public addProtocol(protocol: Record<string, unknown>): Observable<ProtocolItem> {
     return this.addPillarItem<ProtocolItem>('protocols', protocol);
   }
+  public addSecurities(securities: Record<string, unknown>): Observable<ProtocolItem> {
+    return this.addPillarItem<ProtocolItem>('securities', securities);
+  }
   public updateProtocol(protocol: Record<string, unknown>): Observable<ProtocolItem> {
     return this.updatePillarItem<ProtocolItem>('protocols', protocol);
   }
@@ -64,10 +67,8 @@ export class AgentPillarsService {
       console.warn('AgentPillarsService: HttpClient is not provided.');
       return throwError(() => new Error('HttpClient is not provided'));
     }
-    const docId =
-      typeof itemOrId === 'string'
-        ? itemOrId
-        : ((itemOrId['id'] || itemOrId['docId'] || itemOrId['name']) as string);
+
+    const docId = typeof itemOrId === 'string' ? itemOrId : ((itemOrId['id'] || itemOrId['docId'] || itemOrId['name']) as string);
 
     if (!docId) {
       console.warn('AgentPillarsService: Cannot delete document without a valid id');
@@ -199,18 +200,12 @@ export class AgentPillarsService {
           arrayValue: {
             values: value.map((item) =>
               typeof item === 'string' ? { stringValue: item } : { stringValue: String(item) }
-            )
-          }
-        };
+            )}};
       } else if (typeof value === 'object') {
         fields[key] = {
           mapValue: {
             fields: this.formatFirestoreFields(value as Record<string, unknown>).fields
-          }
-        };
-      }
-    }
-
+          }};}}
     return { fields };
   }
   private parseFirestoreFields(fields: Record<string, unknown>): Record<string, unknown> {
@@ -239,9 +234,7 @@ export class AgentPillarsService {
           if ('integerValue' in item) return Number(item['integerValue']);
           if ('booleanValue' in item) return Boolean(item['booleanValue']);
           return item;
-        });
-      }
-    }
+        });}}
     return result;
   }
 }
