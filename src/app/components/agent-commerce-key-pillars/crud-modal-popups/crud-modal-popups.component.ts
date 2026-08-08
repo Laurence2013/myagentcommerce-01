@@ -52,6 +52,7 @@ export class CrudModalPopupsComponent {
     }
   }
   public onSubmit(): void {
+		console.log(this.mode());
     const currentMode = this.mode();
     const currentPillar = this.pillarId();
     if (!currentMode || !currentPillar) return;
