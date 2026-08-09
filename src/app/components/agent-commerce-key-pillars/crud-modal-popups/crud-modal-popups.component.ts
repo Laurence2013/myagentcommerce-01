@@ -12,6 +12,10 @@ import {
   PromotionsFormValue
 } from './promotions-form/promotions-form.component';
 import {
+  FraudIdentityFormComponent,
+  FraudIdentityFormValue
+} from './fraud-identity-form/fraud-identity-form.component';
+import {
   CrudModalMode,
   CrudModalSubmitEvent,
   ProtocolFormValue
@@ -26,7 +30,8 @@ import {
     EditFormComponent,
     SecuritiesFormComponent,
     InventoryShippingFormComponent,
-    PromotionsFormComponent
+    PromotionsFormComponent,
+    FraudIdentityFormComponent
   ],
   host: {
     'class': 'crud-modal-popups-host',
@@ -48,12 +53,14 @@ export class CrudModalPopupsComponent {
   public readonly securitiesFormComp = viewChild(SecuritiesFormComponent);
   public readonly inventoryShippingFormComp = viewChild(InventoryShippingFormComponent);
   public readonly promotionsFormComp = viewChild(PromotionsFormComponent);
+  public readonly fraudIdentityFormComp = viewChild(FraudIdentityFormComponent);
 
   public readonly protocolFormValue = signal<ProtocolFormValue | null>(null);
   public readonly editFormValue = signal<Record<string, unknown> | null>(null);
   public readonly securitiesFormValue = signal<SecuritiesFormValue | null>(null);
   public readonly inventoryShippingFormValue = signal<InventoryShippingFormValue | null>(null);
   public readonly promotionsFormValue = signal<PromotionsFormValue | null>(null);
+  public readonly fraudIdentityFormValue = signal<FraudIdentityFormValue | null>(null);
 
   public constructor() {}
   public onProtocolFormChange(val: ProtocolFormValue): void {
@@ -70,6 +77,9 @@ export class CrudModalPopupsComponent {
   }
   public onPromotionsFormChange(val: PromotionsFormValue): void {
     this.promotionsFormValue.set(val);
+  }
+  public onFraudIdentityFormChange(val: FraudIdentityFormValue): void {
+    this.fraudIdentityFormValue.set(val);
   }
   public onEscape(): void {
     if (this.isOpen()) {
@@ -102,10 +112,7 @@ export class CrudModalPopupsComponent {
       const childVal = this.securitiesFormComp()?.getFormValue();
       const sVal = childVal || this.securitiesFormValue();
       payload = {...(this.item() || {}), ...(sVal || {})};
-    } else if (
-      currentPillar === 'inventory-n-shipping' ||
-      this.pillarName().trim().toLowerCase().includes('inventory')
-    ) {
+    } else if ( currentPillar === 'inventory-n-shipping' || this.pillarName().trim().toLowerCase().includes('inventory')) {
       const childVal = this.inventoryShippingFormComp()?.getFormValue();
       const iVal = childVal || this.inventoryShippingFormValue();
       payload = {...(this.item() || {}), ...(iVal || {})};
@@ -113,6 +120,10 @@ export class CrudModalPopupsComponent {
       const childVal = this.promotionsFormComp()?.getFormValue();
       const prVal = childVal || this.promotionsFormValue();
       payload = {...(this.item() || {}), ...(prVal || {})};
+    } else if (currentPillar === 'fraudIdentity' || this.pillarName().trim().toLowerCase().includes('fraud')) {
+      const childVal = this.fraudIdentityFormComp()?.getFormValue();
+      const fiVal = childVal || this.fraudIdentityFormValue();
+      payload = {...(this.item() || {}), ...(fiVal || {})};
     } else {
       const childVal = this.editFormComp()?.getFormValue();
       const eVal = childVal || this.editFormValue();

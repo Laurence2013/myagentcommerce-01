@@ -64,6 +64,14 @@
                 [pillarName]="pillarName()"
                 (formChange)="onPromotionsFormChange($event)"
               />
+            } @else if (pillarId() === 'fraudIdentity' || pillarName().trim().toLowerCase().includes('fraud')) {
+              <!-- Fraud & Identity Sub-Component -->
+              <app-fraud-identity-form
+                [item]="item()"
+                [mode]="mode()"
+                [pillarName]="pillarName()"
+                (formChange)="onFraudIdentityFormChange($event)"
+              />
             } @else {
               <app-edit-form
                 [item]="item()"
