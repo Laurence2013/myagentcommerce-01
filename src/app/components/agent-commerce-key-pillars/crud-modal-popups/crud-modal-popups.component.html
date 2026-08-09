@@ -72,6 +72,14 @@
                 [pillarName]="pillarName()"
                 (formChange)="onFraudIdentityFormChange($event)"
               />
+            } @else if (pillarId() === 'returns' || pillarName().trim().toLowerCase().includes('return')) {
+              <!-- Returns Sub-Component -->
+              <app-returns-form
+                [item]="item()"
+                [mode]="mode()"
+                [pillarName]="pillarName()"
+                (formChange)="onReturnsFormChange($event)"
+              />
             } @else {
               <app-edit-form
                 [item]="item()"

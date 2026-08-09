@@ -16,6 +16,10 @@ import {
   FraudIdentityFormValue
 } from './fraud-identity-form/fraud-identity-form.component';
 import {
+  ReturnsFormComponent,
+  ReturnsFormValue
+} from './returns-form/returns-form.component';
+import {
   CrudModalMode,
   CrudModalSubmitEvent,
   ProtocolFormValue
@@ -31,7 +35,8 @@ import {
     SecuritiesFormComponent,
     InventoryShippingFormComponent,
     PromotionsFormComponent,
-    FraudIdentityFormComponent
+    FraudIdentityFormComponent,
+    ReturnsFormComponent
   ],
   host: {
     'class': 'crud-modal-popups-host',
@@ -54,6 +59,7 @@ export class CrudModalPopupsComponent {
   public readonly inventoryShippingFormComp = viewChild(InventoryShippingFormComponent);
   public readonly promotionsFormComp = viewChild(PromotionsFormComponent);
   public readonly fraudIdentityFormComp = viewChild(FraudIdentityFormComponent);
+  public readonly returnsFormComp = viewChild(ReturnsFormComponent);
 
   public readonly protocolFormValue = signal<ProtocolFormValue | null>(null);
   public readonly editFormValue = signal<Record<string, unknown> | null>(null);
@@ -61,6 +67,7 @@ export class CrudModalPopupsComponent {
   public readonly inventoryShippingFormValue = signal<InventoryShippingFormValue | null>(null);
   public readonly promotionsFormValue = signal<PromotionsFormValue | null>(null);
   public readonly fraudIdentityFormValue = signal<FraudIdentityFormValue | null>(null);
+  public readonly returnsFormValue = signal<ReturnsFormValue | null>(null);
 
   public constructor() {}
   public onProtocolFormChange(val: ProtocolFormValue): void {
@@ -80,6 +87,9 @@ export class CrudModalPopupsComponent {
   }
   public onFraudIdentityFormChange(val: FraudIdentityFormValue): void {
     this.fraudIdentityFormValue.set(val);
+  }
+  public onReturnsFormChange(val: ReturnsFormValue): void {
+    this.returnsFormValue.set(val);
   }
   public onEscape(): void {
     if (this.isOpen()) {
@@ -124,6 +134,10 @@ export class CrudModalPopupsComponent {
       const childVal = this.fraudIdentityFormComp()?.getFormValue();
       const fiVal = childVal || this.fraudIdentityFormValue();
       payload = {...(this.item() || {}), ...(fiVal || {})};
+    } else if (currentPillar === 'returns' || this.pillarName().trim().toLowerCase().includes('return')) {
+      const childVal = this.returnsFormComp()?.getFormValue();
+      const rVal = childVal || this.returnsFormValue();
+      payload = {...(this.item() || {}), ...(rVal || {})};
     } else {
       const childVal = this.editFormComp()?.getFormValue();
       const eVal = childVal || this.editFormValue();

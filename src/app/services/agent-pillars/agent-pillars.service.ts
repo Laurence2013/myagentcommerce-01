@@ -66,6 +66,12 @@ export class AgentPillarsService {
   public updateFraudAndIdentity(fraudItem: Record<string, unknown>): Observable<FraudDetectionItem> {
     return this.updatePillarItem<FraudDetectionItem>('fraud-n-identity', fraudItem);
   }
+  public addReturns(returnItem: Record<string, unknown>): Observable<ReturnItem> {
+    return this.addPillarItem<ReturnItem>('returns', returnItem);
+  }
+  public updateReturns(returnItem: Record<string, unknown>): Observable<ReturnItem> {
+    return this.updatePillarItem<ReturnItem>('returns', returnItem);
+  }
   public deletePillarItem(collectionName: PillarCollectionName | string,itemOrId: Record<string, unknown> | string): Observable<boolean> {
     console.log('[AgentPillarsService] deletePillarItem called:', { collectionName, itemOrId });
     if (!this.http) {
