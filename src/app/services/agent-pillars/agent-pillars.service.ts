@@ -54,6 +54,12 @@ export class AgentPillarsService {
 	public updateInventoryShipping(inventoryShipping: Record<string, unknown>): Observable<InventoryAndShippingItem> {
     return this.updatePillarItem<InventoryAndShippingItem>('inventory-n-shipping', inventoryShipping);
 	}
+  public addPromotions(promotion: Record<string, unknown>): Observable<PromotionItem> {
+    return this.addPillarItem<PromotionItem>('promotions', promotion);
+  }
+  public updatePromotions(promotion: Record<string, unknown>): Observable<PromotionItem> {
+    return this.updatePillarItem<PromotionItem>('promotions', promotion);
+  }
   public deletePillarItem(collectionName: PillarCollectionName | string,itemOrId: Record<string, unknown> | string): Observable<boolean> {
     console.log('[AgentPillarsService] deletePillarItem called:', { collectionName, itemOrId });
     if (!this.http) {

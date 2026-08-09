@@ -56,6 +56,14 @@
                 [pillarName]="pillarName()"
                 (formChange)="onInventoryShippingFormChange($event)"
               />
+            } @else if (pillarId() === 'promotions' || pillarName().trim().toLowerCase().includes('promotion')) {
+              <!-- Promotions Sub-Component -->
+              <app-promotions-form
+                [item]="item()"
+                [mode]="mode()"
+                [pillarName]="pillarName()"
+                (formChange)="onPromotionsFormChange($event)"
+              />
             } @else {
               <app-edit-form
                 [item]="item()"

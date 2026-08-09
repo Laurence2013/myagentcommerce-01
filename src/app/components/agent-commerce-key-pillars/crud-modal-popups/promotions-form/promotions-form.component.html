@@ -1,0 +1,92 @@
+<div class="promotions-form-container">
+  <div class="form-header-actions">
+    <button type="button" class="btn-clear" (click)="resetForm()" title="Clear form fields">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+      </svg>
+      Clear Form
+    </button>
+  </div>
+
+  <form class="promotions-form" (submit)="$event.preventDefault()">
+    <!-- Name Field -->
+    <div class="form-group">
+      <div class="label-row">
+        <label for="promo-name" class="form-label">Name</label>
+        <span class="field-badge required-badge">Required</span>
+      </div>
+      <input
+        type="text"
+        id="promo-name"
+        class="form-control"
+        [value]="formName()"
+        (input)="onNameInput($event)"
+        placeholder="Enter promotion item name..."
+      />
+    </div>
+
+    <!-- Capabilities Field -->
+    <div class="form-group">
+      <div class="label-row">
+        <label for="promo-capability" class="form-label">Capabilities</label>
+        <span class="field-badge hint-badge">Comma-separated</span>
+      </div>
+      <input
+        type="text"
+        id="promo-capability"
+        class="form-control"
+        [value]="formCapability()"
+        (input)="onCapabilityInput($event)"
+        placeholder="e.g. Dynamic Discounting, Targeted Offers"
+      />
+    </div>
+
+    <!-- Primary Risk Mitigated Field -->
+    <div class="form-group">
+      <div class="label-row">
+        <label for="promo-primary-risk" class="form-label">Primary Risk Mitigated</label>
+        <span class="field-badge hint-badge">Comma-separated</span>
+      </div>
+      <input
+        type="text"
+        id="promo-primary-risk"
+        class="form-control"
+        [value]="formPrimaryRiskMitigated()"
+        (input)="onPrimaryRiskInput($event)"
+        placeholder="e.g. Coupon Abuse, Margin Erosion"
+      />
+    </div>
+
+    <!-- Key Enablers Field -->
+    <div class="form-group">
+      <div class="label-row">
+        <label for="promo-key-enablers" class="form-label">Key Enablers</label>
+        <span class="field-badge hint-badge">Comma-separated</span>
+      </div>
+      <input
+        type="text"
+        id="promo-key-enablers"
+        class="form-control"
+        [value]="formKeyEnabler()"
+        (input)="onKeyEnablerInput($event)"
+        placeholder="e.g. Rule Engine, Real-time Eligibility API"
+      />
+    </div>
+
+    <!-- Architectural Nuances Field -->
+    <div class="form-group">
+      <div class="label-row">
+        <label for="promo-architectural-nuance" class="form-label">Architectural Nuances</label>
+        <span class="field-badge hint-badge">Comma-separated</span>
+      </div>
+      <input
+        type="text"
+        id="promo-architectural-nuance"
+        class="form-control"
+        [value]="formArchitecturalNuance()"
+        (input)="onArchitecturalNuanceInput($event)"
+        placeholder="e.g. State synchronization, Edge caching"
+      />
+    </div>
+  </form>
+</div>

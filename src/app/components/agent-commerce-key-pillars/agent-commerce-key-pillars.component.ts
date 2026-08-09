@@ -159,6 +159,25 @@ export class AgentCommerceKeyPillars {
         }
       });
     }
+		if (event.mode === 'create' && event.pillarId === 'promotions') {
+      this.agentPillarsService.addPromotions(event.item).subscribe({
+        next: created => {
+          console.log(`[AgentCommerceKeyPillars] Successfully saved ${event.pillarId} item to Firestore emulator:`, created);
+        },
+        error: err => {
+          console.error(`[AgentCommerceKeyPillars] Failed to save ${event.pillarId} item to Firestore emulator:`, err);
+        }});
+		}
+		if (event.mode === 'edit' && event.pillarId === 'promotions') {
+      /*this.agentPillarsService.updatePromotions(event.item).subscribe({
+        next: updated => {
+          console.log(`[AgentCommerceKeyPillars] Successfully updated ${event.pillarId} item in Firestore emulator:`, updated);
+        },
+        error: err => {
+          console.error(`[AgentCommerceKeyPillars] Failed to update ${event.pillarId} item in Firestore emulator:`, err);
+        }
+      });*/
+    }
     if (event.mode === 'delete') {
 			console.log(event.mode);
       this.agentPillarsService.deletePillarItem(event.pillarId, event.item).subscribe({

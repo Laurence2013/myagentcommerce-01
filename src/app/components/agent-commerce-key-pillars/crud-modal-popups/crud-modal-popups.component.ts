@@ -8,6 +8,10 @@ import {
   InventoryShippingFormValue
 } from './inventory-shipping-form/inventory-shipping-form.component';
 import {
+  PromotionsFormComponent,
+  PromotionsFormValue
+} from './promotions-form/promotions-form.component';
+import {
   CrudModalMode,
   CrudModalSubmitEvent,
   ProtocolFormValue
@@ -21,7 +25,8 @@ import {
     ProtocolsFormComponent,
     EditFormComponent,
     SecuritiesFormComponent,
-    InventoryShippingFormComponent
+    InventoryShippingFormComponent,
+    PromotionsFormComponent
   ],
   host: {
     'class': 'crud-modal-popups-host',
@@ -42,11 +47,13 @@ export class CrudModalPopupsComponent {
   public readonly editFormComp = viewChild(EditFormComponent);
   public readonly securitiesFormComp = viewChild(SecuritiesFormComponent);
   public readonly inventoryShippingFormComp = viewChild(InventoryShippingFormComponent);
+  public readonly promotionsFormComp = viewChild(PromotionsFormComponent);
 
   public readonly protocolFormValue = signal<ProtocolFormValue | null>(null);
   public readonly editFormValue = signal<Record<string, unknown> | null>(null);
   public readonly securitiesFormValue = signal<SecuritiesFormValue | null>(null);
   public readonly inventoryShippingFormValue = signal<InventoryShippingFormValue | null>(null);
+  public readonly promotionsFormValue = signal<PromotionsFormValue | null>(null);
 
   public constructor() {}
   public onProtocolFormChange(val: ProtocolFormValue): void {
@@ -60,6 +67,9 @@ export class CrudModalPopupsComponent {
   }
   public onInventoryShippingFormChange(val: InventoryShippingFormValue): void {
     this.inventoryShippingFormValue.set(val);
+  }
+  public onPromotionsFormChange(val: PromotionsFormValue): void {
+    this.promotionsFormValue.set(val);
   }
   public onEscape(): void {
     if (this.isOpen()) {
@@ -100,6 +110,13 @@ export class CrudModalPopupsComponent {
       const childVal = this.inventoryShippingFormComp()?.getFormValue();
       const iVal = childVal || this.inventoryShippingFormValue();
       payload = {...(this.item() || {}), ...(iVal || {})};
+    } else if (
+      currentPillar === 'promotions' ||
+      this.pillarName().trim().toLowerCase().includes('promotion')
+    ) {
+      const childVal = this.promotionsFormComp()?.getFormValue();
+      const prVal = childVal || this.promotionsFormValue();
+      payload = {...(this.item() || {}), ...(prVal || {})};
     } else {
       const childVal = this.editFormComp()?.getFormValue();
       const eVal = childVal || this.editFormValue();
