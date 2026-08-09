@@ -40,7 +40,7 @@
                 [pillarName]="pillarName()"
                 (formChange)="onProtocolFormChange($event)"
               />
-            } @else if (pillarName().trim().toLowerCase() === 'securities') {
+            } @else if (pillarId() === 'securities' || pillarName().trim().toLowerCase() === 'securities') {
               <!-- Securities Form Sub-Component -->
               <app-securities-form
                 [item]="item()"

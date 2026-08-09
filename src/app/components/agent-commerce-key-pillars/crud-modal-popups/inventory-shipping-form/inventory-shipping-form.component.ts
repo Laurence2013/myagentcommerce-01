@@ -25,7 +25,7 @@ export class InventoryShippingFormComponent {
   public readonly formPrimaryRiskMitigated = signal<string>('');
   public readonly formKeyEnabler = signal<string>('');
 
-  constructor() {
+  public constructor() {
     effect(() => {
       const currentItem = this.item();
       const currentMode = this.mode();
