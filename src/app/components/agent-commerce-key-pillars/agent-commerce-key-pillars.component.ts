@@ -141,13 +141,13 @@ export class AgentCommerceKeyPillars {
         }});
 		}
 		if (event.mode === 'create' && event.pillarId === 'inventoryShipping') {
-      /*this.agentPillarsService.addInventoryShipping(event.item).subscribe({
+      this.agentPillarsService.addInventoryShipping(event.item).subscribe({
         next: created => {
           console.log(`[AgentCommerceKeyPillars] Successfully saved ${event.pillarId} item to Firestore emulator:`, created);
         },
         error: err => {
           console.error(`[AgentCommerceKeyPillars] Failed to save ${event.pillarId} item to Firestore emulator:`, err);
-        }});*/
+        }});
 		}
     if (event.mode === 'delete') {
       this.agentPillarsService.deletePillarItem(event.pillarId, event.item).subscribe({

@@ -4,23 +4,10 @@ import { Observable, of, throwError, EMPTY } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { FirestoreListResponse } from '../../interfaces/services/firestore-response.interface';
 import { environment } from '../../../environments/environment';
+import { FraudDetectionItem, InventoryAndShippingItem, 
+	PromotionItem, ProtocolItem, ReturnItem, SecurityItem } from '../../interfaces/agent-commerce-pillars';
 
-import {
-  FraudDetectionItem,
-  InventoryAndShippingItem,
-  PromotionItem,
-  ProtocolItem,
-  ReturnItem,
-  SecurityItem
-} from '../../interfaces/agent-commerce-pillars';
-
-export type PillarCollectionName =
-  | 'fraud-n-identity'
-  | 'inventory-n-shipping'
-  | 'promotions'
-  | 'protocols'
-  | 'returns'
-  | 'securities';
+export type PillarCollectionName = | 'fraud-n-identity' | 'inventory-n-shipping' | 'promotions' | 'protocols' | 'returns' | 'securities';
 
 @Injectable({
   providedIn: 'root'
@@ -61,6 +48,9 @@ export class AgentPillarsService {
   public updateSecurities(securities: Record<string, unknown>): Observable<ProtocolItem> {
     return this.updatePillarItem<ProtocolItem>('securities', securities);
   }
+  public addInventoryShipping(inventory_n_shipping: Record<string, unknown>): Observable<InventoryAndShippingItem> {
+    return this.updatePillarItem<InventoryAndShippingItem>('inventory-n-shipping', inventory_n_shipping);
+	}
   public deletePillarItem(collectionName: PillarCollectionName | string,itemOrId: Record<string, unknown> | string): Observable<boolean> {
     console.log('[AgentPillarsService] deletePillarItem called:', { collectionName, itemOrId });
     if (!this.http) {
@@ -116,10 +106,7 @@ export class AgentPillarsService {
       })
     );
   }
-  public addPillarItem<T = Record<string, unknown>>(
-    collectionName: PillarCollectionName | string,
-    item: Record<string, unknown>
-  ): Observable<T> {
+  public addPillarItem<T = Record<string, unknown>>(collectionName: PillarCollectionName | string, item: Record<string, unknown>): Observable<T> {
     console.log('[AgentPillarsService] addPillarItem called:', { collectionName, item });
     if (!this.http) {
       console.warn('AgentPillarsService: HttpClient is not provided.');
