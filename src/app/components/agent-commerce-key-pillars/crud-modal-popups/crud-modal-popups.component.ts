@@ -120,7 +120,7 @@ export class CrudModalPopupsComponent {
       const childVal = this.promotionsFormComp()?.getFormValue();
       const prVal = childVal || this.promotionsFormValue();
       payload = {...(this.item() || {}), ...(prVal || {})};
-    } else if (currentPillar === 'fraudIdentity' || this.pillarName().trim().toLowerCase().includes('fraud')) {
+    } else if (currentPillar === 'fraud-n-identity' || this.pillarName().trim().toLowerCase().includes('fraud')) {
       const childVal = this.fraudIdentityFormComp()?.getFormValue();
       const fiVal = childVal || this.fraudIdentityFormValue();
       payload = {...(this.item() || {}), ...(fiVal || {})};

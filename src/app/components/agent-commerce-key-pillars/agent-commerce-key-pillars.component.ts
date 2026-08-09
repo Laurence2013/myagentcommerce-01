@@ -6,7 +6,7 @@ import { ProtocolItem, SecurityItem, InventoryAndShippingItem,
 import { CrudModalPopupsComponent } from './crud-modal-popups/crud-modal-popups.component';
 import { CrudModalMode, CrudModalSubmitEvent } from '../../interfaces/crud-modals';
 
-export type PillarTab = | 'protocols' | 'securities' | 'inventory-n-shipping' | 'promotions' | 'fraudIdentity' | 'returns';
+export type PillarTab = | 'protocols' | 'securities' | 'inventory-n-shipping' | 'promotions' | 'fraud-n-identity' | 'returns';
 
 export interface TabDefinition {
   id: PillarTab;
@@ -37,7 +37,7 @@ export class AgentCommerceKeyPillars {
     { id: 'securities', name: 'Securities' },
     { id: 'inventory-n-shipping', name: 'Inventory & Shipping' },
     { id: 'promotions', name: 'Promotions' },
-    { id: 'fraudIdentity', name: 'Fraud & Identity' },
+    { id: 'fraud-n-identity', name: 'Fraud & Identity' },
     { id: 'returns', name: 'Returns' }
   ];
   public readonly protocols: Signal<ProtocolItem[]> = toSignal(
@@ -178,7 +178,7 @@ export class AgentCommerceKeyPillars {
         }
       });
     }
-		if (event.mode === 'create' && event.pillarId === 'fraudIdentity') {
+		if (event.mode === 'create' && event.pillarId === 'fraud-n-identity') {
       this.agentPillarsService.addFraudAndIdentity(event.item).subscribe({
         next: created => {
           console.log(`[AgentCommerceKeyPillars] Successfully saved ${event.pillarId} item to Firestore emulator:`, created);
@@ -187,7 +187,7 @@ export class AgentCommerceKeyPillars {
           console.error(`[AgentCommerceKeyPillars] Failed to save ${event.pillarId} item to Firestore emulator:`, err);
         }});
 		}
-		if (event.mode === 'edit' && event.pillarId === 'fraudIdentity') {
+		if (event.mode === 'edit' && event.pillarId === 'fraud-n-identity') {
       this.agentPillarsService.updateFraudAndIdentity(event.item).subscribe({
         next: updated => {
           console.log(`[AgentCommerceKeyPillars] Successfully updated ${event.pillarId} item in Firestore emulator:`, updated);
