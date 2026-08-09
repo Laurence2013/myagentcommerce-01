@@ -59,7 +59,6 @@ export class CrudModalPopupsComponent {
     this.securitiesFormValue.set(val);
   }
   public onInventoryShippingFormChange(val: InventoryShippingFormValue): void {
-		console.log(val);
     this.inventoryShippingFormValue.set(val);
   }
   public onEscape(): void {
@@ -94,7 +93,6 @@ export class CrudModalPopupsComponent {
       const sVal = childVal || this.securitiesFormValue();
       payload = {...(this.item() || {}), ...(sVal || {})};
     } else if (currentPillar === 'inventoryShipping' || this.pillarName().trim().toLowerCase().includes('inventory')) {
-			console.log(currentPillar);
       const childVal = this.inventoryShippingFormComp()?.getFormValue();
       const iVal = childVal || this.inventoryShippingFormValue();
       payload = {...(this.item() || {}), ...(iVal || {})};

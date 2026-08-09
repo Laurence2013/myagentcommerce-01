@@ -74,7 +74,6 @@ export class AgentCommerceKeyPillars {
     this.isModalOpen.set(true);
   }
   public onEdit(pillarIdOrItem: PillarTab | Record<string, unknown> | unknown, item?: unknown): void {
-		console.log('onEdit');
     if (typeof pillarIdOrItem === 'string') {
       this.selectedPillar.set(pillarIdOrItem as PillarTab);
       this.selectedItem.set((item as Record<string, unknown>) || null);
@@ -151,15 +150,14 @@ export class AgentCommerceKeyPillars {
         }});
 		}
 		if (event.mode === 'edit' && event.pillarId === 'inventoryShipping') {
-			console.log(event.item);
-      /*this.agentPillarsService.updateInventoryShipping(event.item).subscribe({
+      this.agentPillarsService.updateInventoryShipping(event.item).subscribe({
         next: updated => {
           console.log(`[AgentCommerceKeyPillars] Successfully updated ${event.pillarId} item in Firestore emulator:`, updated);
         },
         error: err => {
           console.error(`[AgentCommerceKeyPillars] Failed to update ${event.pillarId} item in Firestore emulator:`, err);
         }
-      });*/
+      });
     }
     if (event.mode === 'delete') {
       this.agentPillarsService.deletePillarItem(event.pillarId, event.item).subscribe({

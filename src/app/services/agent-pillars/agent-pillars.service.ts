@@ -49,7 +49,10 @@ export class AgentPillarsService {
     return this.updatePillarItem<ProtocolItem>('securities', securities);
   }
   public addInventoryShipping(inventory_n_shipping: Record<string, unknown>): Observable<InventoryAndShippingItem> {
-    return this.updatePillarItem<InventoryAndShippingItem>('inventory-n-shipping', inventory_n_shipping);
+    return this.addPillarItem<InventoryAndShippingItem>('inventory-n-shipping', inventory_n_shipping);
+	}
+	public updateInventoryShipping(inventoryShipping: Record<string, unknown>): Observable<InventoryAndShippingItem> {
+    return this.updatePillarItem<InventoryAndShippingItem>('inventory-n-shipping', inventoryShipping);
 	}
   public deletePillarItem(collectionName: PillarCollectionName | string,itemOrId: Record<string, unknown> | string): Observable<boolean> {
     console.log('[AgentPillarsService] deletePillarItem called:', { collectionName, itemOrId });
