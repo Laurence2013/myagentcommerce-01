@@ -77,6 +77,7 @@ export class CrudModalPopupsComponent {
     if (!currentMode || !currentPillar) return;
 
     if (currentMode === 'delete') {
+			console.log(currentMode);
       this.confirmAction.emit({ mode: 'delete', pillarId: currentPillar, item: this.item() || {} });
       this.closeModal.emit();
       return;
@@ -92,7 +93,10 @@ export class CrudModalPopupsComponent {
       const childVal = this.securitiesFormComp()?.getFormValue();
       const sVal = childVal || this.securitiesFormValue();
       payload = {...(this.item() || {}), ...(sVal || {})};
-    } else if (currentPillar === 'inventoryShipping' || this.pillarName().trim().toLowerCase().includes('inventory')) {
+    } else if (
+      currentPillar === 'inventory-n-shipping' ||
+      this.pillarName().trim().toLowerCase().includes('inventory')
+    ) {
       const childVal = this.inventoryShippingFormComp()?.getFormValue();
       const iVal = childVal || this.inventoryShippingFormValue();
       payload = {...(this.item() || {}), ...(iVal || {})};

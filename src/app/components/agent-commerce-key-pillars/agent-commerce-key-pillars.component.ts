@@ -6,7 +6,7 @@ import { ProtocolItem, SecurityItem, InventoryAndShippingItem,
 import { CrudModalPopupsComponent } from './crud-modal-popups/crud-modal-popups.component';
 import { CrudModalMode, CrudModalSubmitEvent } from '../../interfaces/crud-modals';
 
-export type PillarTab = | 'protocols' | 'securities' | 'inventoryShipping' | 'promotions' | 'fraudIdentity' | 'returns';
+export type PillarTab = | 'protocols' | 'securities' | 'inventory-n-shipping' | 'promotions' | 'fraudIdentity' | 'returns';
 
 export interface TabDefinition {
   id: PillarTab;
@@ -35,7 +35,7 @@ export class AgentCommerceKeyPillars {
   public readonly tabs: TabDefinition[] = [
     { id: 'protocols', name: 'Protocols' },
     { id: 'securities', name: 'Securities' },
-    { id: 'inventoryShipping', name: 'Inventory & Shipping' },
+    { id: 'inventory-n-shipping', name: 'Inventory & Shipping' },
     { id: 'promotions', name: 'Promotions' },
     { id: 'fraudIdentity', name: 'Fraud & Identity' },
     { id: 'returns', name: 'Returns' }
@@ -140,7 +140,7 @@ export class AgentCommerceKeyPillars {
           console.error(`[AgentCommerceKeyPillars] Failed to save ${event.pillarId} item to Firestore emulator:`, err);
         }});
 		}
-		if (event.mode === 'create' && event.pillarId === 'inventoryShipping') {
+		if (event.mode === 'create' && event.pillarId === 'inventory-n-shipping') {
       this.agentPillarsService.addInventoryShipping(event.item).subscribe({
         next: created => {
           console.log(`[AgentCommerceKeyPillars] Successfully saved ${event.pillarId} item to Firestore emulator:`, created);
@@ -149,7 +149,7 @@ export class AgentCommerceKeyPillars {
           console.error(`[AgentCommerceKeyPillars] Failed to save ${event.pillarId} item to Firestore emulator:`, err);
         }});
 		}
-		if (event.mode === 'edit' && event.pillarId === 'inventoryShipping') {
+		if (event.mode === 'edit' && event.pillarId === 'inventory-n-shipping') {
       this.agentPillarsService.updateInventoryShipping(event.item).subscribe({
         next: updated => {
           console.log(`[AgentCommerceKeyPillars] Successfully updated ${event.pillarId} item in Firestore emulator:`, updated);
@@ -160,6 +160,7 @@ export class AgentCommerceKeyPillars {
       });
     }
     if (event.mode === 'delete') {
+			console.log(event.mode);
       this.agentPillarsService.deletePillarItem(event.pillarId, event.item).subscribe({
         next: res => {
           console.log(`[AgentCommerceKeyPillars] Successfully deleted ${event.pillarId} item:`, res);

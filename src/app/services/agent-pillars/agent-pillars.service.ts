@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, throwError, EMPTY } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { tap, catchError, map } from 'rxjs/operators';
 import { FirestoreListResponse } from '../../interfaces/services/firestore-response.interface';
 import { environment } from '../../../environments/environment';
 import { FraudDetectionItem, InventoryAndShippingItem, 
@@ -70,6 +70,7 @@ export class AgentPillarsService {
     const url = `${baseUrl}/${docId}`;
 
     return this.http.delete<unknown>(url).pipe(
+			tap(_ => console.log('deleted')),
       map(() => true),
       catchError((error) => {
         console.warn(
