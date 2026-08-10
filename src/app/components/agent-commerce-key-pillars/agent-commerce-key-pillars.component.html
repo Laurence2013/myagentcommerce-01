@@ -590,16 +590,16 @@
       }
     }
   </div>
-  <app-crud-modal-popups
-    [isOpen]="isModalOpen()"
-    [mode]="modalMode()"
-    [pillarId]="selectedPillar()"
-    [pillarName]="getPillarName(selectedPillar())"
-    [item]="selectedItem()"
-    (closeModal)="onModalClose()"
-    (confirmAction)="onModalSubmit($event)"
-  />
 </div>
+<app-crud-modal-popups
+  [isOpen]="isModalOpen()"
+  [mode]="modalMode()"
+  [pillarId]="selectedPillar()"
+  [pillarName]="getPillarName(selectedPillar())"
+  [item]="selectedItem()"
+  (closeModal)="onModalClose()"
+  (confirmAction)="onModalSubmit($event)"
+/>
 @if (showBackToTop()) {
   <button type="button" class="back-to-top-btn" (click)="scrollToTop()" aria-label="Back to top" title="Back to top">
     <svg width="20" 

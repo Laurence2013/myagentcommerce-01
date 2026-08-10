@@ -25,6 +25,7 @@
   border-radius: 16px
   width: 100%
   max-width: 520px
+  max-height: calc(100vh - 3rem)
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5)
   overflow: hidden
   display: flex
@@ -38,6 +39,7 @@
     transform: scale(1)
 
 .modal-header
+  flex-shrink: 0
   display: flex
   align-items: center
   justify-content: space-between
@@ -99,6 +101,8 @@
   display: flex
   flex-direction: column
   gap: 1.25rem
+  flex: 1
+  overflow-y: auto
 
 .crud-form
   display: flex
@@ -176,6 +180,7 @@
   margin: 0
 
 .modal-footer
+  flex-shrink: 0
   display: flex
   align-items: center
   justify-content: flex-end
