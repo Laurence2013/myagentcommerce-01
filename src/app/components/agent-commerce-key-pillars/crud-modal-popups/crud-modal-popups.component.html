@@ -80,12 +80,14 @@
                 [pillarName]="pillarName()"
                 (formChange)="onReturnsFormChange($event)"
               />
-            } @else {
-              <app-edit-form
-                [item]="item()"
-                [pillarName]="pillarName()"
-                (formChange)="onEditFormChange($event)"
-              />
+						} @else if (pillarId() === 'add-new-protocol') {
+						<h1>Hello {{ item()?.['id'] }}</h1>
+						} @else {
+							<app-edit-form
+								[item]="item()"
+								[pillarName]="pillarName()"
+								(formChange)="onEditFormChange($event)"
+							/>
             }
           </form>
         }

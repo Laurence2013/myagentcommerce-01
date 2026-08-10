@@ -6,7 +6,8 @@ import { ProtocolItem, SecurityItem, InventoryAndShippingItem,
 import { CrudModalPopupsComponent } from './crud-modal-popups/crud-modal-popups.component';
 import { CrudModalMode, CrudModalSubmitEvent } from '../../interfaces/crud-modals';
 
-export type PillarTab = | 'protocols' | 'securities' | 'inventory-n-shipping' | 'promotions' | 'fraud-n-identity' | 'returns';
+export type PillarTab = | 'protocols' | 'securities' | 'inventory-n-shipping' | 'promotions' | 'fraud-n-identity' | 'returns'
+	| 'add-new-protocol';
 
 export interface TabDefinition {
   id: PillarTab;
@@ -73,6 +74,12 @@ export class AgentCommerceKeyPillars {
     this.modalMode.set('create');
     this.isModalOpen.set(true);
   }
+	public onAdd(pillarId: PillarTab, item?: unknown): void {
+    this.selectedPillar.set(pillarId);
+		this.selectedItem.set((item as Record<string, unknown>) || null);
+    this.modalMode.set('add');
+    this.isModalOpen.set(true);
+	}
   public onEdit(pillarIdOrItem: PillarTab | Record<string, unknown> | unknown, item?: unknown): void {
     if (typeof pillarIdOrItem === 'string') {
       this.selectedPillar.set(pillarIdOrItem as PillarTab);
