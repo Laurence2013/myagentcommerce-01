@@ -105,9 +105,13 @@ export class AgentCommerceKeyPillars {
   public onModalSubmit(event: CrudModalSubmitEvent): void {
     console.log('[AgentCommerceKeyPillars] Form Submitted from Modal:', {
       mode: event.mode,
+      currentTabId: this.activeTab(),
+      currentTabName: this.getPillarName(this.activeTab()),
       pillarId: event.pillarId,
+      collectionName: event.pillarId,
       pillarName: this.getPillarName(event.pillarId),
-      payload: event.item
+      documentId: event.item?.['id'] || event.item?.['docId'] || 'N/A',
+      payload: [event.item?.['name'], event.item?.['values']]
     });
     if (event.mode === 'create' && event.pillarId === 'protocols'){
       this.agentPillarsService.addProtocol(event.item).subscribe({
