@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { FirestoreListResponse } from '../interfaces/services/firestore-response.interface';
 import { environment } from '../../environments/environment';
@@ -28,6 +28,48 @@ export class CommerceAgentsService {
 
   public selectCriteria(criteria: string): void { this.selectedCriteriaSubject.next(criteria); }
 
+  public addPillarItem<T = Record<string, unknown>>(collectionName: string, item: Record<string, unknown>): Observable<T> {
+    console.log('[CommerceAgentsService] addPillarItem called:', { collectionName, item });
+    if (!this.http) {
+      console.warn('CommerceAgentsService: HttpClient is not provided.');
+      return throwError(() => new Error('HttpClient is not provided'));
+    }
+
+    const host = environment.useEmulators
+      ? `http://${environment.emulators.firestore.host}:${environment.emulators.firestore.port}`
+      : 'https://firestore.googleapis.com';
+    const projectId = environment.firebase.projectId || 'myagentcommerce-01';
+
+    const docId = (item['id'] || item['docId']) as string | undefined;
+
+    let url = `${host}/v1/projects/${projectId}/databases/(default)/documents/${collectionName}`;
+    if (docId) {
+      url += `?documentId=${encodeURIComponent(docId)}`;
+    }
+
+    const body = this.formatFirestoreFields(item);
+
+    return this.http.post<Record<string, unknown>>(url, body).pipe(
+      map((response) => {
+        const fields = (response['fields'] as Record<string, unknown>) || {};
+        const parsed = this.parseFirestoreFields(fields) as Record<string, unknown>;
+        if (response['name']) {
+          const resDocId = (response['name'] as string).split('/').pop();
+          if (resDocId && !parsed['id']) {
+            parsed['id'] = resDocId;
+          }
+        }
+        return parsed as T;
+      }),
+      catchError((error) => {
+        console.warn(
+          `CommerceAgentsService: Error adding document to '${collectionName}' in Firestore emulator REST endpoint (${url}):`,
+          error
+        );
+        return throwError(() => error);
+      })
+    );
+  }
   public get_a_document(criteria: string): Observable<Record<string, unknown>[]> {
     if (!this.http) {
       console.warn('CommerceAgentsService: HttpClient is not provided.');
@@ -89,6 +131,36 @@ export class CommerceAgentsService {
           return true;
       }
     });
+  }
+  private formatFirestoreFields(data: Record<string, unknown>): { fields: Record<string, unknown> } {
+    const fields: Record<string, unknown> = {};
+
+    for (const [key, value] of Object.entries(data)) {
+      if (value === null || value === undefined) continue;
+
+      if (typeof value === 'string') {
+        fields[key] = { stringValue: value };
+      } else if (typeof value === 'number') {
+        fields[key] = Number.isInteger(value) ? { integerValue: String(value) } : { doubleValue: value };
+      } else if (typeof value === 'boolean') {
+        fields[key] = { booleanValue: value };
+      } else if (Array.isArray(value)) {
+        fields[key] = {
+          arrayValue: {
+            values: value.map((item) =>
+              typeof item === 'string' ? { stringValue: item } : { stringValue: String(item) }
+            )
+          }
+        };
+      } else if (typeof value === 'object') {
+        fields[key] = {
+          mapValue: {
+            fields: this.formatFirestoreFields(value as Record<string, unknown>).fields
+          }
+        };
+      }
+    }
+    return { fields };
   }
   private parseFirestoreFields(fields: Record<string, unknown>): Record<string, unknown> {
     const result: Record<string, unknown> = {};

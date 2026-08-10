@@ -6,8 +6,17 @@ import { ProtocolItem, SecurityItem, InventoryAndShippingItem,
 import { CrudModalPopupsComponent } from './crud-modal-popups/crud-modal-popups.component';
 import { CrudModalMode, CrudModalSubmitEvent } from '../../interfaces/crud-modals';
 
-export type PillarTab = | 'protocols' | 'securities' | 'inventory-n-shipping' | 'promotions' | 'fraud-n-identity' | 'returns'
-	| 'add-new-protocol';
+export const PILLAR_TABS = {
+  PROTOCOLS: 'protocols',
+  SECURITIES: 'securities',
+  INVENTORY_SHIPPING: 'inventory-n-shipping',
+  PROMOTIONS: 'promotions',
+  FRAUD_IDENTITY: 'fraud-n-identity',
+  RETURNS: 'returns',
+  ADD_NEW_PROTOCOL: 'add-new-protocol'
+} as const;
+
+export type PillarTab = typeof PILLAR_TABS[keyof typeof PILLAR_TABS];
 
 export interface TabDefinition {
   id: PillarTab;
@@ -25,6 +34,7 @@ export interface TabDefinition {
   }
 })
 export class AgentCommerceKeyPillars {
+  public readonly PILLAR_TABS = PILLAR_TABS;
   protected readonly agentPillarsService = inject(AgentPillarsService);
 
   public readonly activeTab = signal<PillarTab>('protocols');
@@ -104,15 +114,30 @@ export class AgentCommerceKeyPillars {
   }
   public onModalSubmit(event: CrudModalSubmitEvent): void {
     console.log('[AgentCommerceKeyPillars] Form Submitted from Modal:', {
-      mode: event.mode,
+      formType: event.pillarId,
       currentTabId: this.activeTab(),
       currentTabName: this.getPillarName(this.activeTab()),
-      pillarId: event.pillarId,
-      collectionName: event.pillarId,
-      pillarName: this.getPillarName(event.pillarId),
       documentId: event.item?.['id'] || event.item?.['docId'] || 'N/A',
       payload: [event.item?.['name'], event.item?.['values']]
     });
+    if (event.pillarId === PILLAR_TABS.ADD_NEW_PROTOCOL) {
+      const collectionName = this.activeTab();
+      const currentItem = this.selectedItem() || {};
+
+      const updatePayload: Record<string, unknown> = {
+        ...currentItem,
+        ...(event.item || {})
+      };
+
+      this.agentPillarsService.updatePillarItem(collectionName, updatePayload).subscribe({
+        next: (updated) => {
+          console.log(`[AgentCommerceKeyPillars] Successfully updated document '${updatePayload['id'] || ''}' in Firestore collection '${collectionName}':`, updated);
+        },
+        error: (err) => {
+          console.error(`[AgentCommerceKeyPillars] Failed to update document '${updatePayload['id'] || ''}' in Firestore collection '${collectionName}':`, err);
+        }
+      });
+    }
     if (event.mode === 'create' && event.pillarId === 'protocols'){
       this.agentPillarsService.addProtocol(event.item).subscribe({
         next: created => {
