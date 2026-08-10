@@ -81,7 +81,12 @@
                 (formChange)="onReturnsFormChange($event)"
               />
 						} @else if (pillarId() === 'add-new-protocol') {
-						<h1>Hello {{ item()?.['id'] }}</h1>
+              <app-add-form
+                [item]="item()"
+                [mode]="mode() || ''"
+                [pillarName]="pillarName()"
+                (formChange)="onAddFormChange($event)"
+              />
 						} @else {
 							<app-edit-form
 								[item]="item()"

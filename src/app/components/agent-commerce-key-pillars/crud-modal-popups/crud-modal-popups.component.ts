@@ -15,10 +15,8 @@ import {
   FraudIdentityFormComponent,
   FraudIdentityFormValue
 } from './fraud-identity-form/fraud-identity-form.component';
-import {
-  ReturnsFormComponent,
-  ReturnsFormValue
-} from './returns-form/returns-form.component';
+import { ReturnsFormComponent, ReturnsFormValue } from './returns-form/returns-form.component';
+import { AddFormComponent } from './add-form/add-form.component';
 import {
   CrudModalMode,
   CrudModalSubmitEvent,
@@ -36,7 +34,8 @@ import {
     InventoryShippingFormComponent,
     PromotionsFormComponent,
     FraudIdentityFormComponent,
-    ReturnsFormComponent
+    ReturnsFormComponent,
+    AddFormComponent
   ],
   host: {
     'class': 'crud-modal-popups-host',
@@ -60,6 +59,7 @@ export class CrudModalPopupsComponent {
   public readonly promotionsFormComp = viewChild(PromotionsFormComponent);
   public readonly fraudIdentityFormComp = viewChild(FraudIdentityFormComponent);
   public readonly returnsFormComp = viewChild(ReturnsFormComponent);
+  public readonly addFormComp = viewChild(AddFormComponent);
 
   public readonly protocolFormValue = signal<ProtocolFormValue | null>(null);
   public readonly editFormValue = signal<Record<string, unknown> | null>(null);
@@ -68,6 +68,7 @@ export class CrudModalPopupsComponent {
   public readonly promotionsFormValue = signal<PromotionsFormValue | null>(null);
   public readonly fraudIdentityFormValue = signal<FraudIdentityFormValue | null>(null);
   public readonly returnsFormValue = signal<ReturnsFormValue | null>(null);
+  public readonly addFormValue = signal<Record<string, unknown> | null>(null);
 
   public constructor() {}
   public onProtocolFormChange(val: ProtocolFormValue): void {
@@ -90,6 +91,13 @@ export class CrudModalPopupsComponent {
   }
   public onReturnsFormChange(val: ReturnsFormValue): void {
     this.returnsFormValue.set(val);
+  }
+  public onAddFormChange(val: Record<string, unknown>): void {
+    this.addFormValue.set(val);
+  }
+  public getItemIdUpper(): string {
+    const val = (this.item() as Record<string, unknown> | null)?.['id'];
+    return typeof val === 'string' ? val.toUpperCase() : '';
   }
   public onEscape(): void {
     if (this.isOpen()) {
@@ -114,7 +122,11 @@ export class CrudModalPopupsComponent {
 
     let payload: Record<string, unknown>;
 
-    if (currentPillar === 'protocols') {
+    if (currentPillar === 'add-new-protocol') {
+      const childVal = this.addFormComp()?.getFormValue();
+      const aVal = childVal || this.addFormValue();
+      payload = {...(this.item() || {}), ...(aVal || {})};
+    } else if (currentPillar === 'protocols') {
       const childVal = this.protocolFormComp()?.getFormValue();
       const pVal = childVal || this.protocolFormValue();
       payload = {...(this.item() || {}), ...(pVal || {})};

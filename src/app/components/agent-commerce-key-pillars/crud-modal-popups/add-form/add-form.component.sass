@@ -1,0 +1,59 @@
+.add-form-container
+  display: flex
+  flex-direction: column
+  gap: 1.25rem
+
+.single-line-section
+  display: flex
+  align-items: center
+  gap: 0.5rem
+  white-space: nowrap
+
+  h1, h2
+    display: inline
+    margin: 0
+    font-size: 1.15rem
+    font-weight: 700
+
+  h1
+    color: #f1f5f9
+
+  h2
+    color: #818cf8
+
+.form-row-side-by-side
+  display: flex
+  gap: 1rem
+  align-items: flex-start
+
+  .form-group
+    flex: 1
+
+.form-group
+  display: flex
+  flex-direction: column
+  gap: 0.45rem
+
+.form-label
+  color: #cbd5e1
+  font-size: 0.85rem
+  font-weight: 600
+
+.form-control
+  width: 100%
+  box-sizing: border-box
+  padding: 0.65rem 1.25rem 0.65rem 0.85rem
+  background: rgba(15, 23, 42, 0.6)
+  border: 1px solid rgba(255, 255, 255, 0.1)
+  border-radius: 8px
+  color: #f8fafc
+  font-size: 0.9rem
+  outline: none
+  transition: border-color 0.2s ease, box-shadow 0.2s ease
+
+  &:focus
+    border-color: #818cf8
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2)
+
+  &::placeholder
+    color: #64748b
