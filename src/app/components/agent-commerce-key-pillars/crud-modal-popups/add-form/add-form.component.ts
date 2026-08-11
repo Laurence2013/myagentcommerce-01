@@ -12,12 +12,9 @@ export class AddFormComponent {
   public readonly item = input<Record<string, unknown> | null>(null);
   public readonly mode = input<string>('');
   public readonly pillarName = input<string>('');
-
   public readonly formChange = output<Record<string, unknown>>();
-
   public readonly formName = signal<string>('');
   public readonly formValues = signal<string>('');
-
   public constructor() {
     effect(() => {
       const raw = this.item();
@@ -37,35 +34,28 @@ export class AddFormComponent {
       });
     });
   }
-
   public getItemIdUpper(): string {
     const val = (this.item() as Record<string, unknown> | null)?.['id'];
     return typeof val === 'string' ? val.toUpperCase() : '';
   }
-
   public onNameInput(event: Event): void {
     this.formName.set((event.target as HTMLInputElement).value);
     this.emitChange();
   }
-
   public onValuesInput(event: Event): void {
     this.formValues.set((event.target as HTMLInputElement).value);
     this.emitChange();
   }
-
   public getFormValue(): Record<string, unknown> {
-    const splitArr = (val: string): string[] =>
-      val
-        .split(',')
-        .map((s) => s.trim())
-        .filter(Boolean);
-
+    const splitArr = (val: string): string[] => val.split(',').map((s) => s.trim()).filter(Boolean);
+    const fieldKey = this.formName().trim();
     const val: Record<string, unknown> = {};
-    if (this.formName()) val['name'] = this.formName().trim();
-    if (this.formValues()) val['values'] = splitArr(this.formValues());
+
+    if (fieldKey) {
+      val[fieldKey] = splitArr(this.formValues());
+		}
     return val;
   }
-
   private emitChange(): void {
     this.formChange.emit(this.getFormValue());
   }
