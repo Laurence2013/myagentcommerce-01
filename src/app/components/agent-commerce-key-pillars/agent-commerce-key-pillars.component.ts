@@ -171,7 +171,6 @@ export class AgentCommerceKeyPillars {
     const action$ = event.mode === 'create'
         ? this.agentPillarsService.addPillarItem(event.pillarId, event.item)
         : this.agentPillarsService.updatePillarItem(event.pillarId, event.item);
-
     const actionText = event.mode === 'create' ? 'saved' : 'updated';
 
     action$.subscribe({

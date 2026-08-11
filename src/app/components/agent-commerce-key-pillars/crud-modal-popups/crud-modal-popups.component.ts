@@ -110,7 +110,10 @@ export class CrudModalPopupsComponent {
 
     let payload: Record<string, unknown>;
 
-    if (currentPillar === 'add-new-protocol' || currentPillar === 'add-new-securities') {
+    if (currentPillar === 'add-new-protocol' 
+			|| currentPillar === 'add-new-securities'
+			|| currentPillar === 'add-new-inventory-shipping'
+		) {
       const childVal = this.addFormComp()?.getFormValue();
       const aVal = childVal || this.addFormValue();
       payload = {...(this.item() || {}), ...(aVal || {})};
