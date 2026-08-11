@@ -36,6 +36,7 @@ export class AddFormComponent {
   }
   public getItemIdUpper(): string {
     const val = (this.item() as Record<string, unknown> | null)?.['id'];
+		console.log(val);
     return typeof val === 'string' ? val.toUpperCase() : '';
   }
   public onNameInput(event: Event): void {

@@ -3,25 +3,12 @@ import { PillarTab } from '../agent-commerce-key-pillars.component';
 import { ProtocolsFormComponent } from './protocols-form/protocols-form.component';
 import { EditFormComponent } from './edit-form/edit-form.component';
 import { SecuritiesFormComponent, SecuritiesFormValue } from './securities-form/securities-form.component';
-import {
-  InventoryShippingFormComponent,
-  InventoryShippingFormValue
-} from './inventory-shipping-form/inventory-shipping-form.component';
-import {
-  PromotionsFormComponent,
-  PromotionsFormValue
-} from './promotions-form/promotions-form.component';
-import {
-  FraudIdentityFormComponent,
-  FraudIdentityFormValue
-} from './fraud-identity-form/fraud-identity-form.component';
+import { InventoryShippingFormComponent, InventoryShippingFormValue } from './inventory-shipping-form/inventory-shipping-form.component';
+import { PromotionsFormComponent, PromotionsFormValue } from './promotions-form/promotions-form.component';
+import { FraudIdentityFormComponent, FraudIdentityFormValue } from './fraud-identity-form/fraud-identity-form.component';
 import { ReturnsFormComponent, ReturnsFormValue } from './returns-form/returns-form.component';
 import { AddFormComponent } from './add-form/add-form.component';
-import {
-  CrudModalMode,
-  CrudModalSubmitEvent,
-  ProtocolFormValue
-} from '../../../interfaces/crud-modals';
+import { CrudModalMode, CrudModalSubmitEvent, ProtocolFormValue } from '../../../interfaces/crud-modals';
 
 @Component({
   selector: 'app-crud-modal-popups',
@@ -93,6 +80,7 @@ export class CrudModalPopupsComponent {
     this.returnsFormValue.set(val);
   }
   public onAddFormChange(val: Record<string, unknown>): void {
+		console.log(val);
     this.addFormValue.set(val);
   }
   public getItemIdUpper(): string {
@@ -122,7 +110,7 @@ export class CrudModalPopupsComponent {
 
     let payload: Record<string, unknown>;
 
-    if (currentPillar === 'add-new-protocol') {
+    if (currentPillar === 'add-new-protocol' || currentPillar === 'add-new-securities') {
       const childVal = this.addFormComp()?.getFormValue();
       const aVal = childVal || this.addFormValue();
       payload = {...(this.item() || {}), ...(aVal || {})};

@@ -87,6 +87,13 @@
                 [pillarName]="pillarName()"
                 (formChange)="onAddFormChange($event)"
               />
+						} @else if (pillarId() === 'add-new-securities') {
+              <app-add-form
+                [item]="item()"
+                [mode]="mode() || ''"
+                [pillarName]="pillarName()"
+                (formChange)="onAddFormChange($event)"
+              />
 						} @else {
 							<app-edit-form
 								[item]="item()"

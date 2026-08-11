@@ -13,7 +13,8 @@ export const PILLAR_TABS = {
   PROMOTIONS: 'promotions',
   FRAUD_IDENTITY: 'fraud-n-identity',
   RETURNS: 'returns',
-  ADD_NEW_PROTOCOL: 'add-new-protocol'
+  ADD_NEW_PROTOCOL: 'add-new-protocol',
+	ADD_NEW_SECURITIES: 'add-new-securities'
 } as const;
 
 export type PillarTab = typeof PILLAR_TABS[keyof typeof PILLAR_TABS];
@@ -113,6 +114,7 @@ export class AgentCommerceKeyPillars {
     this.selectedItem.set(null);
   }
   public onModalSubmit(event: CrudModalSubmitEvent): void {
+		console.log(event.item);
     console.log('[AgentCommerceKeyPillars] Form Submitted from Modal:', {
       formType: event.pillarId,
       currentTabId: this.activeTab(),
@@ -120,23 +122,33 @@ export class AgentCommerceKeyPillars {
       documentId: event.item?.['id'] || event.item?.['docId'] || 'N/A',
       payload: [event.item?.['name'], event.item?.['values']]
     });
+		if(event.pillarId === PILLAR_TABS.ADD_NEW_SECURITIES){
+      const collectionName = this.activeTab();
+      const currentItem = this.selectedItem() || {};
+      const updatePayload: Record<string, unknown> = {...currentItem, ...(event.item || {})};
+      this.agentPillarsService.updatePillarItem(collectionName, updatePayload).subscribe({
+        next: (updated) => {
+          console.log(`[AgentCommerceKeyPillars] Successfully updated document '${updatePayload['id'] || ''}' 
+						in Firestore collection '${collectionName}':`, updated);
+        },
+        error: (err) => {
+          console.error(`[AgentCommerceKeyPillars] Failed to update document '${updatePayload['id'] || ''}' 
+						in Firestore collection '${collectionName}':`, err);
+        }});
+		}
     if (event.pillarId === PILLAR_TABS.ADD_NEW_PROTOCOL) {
       const collectionName = this.activeTab();
       const currentItem = this.selectedItem() || {};
-
-      const updatePayload: Record<string, unknown> = {
-        ...currentItem,
-        ...(event.item || {})
-      };
-
+      const updatePayload: Record<string, unknown> = {...currentItem, ...(event.item || {})};
       this.agentPillarsService.updatePillarItem(collectionName, updatePayload).subscribe({
         next: (updated) => {
-          console.log(`[AgentCommerceKeyPillars] Successfully updated document '${updatePayload['id'] || ''}' in Firestore collection '${collectionName}':`, updated);
+          console.log(`[AgentCommerceKeyPillars] Successfully updated document '${updatePayload['id'] || ''}' 
+						in Firestore collection '${collectionName}':`, updated);
         },
         error: (err) => {
-          console.error(`[AgentCommerceKeyPillars] Failed to update document '${updatePayload['id'] || ''}' in Firestore collection '${collectionName}':`, err);
-        }
-      });
+          console.error(`[AgentCommerceKeyPillars] Failed to update document '${updatePayload['id'] || ''}' 
+						in Firestore collection '${collectionName}':`, err);
+        }});
     }
     if (event.mode === 'create' && event.pillarId === 'protocols'){
       this.agentPillarsService.addProtocol(event.item).subscribe({
@@ -269,10 +281,6 @@ export class AgentCommerceKeyPillars {
     const match = this.tabs.find((t) => t.id === pillarId);
     return match ? match.name : '';
   }
-  /**
-   * Dynamically gets all fields from any document payload in memory,
-   * ignoring header metadata keys ('id', 'docId', 'name', 'status').
-   */
   public getDocumentFields(item: unknown): { key: string; value: unknown }[] {
     if (!item || typeof item !== 'object') return [];
     const record = item as Record<string, unknown>;
