@@ -269,6 +269,19 @@ export class AgentCommerceKeyPillars {
     const match = this.tabs.find((t) => t.id === pillarId);
     return match ? match.name : '';
   }
+  /**
+   * Dynamically gets all fields from any document payload in memory,
+   * ignoring header metadata keys ('id', 'docId', 'name', 'status').
+   */
+  public getDocumentFields(item: unknown): { key: string; value: unknown }[] {
+    if (!item || typeof item !== 'object') return [];
+    const record = item as Record<string, unknown>;
+    const headerKeys = new Set(['id', 'docId', 'name', 'status']);
+
+    return Object.entries(record)
+      .filter(([key, value]) => !headerKeys.has(key) && value !== null && value !== undefined && value !== '')
+      .map(([key, value]) => ({ key, value }));
+  }
   public getObjectEntries(item: Record<string, unknown>): { key: string; value: unknown }[] {
     if (!item || typeof item !== 'object') return [];
     return Object.entries(item).map(([key, value]) => ({ key, value }));

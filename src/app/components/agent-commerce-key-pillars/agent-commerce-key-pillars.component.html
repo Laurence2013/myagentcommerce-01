@@ -82,67 +82,19 @@
                       </button>
                     </div>
                   </div>
-
                   <div class="key-value-list">
-                    @if (item.layers && item.layers.length > 0) {
+                    @for (field of getDocumentFields(item); track field.key) {
                       <div class="kv-row">
-                        <span class="kv-key">Layers:</span>
-                        <div class="kv-value-tags">
-                          @for (val of item.layers; track val) {
-                            <span class="tag tag-protocol">{{ val }}</span>
-                          }
-                        </div>
-                      </div>
-                    }
-
-                    @if (item.primaryFunctions && item.primaryFunctions.length > 0) {
-                      <div class="kv-row">
-                        <span class="kv-key">Primary Functions:</span>
-                        <div class="kv-value-tags">
-                          @for (val of item.primaryFunctions; track val) {
-                            <span class="tag tag-function">{{ val }}</span>
-                          }
-                        </div>
-                      </div>
-                    }
-
-                    @if (item.keyBackers && item.keyBackers.length > 0) {
-                      <div class="kv-row">
-                        <span class="kv-key">Key Backers:</span>
-                        <div class="kv-value-tags">
-                          @for (val of item.keyBackers; track val) {
-                            <span class="tag tag-backer">{{ val }}</span>
-                          }
-                        </div>
-                      </div>
-                    }
-
-                    @if (item.transports && item.transports.length > 0) {
-                      <div class="kv-row">
-                        <span class="kv-key">Transports:</span>
-                        <div class="kv-value-tags">
-                          @for (val of item.transports; track val) {
-                            <span class="tag tag-transport">{{ val }}</span>
-                          }
-                        </div>
-                      </div>
-                    }
-
-                    @if (item.governance && item.governance.length > 0) {
-                      <div class="kv-row">
-                        <span class="kv-key">Governance:</span>
-                        <div class="kv-value-tags">
-                          @for (val of item.governance; track val) {
-                            <span class="tag tag-governance">{{ val }}</span>
-                          }
-                        </div>
-                      </div>
-                    }
-
-                    @if (item.evaluationContext) {
-                      <div class="kv-row">
-                        <span class="kv-key">Evaluation Context:</span>
-                        <span class="kv-value-text">{{ item.evaluationContext }}</span>
+                        <span class="kv-key">{{ formatKeyName(field.key) }}:</span>
+                        @if (isArray(field.value)) {
+                          <div class="kv-value-tags">
+                            @for (val of $any(field.value); track ($index + '-' + val)) {
+                              <span class="tag tag-protocol">{{ val }}</span>
+                            }
+                          </div>
+                        } @else {
+                          <span class="kv-value-text">{{ field.value }}</span>
+                        }
                       </div>
                     }
                   </div>
@@ -202,50 +154,18 @@
                   </div>
 
                   <div class="key-value-list">
-                    @if (item.Capability && item.Capability.length > 0) {
+                    @for (field of getDocumentFields(item); track field.key) {
                       <div class="kv-row">
-                        <span class="kv-key">Capabilities:</span>
-                        <div class="kv-value-tags">
-                          @for (val of item.Capability; track val) {
-                            <span class="tag tag-security">{{ val }}</span>
-                          }
-                        </div>
-                      </div>
-                    }
-
-                    @let risks = item['Primary Risk Mitigated'] || item.primaryRiskMitigated;
-                    @if (risks && risks.length > 0) {
-                      <div class="kv-row">
-                        <span class="kv-key">Primary Risk Mitigated:</span>
-                        <div class="kv-value-tags">
-                          @for (val of risks; track val) {
-                            <span class="tag tag-risk">{{ val }}</span>
-                          }
-                        </div>
-                      </div>
-                    }
-
-                    @let prots = item.Protocols || item.protocols;
-                    @if (prots && prots.length > 0) {
-                      <div class="kv-row">
-                        <span class="kv-key">Protocols:</span>
-                        <div class="kv-value-tags">
-                          @for (val of prots; track val) {
-                            <span class="tag tag-protocol">{{ val }}</span>
-                          }
-                        </div>
-                      </div>
-                    }
-
-                    @let mechs = item.Mechanisms || item.mechanisms;
-                    @if (mechs && mechs.length > 0) {
-                      <div class="kv-row">
-                        <span class="kv-key">Mechanisms:</span>
-                        <div class="kv-value-tags">
-                          @for (val of mechs; track val) {
-                            <span class="tag tag-mechanism">{{ val }}</span>
-                          }
-                        </div>
+                        <span class="kv-key">{{ formatKeyName(field.key) }}:</span>
+                        @if (isArray(field.value)) {
+                          <div class="kv-value-tags">
+                            @for (val of $any(field.value); track ($index + '-' + val)) {
+                              <span class="tag tag-security">{{ val }}</span>
+                            }
+                          </div>
+                        } @else {
+                          <span class="kv-value-text">{{ field.value }}</span>
+                        }
                       </div>
                     }
                   </div>
@@ -305,38 +225,18 @@
                   </div>
 
                   <div class="key-value-list">
-                    @if (item.capability && item.capability.length > 0) {
+                    @for (field of getDocumentFields(item); track field.key) {
                       <div class="kv-row">
-                        <span class="kv-key">Capabilities:</span>
-                        <div class="kv-value-tags">
-                          @for (val of item.capability; track val) {
-                            <span class="tag tag-inventory">{{ val }}</span>
-                          }
-                        </div>
-                      </div>
-                    }
-
-                    @let invRisks = item.primary_risk_mitigated || item.primaryRiskMitigated;
-                    @if (invRisks && invRisks.length > 0) {
-                      <div class="kv-row">
-                        <span class="kv-key">Primary Risk Mitigated:</span>
-                        <div class="kv-value-tags">
-                          @for (val of invRisks; track val) {
-                            <span class="tag tag-risk">{{ val }}</span>
-                          }
-                        </div>
-                      </div>
-                    }
-
-                    @let enablers = item.key_enabler || item.keyEnabler;
-                    @if (enablers && enablers.length > 0) {
-                      <div class="kv-row">
-                        <span class="kv-key">Key Enablers:</span>
-                        <div class="kv-value-tags">
-                          @for (val of enablers; track val) {
-                            <span class="tag tag-enabler">{{ val }}</span>
-                          }
-                        </div>
+                        <span class="kv-key">{{ formatKeyName(field.key) }}:</span>
+                        @if (isArray(field.value)) {
+                          <div class="kv-value-tags">
+                            @for (val of $any(field.value); track ($index + '-' + val)) {
+                              <span class="tag tag-inventory">{{ val }}</span>
+                            }
+                          </div>
+                        } @else {
+                          <span class="kv-value-text">{{ field.value }}</span>
+                        }
                       </div>
                     }
                   </div>
@@ -394,47 +294,18 @@
                   </div>
 
                   <div class="key-value-list">
-                    @if (item.capability && item.capability.length > 0) {
+                    @for (field of getDocumentFields(item); track field.key) {
                       <div class="kv-row">
-                        <span class="kv-key">Capabilities:</span>
-                        <div class="kv-value-tags">
-                          @for (val of item.capability; track val) {
-                            <span class="tag tag-promotion">{{ val }}</span>
-                          }
-                        </div>
-                      </div>
-                    }
-
-                    @if (item.primaryRiskMitigated && item.primaryRiskMitigated.length > 0) {
-                      <div class="kv-row">
-                        <span class="kv-key">Primary Risk Mitigated:</span>
-                        <div class="kv-value-tags">
-                          @for (val of item.primaryRiskMitigated; track val) {
-                            <span class="tag tag-risk">{{ val }}</span>
-                          }
-                        </div>
-                      </div>
-                    }
-
-                    @if (item.keyEnabler && item.keyEnabler.length > 0) {
-                      <div class="kv-row">
-                        <span class="kv-key">Key Enablers:</span>
-                        <div class="kv-value-tags">
-                          @for (val of item.keyEnabler; track val) {
-                            <span class="tag tag-enabler">{{ val }}</span>
-                          }
-                        </div>
-                      </div>
-                    }
-
-                    @if (item.architecturalNuance && item.architecturalNuance.length > 0) {
-                      <div class="kv-row">
-                        <span class="kv-key">Architectural Nuances:</span>
-                        <div class="kv-value-bullets">
-                          @for (val of item.architecturalNuance; track val) {
-                            <div class="bullet-item">• {{ val }}</div>
-                          }
-                        </div>
+                        <span class="kv-key">{{ formatKeyName(field.key) }}:</span>
+                        @if (isArray(field.value)) {
+                          <div class="kv-value-tags">
+                            @for (val of $any(field.value); track ($index + '-' + val)) {
+                              <span class="tag tag-promotion">{{ val }}</span>
+                            }
+                          </div>
+                        } @else {
+                          <span class="kv-value-text">{{ field.value }}</span>
+                        }
                       </div>
                     }
                   </div>
@@ -493,38 +364,18 @@
                   </div>
 
                   <div class="key-value-list">
-                    @if (item.capability && item.capability.length > 0) {
+                    @for (field of getDocumentFields(item); track field.key) {
                       <div class="kv-row">
-                        <span class="kv-key">Capabilities:</span>
-                        <div class="kv-value-tags">
-                          @for (val of item.capability; track val) {
-                            <span class="tag tag-fraud">{{ val }}</span>
-                          }
-                        </div>
-                      </div>
-                    }
-
-                    @let fraudRisks = item.primary_risk_mitigated || item.primaryRiskMitigated;
-                    @if (fraudRisks && fraudRisks.length > 0) {
-                      <div class="kv-row">
-                        <span class="kv-key">Primary Risk Mitigated:</span>
-                        <div class="kv-value-tags">
-                          @for (val of fraudRisks; track val) {
-                            <span class="tag tag-risk">{{ val }}</span>
-                          }
-                        </div>
-                      </div>
-                    }
-
-                    @let fraudEnablers = item.key_enabler || item.keyEnabler;
-                    @if (fraudEnablers && fraudEnablers.length > 0) {
-                      <div class="kv-row">
-                        <span class="kv-key">Key Enablers:</span>
-                        <div class="kv-value-tags">
-                          @for (val of fraudEnablers; track val) {
-                            <span class="tag tag-enabler">{{ val }}</span>
-                          }
-                        </div>
+                        <span class="kv-key">{{ formatKeyName(field.key) }}:</span>
+                        @if (isArray(field.value)) {
+                          <div class="kv-value-tags">
+                            @for (val of $any(field.value); track ($index + '-' + val)) {
+                              <span class="tag tag-fraud">{{ val }}</span>
+                            }
+                          </div>
+                        } @else {
+                          <span class="kv-value-text">{{ field.value }}</span>
+                        }
                       </div>
                     }
                   </div>
@@ -581,34 +432,18 @@
                     </div>
                   </div>
                   <div class="key-value-list">
-                    @if (item.primaryRiskMitigated && item.primaryRiskMitigated.length > 0) {
+                    @for (field of getDocumentFields(item); track field.key) {
                       <div class="kv-row">
-                        <span class="kv-key">Primary Risk Mitigated:</span>
-                        <div class="kv-value-tags">
-                          @for (val of item.primaryRiskMitigated; track val) {
-                            <span class="tag tag-risk">{{ val }}</span>
-                          }
-                        </div>
-                      </div>
-                    }
-                    @if (item.keyEnabler && item.keyEnabler.length > 0) {
-                      <div class="kv-row">
-                        <span class="kv-key">Key Enablers:</span>
-                        <div class="kv-value-tags">
-                          @for (val of item.keyEnabler; track val) {
-                            <span class="tag tag-enabler">{{ val }}</span>
-                          }
-                        </div>
-                      </div>
-                    }
-                    @if (item.architecturalValidity && item.architecturalValidity.length > 0) {
-                      <div class="kv-row">
-                        <span class="kv-key">Architectural Validity:</span>
-                        <div class="kv-value-bullets">
-                          @for (val of item.architecturalValidity; track val) {
-                            <div class="bullet-item">• {{ val }}</div>
-                          }
-                        </div>
+                        <span class="kv-key">{{ formatKeyName(field.key) }}:</span>
+                        @if (isArray(field.value)) {
+                          <div class="kv-value-tags">
+                            @for (val of $any(field.value); track ($index + '-' + val)) {
+                              <span class="tag tag-protocol">{{ val }}</span>
+                            }
+                          </div>
+                        } @else {
+                          <span class="kv-value-text">{{ field.value }}</span>
+                        }
                       </div>
                     }
                   </div>
