@@ -108,6 +108,20 @@
                 [pillarName]="pillarName()"
                 (formChange)="onAddFormChange($event)"
               />
+						} @else if (pillarId() === 'add-new-fraud-identity') {
+              <app-add-form
+                [item]="item()"
+                [mode]="mode() || ''"
+                [pillarName]="pillarName()"
+                (formChange)="onAddFormChange($event)"
+              />
+						} @else if (pillarId() === 'add-new-returns') {
+              <app-add-form
+                [item]="item()"
+                [mode]="mode() || ''"
+                [pillarName]="pillarName()"
+                (formChange)="onAddFormChange($event)"
+              />
 						} @else {
 							<app-edit-form
 								[item]="item()"

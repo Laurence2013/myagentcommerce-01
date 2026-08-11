@@ -17,6 +17,8 @@ export const PILLAR_TABS = {
 	ADD_NEW_SECURITIES: 'add-new-securities',
 	ADD_NEW_INVENTORY_SHIPPING: 'add-new-inventory-shipping',
   ADD_NEW_PROMOTIONS: 'add-new-promotions',
+  ADD_NEW_FRAUD_IDENTITY: 'add-new-fraud-identity',
+  ADD_NEW_RETURNS: 'add-new-returns',
 } as const;
 
 export type PillarTab = typeof PILLAR_TABS[keyof typeof PILLAR_TABS];
@@ -129,6 +131,8 @@ export class AgentCommerceKeyPillars {
       event.pillarId === PILLAR_TABS.ADD_NEW_SECURITIES ||
       event.pillarId === PILLAR_TABS.ADD_NEW_INVENTORY_SHIPPING ||
       event.pillarId === PILLAR_TABS.ADD_NEW_PROMOTIONS ||
+      event.pillarId === PILLAR_TABS.ADD_NEW_FRAUD_IDENTITY ||
+      event.pillarId === PILLAR_TABS.ADD_NEW_RETURNS ||
       String(event.pillarId).startsWith('add-new-')
     ) {
       this.addNewForm(event);

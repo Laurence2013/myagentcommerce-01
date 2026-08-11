@@ -114,6 +114,8 @@ export class CrudModalPopupsComponent {
 			|| currentPillar === 'add-new-securities'
 			|| currentPillar === 'add-new-inventory-shipping'
 			|| currentPillar === 'add-new-promotions'
+			|| currentPillar === 'add-new-fraud-identity'
+			|| currentPillar === 'add-new-returns'
 		) {
       const childVal = this.addFormComp()?.getFormValue();
       const aVal = childVal || this.addFormValue();
