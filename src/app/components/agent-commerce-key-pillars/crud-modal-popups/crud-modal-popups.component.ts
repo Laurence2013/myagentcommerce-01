@@ -113,6 +113,7 @@ export class CrudModalPopupsComponent {
     if (currentPillar === 'add-new-protocol' 
 			|| currentPillar === 'add-new-securities'
 			|| currentPillar === 'add-new-inventory-shipping'
+			|| currentPillar === 'add-new-promotions'
 		) {
       const childVal = this.addFormComp()?.getFormValue();
       const aVal = childVal || this.addFormValue();
