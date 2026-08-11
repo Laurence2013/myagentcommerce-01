@@ -14,7 +14,8 @@ export const PILLAR_TABS = {
   FRAUD_IDENTITY: 'fraud-n-identity',
   RETURNS: 'returns',
   ADD_NEW_PROTOCOL: 'add-new-protocol',
-	ADD_NEW_SECURITIES: 'add-new-securities'
+	ADD_NEW_SECURITIES: 'add-new-securities',
+	ADD_NEW_INVENTORY_SHIPPING: 'add-new-inventory-shipping'
 } as const;
 
 export type PillarTab = typeof PILLAR_TABS[keyof typeof PILLAR_TABS];
@@ -122,33 +123,13 @@ export class AgentCommerceKeyPillars {
       documentId: event.item?.['id'] || event.item?.['docId'] || 'N/A',
       payload: [event.item?.['name'], event.item?.['values']]
     });
-		if(event.pillarId === PILLAR_TABS.ADD_NEW_SECURITIES){
-      const collectionName = this.activeTab();
-      const currentItem = this.selectedItem() || {};
-      const updatePayload: Record<string, unknown> = {...currentItem, ...(event.item || {})};
-      this.agentPillarsService.updatePillarItem(collectionName, updatePayload).subscribe({
-        next: (updated) => {
-          console.log(`[AgentCommerceKeyPillars] Successfully updated document '${updatePayload['id'] || ''}' 
-						in Firestore collection '${collectionName}':`, updated);
-        },
-        error: (err) => {
-          console.error(`[AgentCommerceKeyPillars] Failed to update document '${updatePayload['id'] || ''}' 
-						in Firestore collection '${collectionName}':`, err);
-        }});
-		}
-    if (event.pillarId === PILLAR_TABS.ADD_NEW_PROTOCOL) {
-      const collectionName = this.activeTab();
-      const currentItem = this.selectedItem() || {};
-      const updatePayload: Record<string, unknown> = {...currentItem, ...(event.item || {})};
-      this.agentPillarsService.updatePillarItem(collectionName, updatePayload).subscribe({
-        next: (updated) => {
-          console.log(`[AgentCommerceKeyPillars] Successfully updated document '${updatePayload['id'] || ''}' 
-						in Firestore collection '${collectionName}':`, updated);
-        },
-        error: (err) => {
-          console.error(`[AgentCommerceKeyPillars] Failed to update document '${updatePayload['id'] || ''}' 
-						in Firestore collection '${collectionName}':`, err);
-        }});
+    if (
+      event.pillarId === PILLAR_TABS.ADD_NEW_PROTOCOL ||
+      event.pillarId === PILLAR_TABS.ADD_NEW_SECURITIES ||
+      event.pillarId === PILLAR_TABS.ADD_NEW_INVENTORY_SHIPPING ||
+      String(event.pillarId).startsWith('add-new-')
+    ) {
+      this.addNewForm(event);
     }
     if (event.mode === 'create' && event.pillarId === 'protocols'){
       this.agentPillarsService.addProtocol(event.item).subscribe({
@@ -275,6 +256,26 @@ export class AgentCommerceKeyPillars {
         }});
     }
     this.onModalClose();
+  }
+  private addNewForm(event: CrudModalSubmitEvent): void {
+    const collectionName = this.activeTab();
+    const currentItem = this.selectedItem() || {};
+    const updatePayload: Record<string, unknown> = { ...currentItem, ...(event.item || {}) };
+
+    this.agentPillarsService.updatePillarItem(collectionName, updatePayload).subscribe({
+      next: (updated) => {
+        console.log(
+          `[AgentCommerceKeyPillars] Successfully updated document '${updatePayload['id'] || ''}' in Firestore collection '${collectionName}':`,
+          updated
+        );
+      },
+      error: (err) => {
+        console.error(
+          `[AgentCommerceKeyPillars] Failed to update document '${updatePayload['id'] || ''}' in Firestore collection '${collectionName}':`,
+          err
+        );
+      }
+    });
   }
   public getPillarName(pillarId: PillarTab | null): string {
     if (!pillarId) return '';
